@@ -19,7 +19,9 @@ const PaymentInfo = db.define('paymentInfo', {
     threeDigiCode: {
         type: Sequelize.STRING,
         // validate: {
-        //     len: [3, 3]
+        //     len: {
+        // args: [3, 3]
+        // }
         // },
     },
     firstName: {

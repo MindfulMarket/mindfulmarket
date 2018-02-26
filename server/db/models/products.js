@@ -17,6 +17,7 @@ const Products = db.define('product', {
     description: {
         type: Sequelize.TEXT,
     },
+
     // rating: {}
     // brandId
     //  ReviewId

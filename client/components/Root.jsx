@@ -8,16 +8,16 @@ export default class Root extends Component {
       <Router>
         <Switch>
           <div id="main" className="container-fluid">
-            <Route exact path="/" component={} />
-            <Route path="/login" component={} />
-            <Route path="/signup" component={} />
-            <Route exact path="/users" component={} />
-            <Route path="/users/:id" component={} />
-            <Route exact path="/stories" component={} />
-            <Route path="/stories/:id" component={} />
           </div>
-        </Switch>
-      </Router>
-    )
-  }
-}
+          </Switch>
+          </Router>
+        )
+      }
+    }
+    // <Route exact path="/" component={} />
+    // <Route path="/" component={} />
+    // <Route path="/signup" component={} />
+    // <Route exact path="/users" component={} />
+    // <Route path="/users/:id" component={} />
+    // <Route exact path="/stories" component={} />
+    // <Route path="/stories/:id" component={} />

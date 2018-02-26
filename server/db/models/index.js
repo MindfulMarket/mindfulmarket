@@ -6,6 +6,7 @@ const Brands = require('./brands');
 const Orders = require('./orders');
 const Reviews = require('./reviews');
 
+const PaymentInfo = require('./payment');
 
 /**
  * If we had any associations to make, this would be a great place to put them!

@@ -17,6 +17,12 @@ const Products = db.define('product', {
     description: {
         type: Sequelize.TEXT,
     },
+
+    // rating: {}
+    // brandId
+    //  ReviewId
+    // 	CategoryId
+    // 	CauseId
 })
 
 module.exports = Products;

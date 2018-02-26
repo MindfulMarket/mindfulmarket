@@ -24,4 +24,4 @@ const Services = db.define('services', {
     // 	CauseId
 })
 
-module.exports = Products;
+module.exports = Services;

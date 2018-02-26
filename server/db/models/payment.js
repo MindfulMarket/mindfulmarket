@@ -6,21 +6,21 @@ const PaymentInfo = db.define('paymentInfo', {
         type: Sequelize.STRING,
         unique: true,
         allowNull: false,
-        validate: {
-            len: [14, 15]
-        },
+        // validate: {
+        //     len: [14, 15]
+        // },
     },
     expirationDate: {
         type: Sequelize.STRING,
-        validate: {
-            len: [4, 4]
-        },
+        // validate: {
+        //     len: [4, 4]
+        // },
     },
     threeDigiCode: {
         type: Sequelize.STRING,
-        validate: {
-            len: [3, 3]
-        },
+        // validate: {
+        //     len: [3, 3]
+        // },
     },
     firstName: {
         type: Sequelize.STRING,

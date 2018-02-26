@@ -1,6 +1,7 @@
-const User = require('./user')
-const Products = require('./products')
-const Services = require('./services')
+const User = require('./user');
+const Products = require('./products');
+const Services = require('./services');
+const PaymentInfo = require('./payment');
 
 /**
  * If we had any associations to make, this would be a great place to put them!

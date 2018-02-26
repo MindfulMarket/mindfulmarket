@@ -1,25 +1,29 @@
 const Sequelize = require('sequelize');
-const db = require('../index.js')
+const db = require('../db')
 
-const Review = db.define('reviews', {
-  //date created automatically
+const Reviews = db.define('reviews', {
+    //date created automatically
 
-  title: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
+    title: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
+    },
+
+    rating: {
+        type: Sequelize.FLOAT,
+        allowNull: false,
+        validate: {
+            min: 0.0,
+            max: 5.0,
+            notEmpty: true
+        }
+    },
+
+    content: {
+        type: Sequelize.TEXT
     }
-  },
-
-  rating: Sequelize.FLOAT,
-  allowNull: false,
-  validate: {
-    min: 0.0,
-    max: 5.0,
-    notEmpty: true
-  },
-
-  content: Sequelize.TEXT
 });
-module.exports = Review;
+module.exports = Reviews;

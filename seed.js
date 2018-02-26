@@ -1,13 +1,3 @@
-// BRANDS:
-// People_Tree,
-// Everlane,
-// Reformation,
-// MATT & NAT,
-// Stella McCartney,
-// Patagonia
-// Cotopax
-
-
 const brands = [{
     name: 'People Tree',
     imageUrl: './public/assets/logos/PeopleTreeLogo',
@@ -29,4 +19,4 @@ const brands = [{
 }, {
     name: 'Cotopaxi',
     imageUrl: './public/assets/logos/Cotopaxi',
-}]
+}];

@@ -18,14 +18,14 @@ const User = db.define('user', {
     },
     firstName: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
     },
     lastName: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
     },
     phoneNumber: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.STRING,
         allowNull: false
     },
     shippingAddress: {

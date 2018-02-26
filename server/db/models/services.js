@@ -11,17 +11,17 @@ const Services = db.define('services', {
         type: Sequelize.STRING,
     },
     price: {
-        type: Sequelize.Float,
+        type: Sequelize.FLOAT,
         allowNull: false,
     },
     description: {
         type: Sequelize.TEXT,
     },
-    rating: {}
+    // rating: {}
     // brandId
     //  ReviewId
     // 	CategoryId
     // 	CauseId
 })
 
-module.exports = Products;
+module.exports = Services;

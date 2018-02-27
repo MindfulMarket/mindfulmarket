@@ -39,6 +39,7 @@ const PaymentInfo = require('./payment');
 
 module.exports = {
     User,
+    Brands,
     Products,
     Causes
     //Services,

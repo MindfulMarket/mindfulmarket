@@ -6,7 +6,6 @@ const Causes = require('./causes');
 const Orders = require('./orders');
 const Reviews = require('./reviews');
 const Categories = require('./categories')
-
 const PaymentInfo = require('./payment');
 
 /**

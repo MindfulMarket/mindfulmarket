@@ -6,7 +6,6 @@ const Causes = require('./causes');
 const Orders = require('./orders');
 const Reviews = require('./reviews');
 const Categories = require('./categories')
-
 const PaymentInfo = require('./payment');
 
 /**
@@ -43,6 +42,7 @@ Products.belongsToMany(Causes,{through: 'ProductCauses'});
 Products.belongsToMany(Categories,{ through: 'ProductCategories' });
 Products.hasMany(Reviews,{as: 'Reviews'})
 
+
 //Services associations
 Services.belongsTo(Brands, { through: 'ServiceBrands' });
 Services.belongsToMany(Causes, { through: 'ServiceCauses' });
@@ -53,6 +53,7 @@ Causes.belongsToMany(Products,{ through: 'ProductCauses' });
 Causes.belongsToMany(Services,{ through: 'ServiceCauses' });
 Causes.belongsToMany(Brands,{ through: 'BrandCauses' });
 
+
 //Categories associations
 Categories.belongsToMany(Products);
 Categories.belongsToMany(Services);
@@ -60,6 +61,7 @@ Categories.belongsToMany(Brands);
 
 module.exports = {
     User,
+    Brands,
     Products,
     Services,
     Orders,
@@ -67,3 +69,4 @@ module.exports = {
     Causes,
     Brands
 }
+

@@ -54,16 +54,17 @@ Causes.belongsToMany(Services,{ through: 'ServiceCauses' });
 Causes.belongsToMany(Brands,{ through: 'BrandCauses' });
 
 //Categories associations
-Categories.belongsToMany(Products);
-Categories.belongsToMany(Services);
-Categories.belongsToMany(Brands);
+Categories.belongsToMany(Products,{ through: 'ProductCategories' });
+Categories.belongsToMany(Services,{ through: 'ServiceCategories' });
+Categories.belongsToMany(Brands,{ through: 'BrandCategories' });
 
 module.exports = {
     User,
+    Brands,
     Products,
     Services,
     Orders,
     Categories,
     Causes,
-    Brands
+ 
 }

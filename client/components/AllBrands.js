@@ -1,44 +1,55 @@
 import React, { Component } from 'react';
-
+import axios from 'axios'
+import Card from './Card'
 /* -----------------    COMPONENT     ------------------ */
 
-export default class AllBrands extends Component {
-  // constructor() {
-  //   super();
-  // }
+class AllBrands extends Component {
+  constructor() {
+    super();
+    this.state = {
+      brands: [],
+    }
+  }
+
+  componentDidMount() {
+    axios.get('/api/brands')
+    .then(res => res.data)
+    .then((brands) => this.setState({brands}) )
+  }
 
   render() {
     return (
       <div className="container">
-
-        <div className="filterContainer">
-        </div>
 
         <div className="itemsContainer">
           <div className="featuredContainer">
             <h1> Here is where we show featured Items </h1>
           </div>
 
-          <div className="allItemsContainer" >
-            <h1> Here is where we show all Items </h1>
-            {
-            /* Here we use our array of items and then map it with its product image, price, and name
+          <div className="container" style={{ flexDirection: "row" }}>
+            <div className="filterContainer">
+            <h1> Here is where we filter Items</h1>
+            </div>
 
-            brands.map(brand => {
-              <Card image={brand.imageUrl} name={brand.name} causes={brand.causes}/>
-            })
-            */
-            }
-          </div>
+            <div className="itemsContainer">
+              <h1> Here is where we show all Items </h1>
 
-          <div>
-          </div>
-
+              <div className="allItemsContainer" >
+                {
+                  this.state.brands.map(brand =>
+                    <Card key={brand.name} name={brand.name} imageUrl={brand.imageUrl} />
+                  )
+                }
+              </div>
+              </div>
+            </div>
         </div>
       </div>
     )
   }
 }
+
+export default AllBrands
 
   /* -----------------    CONTAINER     ------------------ */
 

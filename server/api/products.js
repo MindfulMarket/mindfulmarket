@@ -36,7 +36,7 @@ router.delete('/:id', (req, res, next) => {
   Products.delete({ 
     where: { 
       id: req.params.id 
-    } 
+    },
     include: {all: true}
   })
     .then((result) => res.json(result))

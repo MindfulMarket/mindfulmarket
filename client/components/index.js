@@ -16,6 +16,3 @@ export {default as SingleBrand} from './SingleBrand'
 export {default as SingleCause} from './SingleCause'
 export {default as SingleProduct} from './SingleProduct'
 export {default as SingleService} from './SingleService'
-
-
-

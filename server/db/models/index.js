@@ -1,10 +1,10 @@
 const User = require('./user');
 const Products = require('./products');
-const Services = require('./services');
-const Brands = require('./brands');
-// const Causes = require('./causes');
-const Orders = require('./orders');
-const Reviews = require('./reviews');
+//const Services = require('./services');
+//const Brands = require('./brands');
+ const Causes = require('./causes');
+//const Orders = require('./orders');
+//const Reviews = require('./reviews');
 
 const PaymentInfo = require('./payment');
 
@@ -23,22 +23,23 @@ const PaymentInfo = require('./payment');
  *
  */
 
-Reviews.belongsTo(Products);
-Reviews.belongsTo(Services);
-Reviews.belongsTo(User);
+//Reviews.belongsTo(Products);
+//Reviews.belongsTo(Services);
+//Reviews.belongsTo(User);
 
-Brands.belongsToMany(Products, { through: "ProductBrands" });
-Brands.belongsToMany(Services, { through: "ServiceBrands" });
+//Brands.belongsToMany(Products, { through: "ProductBrands" });
+//Brands.belongsToMany(Services, { through: "ServiceBrands" });
 
 // Causes.belongsToMany(Products);
 // Causes.belongsToMany(Services);
 // Causes.belongsToMany(Brands);
 
-Orders.belongsTo(User);
+//Orders.belongsTo(User);
 
 
 module.exports = {
     User,
     Products,
-    Services,
+    Causes
+    //Services,
 }

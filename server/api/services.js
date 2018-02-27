@@ -19,7 +19,11 @@ router.get('/:id/reviews', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
     Services.create(req.body)
-    .then((result) => res.json(result))
+    .then((service) =>{
+        service.addCategory(req.body.category)
+        service.addCause(req.body.cause)
+        res.json(service)
+    })
 })
 
 router.put('/:id', (req, res, next) => {
@@ -28,7 +32,11 @@ router.put('/:id', (req, res, next) => {
     },
     include: {all: true}
 })
-    .then((result) => res.json(result))
+    .then((service) =>{
+        if (req.body.category) service.addProduct(req.body.category)
+        if (req.body.cause) service.addCause(req.body.cause)
+        res.json(result)
+    })
 })
 
 router.delete('/:id', (req, res, next) => {

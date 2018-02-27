@@ -10,57 +10,9 @@
  * Now that you've got the main idea, check it out in practice below!
  */
 const db = require('./server/db')
-const { User, Brands, Products } = require('./server/db/models')
+const { User, Brands, Products, Reviews, Causes, Categories } = require('./server/db/models')
 
 
-async function seed() {
-    await db.sync({ force: true })
-    console.log('db synced!')
-        // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
-        // executed until that promise resolves!
-
-    const users = await Promise.all([
-            User.create({ email: 'cody@email.com', password: '123', phoneNumber: '310-555-5555', firstName: 'Cody', lastName: 'Bowers' }),
-            // User.create({ email: 'murphy@email.com', password: '123' }),
-        ])
-        // Wowzers! We can even `await` on the right-hand side of the assignment operator
-        // and store the result that the promise resolves to in a variable! This is nice!
-    console.log(`seeded ${users.length} users`)
-
-    const allBrands = await Promise.all(
-        brands.map(brand => Brands.create(brand)),
-    )
-    console.log(`seeded ${allBrands.length} brands`)
-
-    const allProducts = await Promise.all(
-        products.map(product => Products.create(product)),
-    )
-    console.log(`seeded ${allProducts.length} products`)
-
-    console.log(`seeded successfully`)
-}
-
-// Execute the `seed` function
-// `Async` functions always return a promise, so we can use `catch` to handle any errors
-// that might occur inside of `seed`
-seed()
-    .catch(err => {
-        console.error(err.message)
-        console.error(err.stack)
-        process.exitCode = 1
-    })
-    .then(() => {
-        console.log('closing db connection')
-        db.close()
-        console.log('db connection closed')
-    })
-
-/*
- * note: everything outside of the async function is totally synchronous
- * The console.log below will occur before any of the logs that occur inside
- * of the async function
- */
-console.log('seeding...')
 
 const brands = [{
     name: 'People Tree',
@@ -162,32 +114,163 @@ const reviews = [
     {
         title: 'My new favorite shirt',
         rating: 5.0,
-        content: 'I love this product'
+        content: 'I love this product',
+        productId: 1
     },
     {
-        title: 'My new favorite shirt',
-        rating: 5.0,
-        content: 'I love this product'
+        title: 'My new favorite uncle',
+        rating: 2.0,
+        content: 'I love this product',
+        productId: 2
+
     },
     {
-        title: 'My new favorite shirt',
-        rating: 5.0,
-        content: 'I love this product'
+        title: 'My new favorite color',
+        rating: 3.0,
+        content: 'I love this product',
+        productId: 3
+
     },
     {
-        title: 'My new favorite shirt',
-        rating: 5.0,
-        content: 'I love this product'
+        title: 'My new favorite thing',
+        rating: 4.0,
+        content: 'I love this product',
+        productId: 4
+
     },
     {
-        title: 'My new favorite shirt',
-        rating: 5.0,
-        content: 'I love this product'
+        title: 'My new favorite world',
+        rating: 2.0,
+        content: 'I love this product!!!',
+        productId: 1
+
     },
     {
-        title: 'My new favorite shirt',
-        rating: 5.0,
-        content: 'I love this product'
+        title: 'My new favorite chalk',
+        rating: 1.0,
+        content: 'I love this product!!!',
+        productId: 2
+
     }
 
 ]
+
+const categories = [
+    {
+        name:'Cleaning Supplies',
+        description: "Use these things to clean stuff"
+},
+{
+    name:'Clothing',
+    description: "Wear em"
+},
+{
+    name:'Personal Hygeine',
+    description: "Use these to scrub yoself"
+},
+{
+    name:'Shoes',
+    description: "Use these things to cover your feet"
+},
+{
+    name:'Toys',
+    description: "Use these things to play"
+}
+]
+
+
+const causes = [
+
+    {
+        name:"Stop homelessness",
+        imageUrl:"fillMeIn",
+        description:"Help imporve situation of homeless people around the world"
+    }
+    ,
+    {
+        name:"Stop deforestation",
+        imageUrl:"fillMeIn",
+        description:"Help imporve situation of trees around the world"
+    },
+    {
+        name:"Use less water",
+        imageUrl:"fillMeIn",
+        description:"Help imporve situation of water around the world"
+    },
+    {
+        name:"Stop animal cruelty",
+        imageUrl:"fillMeIn",
+        description:"Bear rugs are out"
+    },
+    {
+        name:"Stop chemical pollution",
+        imageUrl:"fillMeIn",
+        description:"that river smells weird"
+    }
+]
+
+
+async function seed() {
+    await db.sync({ force: true })
+    console.log('db synced!')
+        // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
+        // executed until that promise resolves!
+
+    const users = await Promise.all([
+            User.create({ email: 'cody@email.com', password: '123', phoneNumber: '310-555-5555', firstName: 'Cody', lastName: 'Bowers' }),
+            // User.create({ email: 'murphy@email.com', password: '123' }),
+        ])
+        // Wowzers! We can even `await` on the right-hand side of the assignment operator
+        // and store the result that the promise resolves to in a variable! This is nice!
+    console.log(`seeded ${users.length} users`)
+
+    const allBrands = await Promise.all(
+        brands.map(brand => Brands.create(brand)),
+    )
+    console.log(`seeded ${allBrands.length} brands`)
+
+    const allProducts = await Promise.all(
+        products.map(product => Products.create(product)),
+    )
+    console.log(`seeded ${allProducts.length} products`)
+
+    const allReviews = await Promise.all(
+        reviews.map(review=> Reviews.create(review)),
+    )
+    console.log(`seeded ${allReviews.length} reviews`)
+
+    const allCauses = await Promise.all(
+        causes.map(cause => Causes.create(cause)),
+    )
+    console.log(`seeded ${allCauses.length} causes`)
+
+    const allCategories = await Promise.all(
+        categories.map(category => Categories.create(category)),
+    )
+    console.log(`seeded ${allCategories.length} cats`)
+
+    console.log(`seeded successfully`)
+}
+
+// Execute the `seed` function
+// `Async` functions always return a promise, so we can use `catch` to handle any errors
+// that might occur inside of `seed`
+seed()
+    .catch(err => {
+        console.error(err.message)
+        console.error(err.stack)
+        process.exitCode = 1
+    })
+    .then(() => {
+        console.log('closing db connection')
+        db.close()
+        console.log('db connection closed')
+    })
+
+/*
+ * note: everything outside of the async function is totally synchronous
+ * The console.log below will occur before any of the logs that occur inside
+ * of the async function
+ */
+console.log('seeding...')
+

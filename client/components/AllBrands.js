@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import axios from 'axios'
+import Card from './Card'
 /* -----------------    COMPONENT     ------------------ */
 
 class AllBrands extends Component {
@@ -17,19 +18,8 @@ class AllBrands extends Component {
   }
 
   render() {
-    console.log(this.state.brands)
-
-export default class AllBrands extends Component {
-  // constructor() {
-  //   super();
-  // }
-
-  render() {
     return (
       <div className="container">
-
-        <div className="filterContainer">
-        </div>
 
         <div className="itemsContainer">
           <div className="featuredContainer">
@@ -46,38 +36,20 @@ export default class AllBrands extends Component {
 
               <div className="allItemsContainer" >
                 {
-                  this.state.brands.map(product =>
+                  this.state.brands.map(brand =>
                     <Card key={brand.name} name={brand.name} imageUrl={brand.imageUrl} />
                   )
-              /* Here we use our array of items and then map it with its brand image, price, and name
-
-              brands.map(brand => {
-                <Card image={brand.imageUrl} name={brand.name} causes={brand.causes}/>
-              })
-              */
-              }
+                }
+              </div>
               </div>
             </div>
-          <div className="allItemsContainer" >
-            <h1> Here is where we show all Items </h1>
-            {
-            /* Here we use our array of items and then map it with its product image, price, and name
-
-            brands.map(brand => {
-              <Card image={brand.imageUrl} name={brand.name} causes={brand.causes}/>
-            })
-            */
-            }
-          </div>
-
-          <div>
-          </div>
-
         </div>
       </div>
     )
   }
 }
+
+export default AllBrands
 
   /* -----------------    CONTAINER     ------------------ */
 

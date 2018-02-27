@@ -7,18 +7,18 @@ class AllBrands extends Component {
   constructor() {
     super();
     this.state = {
-      products: [],
+      brands: [],
     }
   }
 
   componentDidMount() {
-    axios.get('/api/products')
+    axios.get('/api/brands')
     .then(res => res.data)
-    .then((products) => this.setState({products}) )
+    .then((brands) => this.setState({brands}) )
   }
 
   render() {
-    console.log(this.state.products)
+    console.log(this.state.brands)
     return (
       <div className="container" style={{ flexDirection: "column" }}>
           <div className="featuredContainer">
@@ -35,10 +35,10 @@ class AllBrands extends Component {
 
               <div className="allItemsContainer" >
                 {
-                  this.state.products.map(product =>
-                    <Card key="product.name" name={product.name} imageUrl={product.imageUrl} />
+                  this.state.brands.map(product =>
+                    <Card key={brand.name} name={brand.name} imageUrl={brand.imageUrl} />
                   )
-              /* Here we use our array of items and then map it with its product image, price, and name
+              /* Here we use our array of items and then map it with its brand image, price, and name
 
               brands.map(brand => {
                 <Card image={brand.imageUrl} name={brand.name} causes={brand.causes}/>

@@ -24,16 +24,27 @@ form div {
 .container {
     display: flex;
     flex-direction: row;
+    height: 600px;
 }
 
 .filterContainer {
     display: flex;
     flex: 1;
-    background-color: lavender;
+    background-color: cadetblue;
+    height: auto;
 }
 
 .itemsContainer {
     display: flex;
-    flex: 9;
-    background-color: lightgrey;
+    flex: 6;
+    height: auto;
+    flex-direction: column;
+}
+
+.allItemsContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20, 20, 20, 20;
+    padding: 20, 20, 20, 20;
 }

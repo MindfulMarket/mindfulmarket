@@ -1,44 +1,50 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import Card from './Card';
+import Filter from './Filter'
 
 /* -----------------    COMPONENT     ------------------ */
 
-export default class AllProducts extends Component {
+class AllProducts extends Component {
+  constructor() {
+    super();
+    this.state = {
+      products: [],
+    }
+  }
+
+  componentDidMount() {
+    axios.get('/api/products')
+    .then(res => res.data)
+    .then((products) => this.setState({products}) )
+  }
+
   render() {
+    console.log(this.state.products)
     return (
-      <div className="container">
+      <div className="container" style={{ flexDirection: "column" }}>
 
-      <div className="filterContainer">
+          <div className="container" style={{ flexDirection: "row" }}>
+            <Filter />
+
+            <div className="itemsContainer">
+              <h1> Here is where we show all Items </h1>
+
+              <div className="allItemsContainer" >
+                {
+                  this.state.products.map(product =>
+                    <Card key={product.name} name={product.name} imageUrl={product.imageUrl} price={product.price} />
+                  )
+              }
+              </div>
+            </div>
+          </div>
       </div>
-
-      <div className="itemsContainer">
-        <div className="featuredContainer">
-          <h1> Here is where we show featured Items </h1>
-        </div>
-
-        <div className="allItemsContainer" >
-          <h1> Here is where we show all Items </h1>
-          {
-          /* Here we use our array of items and then map it with its product image, price, and name
-
-          We will also need to filter here based on search filters (category, price, rating, etc.)
-
-          products.map(brand => {
-            <Card image={product.imageUrl} name={product.name} price={product.price} causes={product.causes}/>
-          })
-          */
-          }
-        </div>
-
-        <div>
-        </div>
-
-      </div>
-    </div>
     )
   }
 }
 
-
+export default AllProducts
   /* -----------------    CONTAINER     ------------------ */
 
   // const mapState = ;

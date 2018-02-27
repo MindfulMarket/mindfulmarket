@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 const Filter = (props) => {
   return (
-   <div>
+   <div className="FilterBar">
     <h4>Refine by</h4>
   { /* line
   */ }

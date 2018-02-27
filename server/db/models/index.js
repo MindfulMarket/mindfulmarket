@@ -39,6 +39,7 @@ Orders.belongsTo(User);
 
 module.exports = {
     User,
+    Brands,
     Products,
     Services,
 }

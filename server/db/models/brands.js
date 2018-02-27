@@ -12,7 +12,7 @@ const Brands = db.define('brands', {
         }
     },
 
-    imgUrl: {
+    imageUrl: {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {
@@ -22,10 +22,10 @@ const Brands = db.define('brands', {
 
     description: {
         type: Sequelize.TEXT,
-        allowNull: false,
-        validate: {
-            notEmpty: true
-        }
+        // allowNull: false,
+        // validate: {
+        //     notEmpty: true
+        // }
     }
 });
 module.exports = Brands;

@@ -9,11 +9,11 @@ export default class Root extends Component {
         <Switch>
           <div id="main" className="container-fluid">
           </div>
-          </Switch>
-          </Router>
-        )
-      }
-    }
+        </Switch>
+      </Router>
+    )
+  }
+}
     // <Route exact path="/" component={} />
     // <Route path="/" component={} />
     // <Route path="/signup" component={} />

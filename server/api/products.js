@@ -12,6 +12,11 @@ router.get('/:id', (req, res, next) => {
     .then((result) => res.json(result))
 })
 
+router.get('/:id/reviews', (req, res, next) => {
+  Products.findById(req.params.id, {include: {all: true}})
+    .then((result) => res.json(result.reviews))
+})
+
 router.post('/', (req, res, next) => {
   Products.create(req.body)
     .then((result) => res.json(result))

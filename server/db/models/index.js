@@ -2,9 +2,10 @@ const User = require('./user');
 const Products = require('./products');
 const Services = require('./services');
 const Brands = require('./brands');
-// const Causes = require('./causes');
+const Causes = require('./causes');
 const Orders = require('./orders');
 const Reviews = require('./reviews');
+const Categories = require('./categories')
 
 const PaymentInfo = require('./payment');
 
@@ -23,22 +24,46 @@ const PaymentInfo = require('./payment');
  *
  */
 
+ //User associations
+ User.hasMany(Orders, {as: 'orders'})
+
+//Brands associations
+Brands.hasMany(Products, { as: "Products" });
+Brands.hasMany(Services, { as: "Services" });
+Brands.hasMany(Causes, { as: "Causes" });
+
+//Reviews associations
 Reviews.belongsTo(Products);
 Reviews.belongsTo(Services);
 Reviews.belongsTo(User);
 
-Brands.belongsToMany(Products, { through: "ProductBrands" });
-Brands.belongsToMany(Services, { through: "ServiceBrands" });
+//Products associations
+Products.belongsTo(Brands);
+Products.belongsToMany(Causes,{through: 'ProductCauses'});
+Products.belongsToMany(Categories,{ through: 'ProductCategories' });
+Products.hasMany(Reviews,{as: 'Reviews'})
 
-// Causes.belongsToMany(Products);
-// Causes.belongsToMany(Services);
-// Causes.belongsToMany(Brands);
+//Services associations
+Services.belongsTo(Brands, { through: 'ServiceBrands' });
+Services.belongsToMany(Causes, { through: 'ServiceCauses' });
+Services.belongsToMany(Categories,{ through: 'ServiceCategories' });
 
-Orders.belongsTo(User);
+//Causes associations
+Causes.belongsToMany(Products,{ through: 'ProductCauses' });
+Causes.belongsToMany(Services,{ through: 'ServiceCauses' });
+Causes.belongsToMany(Brands,{ through: 'BrandCauses' });
 
+//Categories associations
+Categories.belongsToMany(Products);
+Categories.belongsToMany(Services);
+Categories.belongsToMany(Brands);
 
 module.exports = {
     User,
     Products,
     Services,
+    Orders,
+    Categories,
+    Causes,
+    Brands
 }

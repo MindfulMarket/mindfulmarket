@@ -3,12 +3,12 @@ const { Causes } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  Causes.findAll()
+  Causes.findAll({include: {all: true}})
     .then((result) => res.json(result))
 })
 
 router.get('/:id', (req, res, next) => {
-  Causes.findById(req.params.id)
+  Causes.findById(req.params.id,{include: {all: true}})
     .then((result) => res.json(result))
 })
 
@@ -18,12 +18,20 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-  Causes.update({ where: { id: req.params.id } })
+  Causes.update({ where: {
+     id: req.params.id 
+    },
+    include: {all: true}
+   })
     .then((result) => res.json(result))
 })
 
 router.delete('/:id', (req, res, next) => {
-  Causes.delete({ where: { id: req.params.id } })
+  Causes.delete({ where: { 
+    id: req.params.id 
+  },
+  include: {all: true}
+ })
     .then((result) => res.json(result))
 })
 

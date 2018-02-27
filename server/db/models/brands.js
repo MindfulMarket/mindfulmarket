@@ -12,7 +12,7 @@ const Brands = db.define('brands', {
         }
     },
 
-    imgUrl: {
+    imageUrl: {
         type: Sequelize.STRING,
         allowNull: false,
         validate: {

@@ -1,10 +1,10 @@
 const User = require('./user');
 const Products = require('./products');
-//const Services = require('./services');
-//const Brands = require('./brands');
+const Services = require('./services');
+const Brands = require('./brands');
  const Causes = require('./causes');
-//const Orders = require('./orders');
-//const Reviews = require('./reviews');
+const Orders = require('./orders');
+const Reviews = require('./reviews');
 
 const PaymentInfo = require('./payment');
 

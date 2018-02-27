@@ -1,34 +1,34 @@
 const router = require('express').Router()
-const { Products } = require('../db/models')
+const { Services } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  Products.findAll()
+    Services.findAll()
     .then((result) => res.json(result))
 })
 
 router.get('/:id', (req, res, next) => {
-  Products.findById(req.params.id)
+    Services.findById(req.params.id)
     .then((result) => res.json(result))
 })
 
 router.get('/:id/reviews', (req, res, next) => {
-  Products.findById(req.params.id, {include: {all: true}})
+    Services.findById(req.params.id, {include: {all: true}})
     .then((result) => res.json(result.reviews))
 })
 
 router.post('/', (req, res, next) => {
-  Products.create(req.body)
+    Services.create(req.body)
     .then((result) => res.json(result))
 })
 
 router.put('/:id', (req, res, next) => {
-  Products.update({ where: { id: req.params.id } })
+    Services.update({ where: { id: req.params.id } })
     .then((result) => res.json(result))
 })
 
 router.delete('/:id', (req, res, next) => {
-  Products.delete({ where: { id: req.params.id } })
+    Services.delete({ where: { id: req.params.id } })
     .then((result) => res.json(result))
 })
 

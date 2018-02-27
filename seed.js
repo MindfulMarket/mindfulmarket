@@ -65,62 +65,62 @@ console.log('seeding...')
 const brands = [{
     name: 'People Tree',
     imageUrl: './public/assets/logos/PeopleTreeLogo.png',
-    description: '',
+    description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Everlane',
     imageUrl: './public/assets/logos/EverlaneLogo.png',
-    description: '',
+    description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Reformation',
     imageUrl: './public/assets/logos/ReformationLogo.png',
-    description: '',
+    description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Matt & Nat',
     imageUrl: './public/assets/logos/Matt&NatLogo.png',
-    description: '',
+    description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Stella McCartney',
     imageUrl: './public/assets/logos/StellMcCartneyLogo.png',
-    description: '',
+    description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Patagonia',
     imageUrl: './public/assets/logos/PatagoniaLogo.jpeg',
-    description: '',
+    description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Hiptico',
     imageUrl: './public/assets/logos/HipticoLogo.jpg',
-    description: '',
+    description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Cotopaxi',
     imageUrl: './public/assets/logos/CotopaxiLogo.jpg',
-    description: '',
+    description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Soapbox',
     imageUrl: './public/assets/logos/SoapboxLogo.png',
-    description: '',
+    description: 'fakedescription',
     category: 'cosmetics',
 }, {
     name: 'SmileSquared',
     imageUrl: './public/assets/logos/SmileSquaredLogo.png',
-    description: '',
+    description: 'fakedescription',
     category: 'cosmetics',
 }, {
     name: "Burt's Bees",
     imageUrl: './public/assets/logos/BurtsBeesLogo.png',
-    description: '',
+    description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Mayfair Soap Foundry',
     imageUrl: './public/assets/logos/MayfairSoapFoundryLogo.png',
-    description: '',
+    description: 'fakedescription',
     category: 'clothing',
 }];
 

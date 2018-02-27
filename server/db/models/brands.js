@@ -22,10 +22,12 @@ const Brands = db.define('brands', {
 
     description: {
         type: Sequelize.TEXT,
-        // allowNull: false,
-        // validate: {
-        //     notEmpty: true
-        // }
+
+        allowNull: false,
+         allowNull: false,
+        validate: {
+             notEmpty: true
+         }
     }
 });
 module.exports = Brands;

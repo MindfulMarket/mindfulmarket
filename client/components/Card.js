@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 
 export default Card = (props) => {
   return (
+   <div className="Card" >
+    <img src={props.imageUrl} style={{height: '100px', weight: '100px' }}/>
+    <h3>{props.name}</h3>
    <div style=
    {{height="100px",width="100px", borderWidth= '1px',
     borderRadius= '2px', borderColor= '#ddd', paddingTop="20px", paddingRight="10px"}}>
@@ -11,7 +14,7 @@ export default Card = (props) => {
       <h4>{props.causes}</h4>
     }
     {props.price &&  // we may do a props.price? :
-      <h4>{props.price}</h4>
+      <h4>${props.price}</h4>
     }
    </div>
   )

@@ -2,10 +2,10 @@ const User = require('./user');
 const Products = require('./products');
 const Services = require('./services');
 const Brands = require('./brands');
- const Causes = require('./causes');
+const Causes = require('./causes');
 const Orders = require('./orders');
 const Reviews = require('./reviews');
-
+const Categories = require('./categories')
 const PaymentInfo = require('./payment');
 
 /**
@@ -23,24 +23,47 @@ const PaymentInfo = require('./payment');
  *
  */
 
-//Reviews.belongsTo(Products);
-//Reviews.belongsTo(Services);
-//Reviews.belongsTo(User);
+ //User associations
+ User.hasMany(Orders, {as: 'orders'})
 
-//Brands.belongsToMany(Products, { through: "ProductBrands" });
-//Brands.belongsToMany(Services, { through: "ServiceBrands" });
+//Brands associations
+Brands.hasMany(Products, { as: "Products" });
+Brands.hasMany(Services, { as: "Services" });
+Brands.hasMany(Causes, { as: "Causes" });
 
-// Causes.belongsToMany(Products);
-// Causes.belongsToMany(Services);
-// Causes.belongsToMany(Brands);
+//Reviews associations
+Reviews.belongsTo(Products);
+Reviews.belongsTo(Services);
+Reviews.belongsTo(User);
 
-//Orders.belongsTo(User);
+//Products associations
+Products.belongsTo(Brands);
+Products.belongsToMany(Causes,{through: 'ProductCauses'});
+Products.belongsToMany(Categories,{ through: 'ProductCategories' });
+Products.hasMany(Reviews,{as: 'Reviews'})
 
+//Services associations
+Services.belongsTo(Brands, { through: 'ServiceBrands' });
+Services.belongsToMany(Causes, { through: 'ServiceCauses' });
+Services.belongsToMany(Categories,{ through: 'ServiceCategories' });
+
+//Causes associations
+Causes.belongsToMany(Products,{ through: 'ProductCauses' });
+Causes.belongsToMany(Services,{ through: 'ServiceCauses' });
+Causes.belongsToMany(Brands,{ through: 'BrandCauses' });
+
+//Categories associations
+Categories.belongsToMany(Products,{ through: 'ProductCategories' });
+Categories.belongsToMany(Services,{ through: 'ServiceCategories' });
+Categories.belongsToMany(Brands,{ through: 'BrandCategories' });
 
 module.exports = {
     User,
     Brands,
     Products,
-    Causes
-    //Services,
+    Services,
+    Orders,
+    Categories,
+    Causes,
+ 
 }

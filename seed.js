@@ -157,3 +157,37 @@ const products = [{
             // productURL: https://www.everlane.com/products/womens-cropped-city-anorak-fadedsage?collection=womens-newest-arrivals
     }
 ]
+
+const reviews = [
+    {
+        title: 'My new favorite shirt',
+        rating: 5.0,
+        content: 'I love this product'
+    },
+    {
+        title: 'My new favorite shirt',
+        rating: 5.0,
+        content: 'I love this product'
+    },
+    {
+        title: 'My new favorite shirt',
+        rating: 5.0,
+        content: 'I love this product'
+    },
+    {
+        title: 'My new favorite shirt',
+        rating: 5.0,
+        content: 'I love this product'
+    },
+    {
+        title: 'My new favorite shirt',
+        rating: 5.0,
+        content: 'I love this product'
+    },
+    {
+        title: 'My new favorite shirt',
+        rating: 5.0,
+        content: 'I love this product'
+    }
+
+]

@@ -18,12 +18,16 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-  Causes.update({ where: {
+  Causes.update(req.body, { where: {
      id: req.params.id 
     },
     include: {all: true}
    })
-    .then((result) => res.json(result))
+    .then((cause) => {
+      if (req.body.product) cause.addProduct(req.body.product)
+      if (req.body.brand) cause.addBrand(req.body.brand) 
+      res.json(cause)
+    })
 })
 
 router.delete('/:id', (req, res, next) => {

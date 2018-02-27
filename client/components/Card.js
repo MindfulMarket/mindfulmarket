@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default Card = (props) => {
+
+const Card = (props) => {
   return (
    <div className="Card" >
-    <img src={props.imageUrl} style={{height: '100px', weight: '100px' }}/>
+    <img src={props.imageUrl} style={{ height: '100px', weight: '100px' }} />
     <h3>{props.name}</h3>
-   <div style=
-   {{height="100px",width="100px", borderWidth= '1px',
-    borderRadius= '2px', borderColor= '#ddd', paddingTop="20px", paddingRight="10px"}}>
     <img src={props.imageUrl} />
     <h2>{props.name}</h2>
     {props.causes &&
@@ -19,3 +17,5 @@ export default Card = (props) => {
    </div>
   )
 }
+
+export default Card;

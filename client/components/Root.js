@@ -1,19 +1,22 @@
 import React, { Component } from 'React';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import AllBrands from './AllBrands';
+// import AllBrands from './AllBrands';
+import { HomePage, AllBrands } from './index';
 
-export default class Root extends Component {
-  render() {
+const Root = (props) => {
+  // render() {
     return (
       <Router>
         <Switch>
-          <div id="main" className="container-fluid">
-          </div>
-          </Switch>
-          </Router>
-        )
-      }
-    }
+          <Route exact path="/" component={HomePage} />
+          <Route path="/brands" component={AllBrands} />
+        </Switch>
+      </Router>
+      )
+      // }
+  }
+
+export default Root
     // <Route exact path="/" component={} />
     // <Route path="/" component={} />
     // <Route path="/signup" component={} />

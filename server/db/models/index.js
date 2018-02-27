@@ -65,5 +65,6 @@ module.exports = {
     Orders,
     Categories,
     Causes,
- 
+    Reviews
+
 }

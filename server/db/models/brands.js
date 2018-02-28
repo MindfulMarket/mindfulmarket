@@ -24,8 +24,8 @@ const Brands = db.define('brands', {
         type: Sequelize.TEXT,
         allowNull: false,
         validate: {
-            notEmpty: true
-        }
+             notEmpty: true
+         }
     }
 });
 module.exports = Brands;

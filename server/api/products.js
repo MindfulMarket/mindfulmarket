@@ -19,8 +19,13 @@ router.get('/:id/reviews', (req, res, next) => {
 
 //might have to eager load
 router.post('/', (req, res, next) => {
-  Products.create(req.body)
-    .then((result) => res.json(result))
+  Products.create(req.body.main)
+    .then((product) => {
+      product.addCategory(req.body.category)
+      product.addCause(req.body.cause)
+      res.json(product)
+    })
+ 
 })
 
 router.put('/:id', (req, res, next) => {
@@ -29,8 +34,13 @@ router.put('/:id', (req, res, next) => {
   },
   include: {all: true}
 })
-    .then((result) => res.json(result))
+ .then((product) =>{
+    if (req.body.cause) product.addCause(req.body.cause)
+    if (req.body.category) product.addCategory(req.body.category)
+    res.json(product)
+  })
 })
+
 
 router.delete('/:id', (req, res, next) => {
   Products.delete({ 

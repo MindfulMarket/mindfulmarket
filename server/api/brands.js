@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  Brands.create(req.body,{include: {all: true}})
+  Brands.create(req.body, {include: {all: true}})
     .then(brand => res.json(brand))
     .catch(next)
 })
@@ -21,8 +21,13 @@ router.get('/:id', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-  Brands.findById(req,{include: {all: true}})
-    .then(brand => res.json(brand))
+  Brands.findById(req.params.id, {include: {all: true}})
+    .then(brand =>{
+        if (req.body.product) brand.addProduct(req.body.product)
+        if (req.body.brand) brand.addCause(req.body.cause) 
+        if (req.body.category) brand.addCategory(req.body.category) 
+        res.json(brand)
+      })
     .catch(next)
 })
 

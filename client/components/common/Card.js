@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 const Card = (props) => {
   return (
    <div className="Card" >
-   <a href={`/${props.category}/${props.product.id}`} > <img src={props.imageUrl} style={{ maxHeight: '100px', maxWeight: '100px' }} /></a>
+   <a href={`/${props.category}s/${props.id}`} > <img src={props.imageUrl} style={{ maxHeight: '100px', maxWeight: '100px' }} /></a>
     <h3>{props.name}</h3>
     {props.causes &&
       <h4>{props.causes}</h4>

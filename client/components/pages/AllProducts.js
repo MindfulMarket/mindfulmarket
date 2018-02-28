@@ -60,7 +60,7 @@ class AllProducts extends Component {
               <div className="allItemsContainer" >
                 {
                   products.map(product =>
-                    <Card key={product.name} category="products" product={product} name={product.name} imageUrl={product.imageUrl} price={product.price} addToCart = {this.props.addToCart} />
+                    <Card key={product.name} category="product" product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart = {this.props.addToCart} />
                   )
               }
               </div>

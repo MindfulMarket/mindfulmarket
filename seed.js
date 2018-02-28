@@ -15,62 +15,62 @@ const { User, Brands, Products, Reviews, Causes, Categories } = require('./serve
 
 const brands = [{
     name: 'People Tree',
-    imageUrl: './public/assets/logos/PeopleTreeLogo.png',
+    imageUrl: './assets/logos/PeopleTreeLogo.png',
     description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Everlane',
-    imageUrl: './public/assets/logos/EverlaneLogo.png',
+    imageUrl: './assets/logos/EverlaneLogo.png',
     description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Reformation',
-    imageUrl: './public/assets/logos/ReformationLogo.png',
+    imageUrl: './assets/logos/ReformationLogo.png',
     description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Matt & Nat',
-    imageUrl: './public/assets/logos/Matt&NatLogo.png',
+    imageUrl: './assets/logos/Matt&NatLogo.png',
     description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Stella McCartney',
-    imageUrl: './public/assets/logos/StellMcCartneyLogo.png',
+    imageUrl: './assets/logos/StellMcCartneyLogo.png',
     description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Patagonia',
-    imageUrl: './public/assets/logos/PatagoniaLogo.jpeg',
+    imageUrl: './assets/logos/PatagoniaLogo.jpeg',
     description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Hiptico',
-    imageUrl: './public/assets/logos/HipticoLogo.jpg',
+    imageUrl: './assets/logos/HipticoLogo.jpg',
     description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Cotopaxi',
-    imageUrl: './public/assets/logos/CotopaxiLogo.jpg',
+    imageUrl: './assets/logos/CotopaxiLogo.jpg',
     description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Soapbox',
-    imageUrl: './public/assets/logos/SoapboxLogo.png',
+    imageUrl: './assets/logos/SoapboxLogo.png',
     description: 'fakedescription',
     category: 'cosmetics',
 }, {
     name: 'SmileSquared',
-    imageUrl: './public/assets/logos/SmileSquaredLogo.png',
+    imageUrl: './assets/logos/SmileSquaredLogo.png',
     description: 'fakedescription',
     category: 'cosmetics',
 }, {
     name: "Burt's Bees",
-    imageUrl: './public/assets/logos/BurtsBeesLogo.png',
+    imageUrl: './assets/logos/BurtsBeesLogo.png',
     description: 'fakedescription',
     category: 'clothing',
 }, {
     name: 'Mayfair Soap Foundry',
-    imageUrl: './public/assets/logos/MayfairSoapFoundryLogo.png',
+    imageUrl: './assets/logos/MayfairSoapFoundryLogo.png',
     description: 'fakedescription',
     category: 'clothing',
 }];
@@ -109,8 +109,7 @@ const products = [{
     }
 ]
 
-const reviews = [
-    {
+const reviews = [{
         title: 'My new favorite shirt',
         rating: 5.0,
         content: 'I love this product',
@@ -154,27 +153,26 @@ const reviews = [
 
 ]
 
-const categories = [
-    {
+const categories = [{
         name: 'Cleaning Supplies',
         description: 'Use these things to clean stuff'
-},
-{
-    name: 'Clothing',
-    description: 'Wear em'
-},
-{
-    name: 'Personal Hygeine',
-    description: 'Use these to scrub yoself'
-},
-{
-    name: 'Shoes',
-    description: 'Use these things to cover your feet'
-},
-{
-    name: 'Toys',
-    description: 'Use these things to play'
-}
+    },
+    {
+        name: 'Clothing',
+        description: 'Wear em'
+    },
+    {
+        name: 'Personal Hygeine',
+        description: 'Use these to scrub yoself'
+    },
+    {
+        name: 'Shoes',
+        description: 'Use these things to cover your feet'
+    },
+    {
+        name: 'Toys',
+        description: 'Use these things to play'
+    }
 ]
 
 
@@ -184,8 +182,7 @@ const causes = [
         name: 'Stop homelessness',
         imageUrl: 'fillMeIn',
         description: 'Help imporve situation of homeless people around the world'
-    }
-    ,
+    },
     {
         name: 'Stop deforestation',
         imageUrl: 'fillMeIn',
@@ -272,4 +269,3 @@ seed()
  * of the async function
  */
 console.log('seeding...')
-

@@ -4,6 +4,8 @@ import Card from '../common/Card';
 import Filter from '../common/Filter'
 import { connect } from 'react-redux'
 import { fetchProducts } from '../../store/products'
+import { addToCart } from '../../store/cart'
+
 /* -----------------    COMPONENT     ------------------ */
 
 
@@ -58,9 +60,16 @@ class AllProducts extends Component {
 
               <div className="allItemsContainer" >
                 {
+                 /*  let filteredProducts = (products, filterSearch) => {
 
-                  products.map(product =>
-                    <Card key={product.name} name={product.name} imageUrl={product.imageUrl} price={product.price} />
+                 }
+                  for (let filter in filterSearch) {
+                     if (filterSearch[filter] === 1) {}
+                  // }
+                  // this.props.products.filter( product filterSearch)
+                  */
+                  this.props.products.map(product =>
+                    <Card key={product.name} product = {product} name={product.name} imageUrl={product.imageUrl} price={product.price} addToCart = {this.props.addToCart}/>
                   )
               }
               </div>
@@ -80,8 +89,8 @@ export { AllProducts }
   }
 
   const mapDispatch = dispatch => ({
-    fetchData: () =>
-    dispatch(fetchProducts())
+    fetchData: () => dispatch(fetchProducts()),
+    addToCart: (product) => dispatch(addToCart(product))
   });
 
   export default connect(mapState, mapDispatch)(AllProducts);

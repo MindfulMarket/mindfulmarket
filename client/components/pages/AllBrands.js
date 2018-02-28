@@ -37,7 +37,7 @@ class AllBrands extends Component {
               <div className="allItemsContainer" >
                 {
                   this.state.brands.map(brand =>
-                    <Card key={brand.name} name={brand.name} imageUrl={brand.imageUrl} />
+                    <Card key={brand.name} category="brand" id={brand.id} brand={brand} name={brand.name} imageUrl={brand.imageUrl} addToCart = {this.props.addToCart} />
                   )
                 }
               </div>

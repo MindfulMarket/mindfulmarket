@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { connect } from 'react-redux'
 
 /* -----------------    COMPONENT     ------------------ */
@@ -17,6 +17,18 @@ class ShoppingCart extends Component {
   render() {
     return (
       <div id="cart">
+<h1>SHOPPING CART</h1>
+          <div className="cartContainer">
+<ul>
+                {
+
+                  this.props.cartContents.map(
+                    product =>  <li className = "cartItem" key={product.id}>{product.name}</li>
+                  )
+              }
+              </ul>
+           </div>
+
         <h1>SHOPPING CART</h1>
         <div className="cartContainer">
           <ul>
@@ -28,6 +40,7 @@ class ShoppingCart extends Component {
             }
           </ul>
         </div>
+
       </div>
     )
   }

@@ -16,5 +16,5 @@ export {default as ShoppingCart} from './ShoppingCart'
 
 export {default as SingleBrand} from './SingleBrand'
 export {default as SingleCause} from './SingleCause'
-export {default as SingleProduct} from './SingleProduct'
+export {default as SingleProduct} from './pages/SingleProduct'
 export {default as SingleService} from './SingleService'

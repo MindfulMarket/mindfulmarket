@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Card from '../common/Card';
 import Filter from '../common/Filter'
 import { connect } from 'react-redux'
@@ -56,16 +55,8 @@ class AllProducts extends Component {
 
               <div className="allItemsContainer" >
                 {
-                 /*  let filteredProducts = (products, filterSearch) => {
-
-                 }
-                  for (let filter in filterSearch) {
-                     if (filterSearch[filter] === 1) {}
-                  // }
-                  // this.props.products.filter( product filterSearch)
-                  */
-                  this.props.products.map(product =>
-                    <Card key={product.name} product = {product} name={product.name} imageUrl={product.imageUrl} price={product.price} addToCart = {this.props.addToCart} />
+                  products.map(product =>
+                    <Card key={product.name} category="product" product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart = {this.props.addToCart} />
                   )
               }
               </div>

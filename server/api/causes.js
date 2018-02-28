@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-  Causes.findById(req.params.id,{include: {all: true}})
+  Causes.findById(req.params.id, {include: {all: true}})
     .then((result) => res.json(result))
 })
 

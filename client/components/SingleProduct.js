@@ -6,8 +6,7 @@ export default class SingleProduct extends Component {
   render() {
     return (
       <div>
-        <div className="navigationTBD">
-        </div>
+        <div className="navigationTBD" />
         <div className="productImage">
             <img src={product.imageUrl} />
         </div>

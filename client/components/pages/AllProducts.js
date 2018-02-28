@@ -8,30 +8,48 @@ import { addToCart } from '../../store/cart'
 
 /* -----------------    COMPONENT     ------------------ */
 
+
 class AllProducts extends Component {
   constructor() {
     super();
+    this.state = {
+      filters: false,
+      cheap: false,
+      inexpensive: false,
+      midrange: false,
+      expensive: false
+    }
+    this.checkboxClicked = this.checkboxClicked.bind(this)
   }
 
   componentDidMount() {
-    // axios.get('/api/products')
-    // .then(res => res.data)
-    // .then((products) => this.setState({products}) )
     this.props.fetchData();
   }
 
-  // onClicking(product) {
-  //   console.log(product)
-  //   // dispatch(fetchOneProduct(product)
-  // }
+  checkboxClicked(event) {
+    this.setState({
+      filters: true,
+      [event.target.value]: true
+    })
+  }
 
   render() {
-    let searchFilter = {cheap: 0, inexpensive: 0, midrange: 0, expensive: 0}
-    return (
-      <div className="container" style={{ flexDirection: "column" }}>
+        let products = this.props.products.filter(product => {
+          let state = this.state;
+          for (let key in state) {
+            if (state.filters === false) {return true;}
+            else if (state[key] === true) {
+              if (product.price > 70 ) return true
+            }
+          } return false
+        })
 
-          <div className="container" style={{ flexDirection: "row" }}>
-            <Filter searchFilter={searchFilter} />
+
+    return (
+      <div className="container" style={{ flexDirection: 'column' }}>
+
+          <div className="container" style={{ flexDirection: 'row' }}>
+            <Filter checkboxClicked={this.checkboxClicked} />
 
             <div className="itemsContainer">
               <h1> Here is where we show all Items </h1>
@@ -47,7 +65,7 @@ class AllProducts extends Component {
                   // this.props.products.filter( product filterSearch)
                   */
                   this.props.products.map(product =>
-                    <Card key={product.name} product = {product} name={product.name} imageUrl={product.imageUrl} price={product.price} addToCart = {this.props.addToCart}/>
+                    <Card key={product.name} product = {product} name={product.name} imageUrl={product.imageUrl} price={product.price} addToCart = {this.props.addToCart} />
                   )
               }
               </div>
@@ -62,7 +80,6 @@ export { AllProducts }
   /* -----------------    CONTAINER     ------------------ */
 
   const mapState = ({ products, product }) => {
-    console.log(products)
     return { products, product }
   }
 

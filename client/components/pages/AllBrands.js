@@ -26,7 +26,7 @@ class AllBrands extends Component {
             <h1> Here is where we show featured Items </h1>
           </div>
 
-          <div className="container" style={{ flexDirection: "row" }}>
+          <div className="container" style={{ flexDirection: 'row' }}>
             <div className="filterContainer">
             <h1> Here is where we filter Items</h1>
             </div>

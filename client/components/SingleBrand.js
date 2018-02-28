@@ -5,8 +5,7 @@ import React, { Component } from 'react';
 export default class SingleBrand extends Component {
   render() {
     return (
-      <div>
-      </div>
+      <div />
     )
   }
 }

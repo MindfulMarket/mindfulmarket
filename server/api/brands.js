@@ -22,7 +22,7 @@ router.get('/:id', (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
   Brands.findById(req.params.id, {include: {all: true}})
-    .then(brand =>{
+    .then(brand => {
         if (req.body.product) brand.addProduct(req.body.product)
         if (req.body.brand) brand.addCause(req.body.cause) 
         if (req.body.category) brand.addCategory(req.body.category) 
@@ -33,9 +33,9 @@ router.put('/:id', (req, res, next) => {
 
 router.get('/products/:id', (req, res, next) => {
   Brands.findById({include: {all: true}})
-  .then(brand =>{
+  .then(brand => {
     brand.getProducts()
-    .then(products =>{
+    .then(products => {
       res.json(products)
     })
   })

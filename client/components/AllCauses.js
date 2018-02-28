@@ -5,8 +5,7 @@ import React, { Component } from 'react';
 export default class AllCauses extends Component {
   render() {
     return (
-      <div>
-      </div>
+      <div />
     )
   }
 }

@@ -45,13 +45,11 @@ form div {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: 20, 20, 20, 20;
-    padding: 20, 20, 20, 20;
 }
 
 .Card {
     flex-direction: column;
-    height: 200px;
+    max-height: 200px;
     max-width: 200px;
     border: solid brown;
     border-width: thin;
@@ -65,10 +63,76 @@ form div {
 .FilterBar {
     flex-direction: column;
     height: 100%;
-    width: 150px;
+    width: 180px;
     border: solid brown;
     border-width: thin;
     border-radius: 3px;
     margin: 10px 20px 0 0;
     background-color: antiquewhite;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    /* flex-direction: row; */
+}
+
+.HomePage {
+    background-color: rgb(140, 191, 132);
+}
+
+.doubleNavbar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* border-bottom: 2px solid rgb(140, 191, 132); */
+    /* height: 50px; */
+    /* flex-direction: row; */
+}
+
+.navbar2 {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-start;
+    border-bottom: 1px solid rgb(140, 191, 132);
+    height: 20px;
+    background-color: white;
+    /* flex-direction: row; */
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    /* flex: 1; */
+    width: 100%;
+    align-items: center;
+    /* justify-content: flex-end; */
+    border-bottom: 5px solid rgb(140, 191, 132);
+    height: 35px;
+    /* flex-direction: row; */
+}
+
+#title {
+    color: rgb(140, 191, 132);
+    flex: 1;
+    font-size: 20px;
+}
+
+.nav {
+    align-items: flex-end;
+    font-size: 14px;
+    color: rgb(140, 191, 132);
+}
+
+.titlebar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-start;
+    height: 35px;
+    /* flex-direction: row; */
 }

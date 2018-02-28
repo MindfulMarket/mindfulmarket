@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, AllBrands, AllProducts} from './components'
+import { Login, Signup, UserHome, AllBrands, AllProducts, SingleProduct } from './components'
 import {me} from './store'
 
 /**
@@ -22,7 +22,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/brands" component={AllBrands} />
-        <Route path="/products" component={AllProducts} />
+        <Route exact path="/products" component={AllProducts} />
 
         {
           isLoggedIn &&
@@ -68,3 +68,5 @@ Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
+
+// <Route path="/products/productId" component={SingleProduct} />

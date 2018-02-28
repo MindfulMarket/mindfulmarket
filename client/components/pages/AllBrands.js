@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import Card from './Card'
+import Card from '../common/Card'
 /* -----------------    COMPONENT     ------------------ */
 
 class AllBrands extends Component {

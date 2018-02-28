@@ -7,9 +7,9 @@ export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'
 
-export {default as AllBrands} from './AllBrands'
+export {default as AllBrands} from './pages/AllBrands'
 export {default as AllCauses} from './AllCauses'
-export {default as AllProducts} from './AllProducts'
+export {default as AllProducts} from './pages/AllProducts'
 export {default as AllServices} from './AllServices'
 
 export {default as SingleBrand} from './SingleBrand'

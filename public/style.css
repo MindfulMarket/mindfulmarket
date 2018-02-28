@@ -20,7 +20,10 @@ form div {
     margin: 1em;
     display: inline-block;
 }
-
+#cartImg{
+    width:7vh;
+    height:auto;
+}
 .container {
     display: flex;
     flex-direction: row;

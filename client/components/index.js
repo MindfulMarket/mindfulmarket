@@ -11,6 +11,7 @@ export {default as AllBrands} from './pages/AllBrands'
 export {default as AllCauses} from './AllCauses'
 export {default as AllProducts} from './pages/AllProducts'
 export {default as AllServices} from './AllServices'
+export {default as ShoppingCart} from './ShoppingCart'
 
 export {default as SingleBrand} from './SingleBrand'
 export {default as SingleCause} from './SingleCause'

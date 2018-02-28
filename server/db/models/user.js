@@ -30,7 +30,7 @@ const User = db.define('user', {
     shippingAddress: {
         type: Sequelize.STRING,
     },
-    privledge: {
+    privilege: {
         type: Sequelize.BOOLEAN,
     },
     billingAddress: {

@@ -27,9 +27,9 @@ const PaymentInfo = require('./payment');
  User.hasMany(Orders, {as: 'orders'})
 
 //Brands associations
-Brands.hasMany(Products, { as: "Products" });
-Brands.hasMany(Services, { as: "Services" });
-Brands.hasMany(Causes, { as: "Causes" });
+Brands.hasMany(Products, { as: 'Products' });
+Brands.hasMany(Services, { as: 'Services' });
+Brands.hasMany(Causes, { as: 'Causes' });
 
 //Reviews associations
 Reviews.belongsTo(Products);
@@ -38,24 +38,24 @@ Reviews.belongsTo(User);
 
 //Products associations
 Products.belongsTo(Brands);
-Products.belongsToMany(Causes,{through: 'ProductCauses'});
-Products.belongsToMany(Categories,{ through: 'ProductCategories' });
-Products.hasMany(Reviews,{as: 'Reviews'})
+Products.belongsToMany(Causes, {through: 'ProductCauses'});
+Products.belongsToMany(Categories, { through: 'ProductCategories' });
+Products.hasMany(Reviews, {as: 'Reviews'})
 
 //Services associations
 Services.belongsTo(Brands, { through: 'ServiceBrands' });
 Services.belongsToMany(Causes, { through: 'ServiceCauses' });
-Services.belongsToMany(Categories,{ through: 'ServiceCategories' });
+Services.belongsToMany(Categories, { through: 'ServiceCategories' });
 
 //Causes associations
-Causes.belongsToMany(Products,{ through: 'ProductCauses' });
-Causes.belongsToMany(Services,{ through: 'ServiceCauses' });
-Causes.belongsToMany(Brands,{ through: 'BrandCauses' });
+Causes.belongsToMany(Products, { through: 'ProductCauses' });
+Causes.belongsToMany(Services, { through: 'ServiceCauses' });
+Causes.belongsToMany(Brands, { through: 'BrandCauses' });
 
 //Categories associations
-Categories.belongsToMany(Products,{ through: 'ProductCategories' });
-Categories.belongsToMany(Services,{ through: 'ServiceCategories' });
-Categories.belongsToMany(Brands,{ through: 'BrandCategories' });
+Categories.belongsToMany(Products, { through: 'ProductCategories' });
+Categories.belongsToMany(Services, { through: 'ServiceCategories' });
+Categories.belongsToMany(Brands, { through: 'BrandCategories' });
 
 module.exports = {
     User,

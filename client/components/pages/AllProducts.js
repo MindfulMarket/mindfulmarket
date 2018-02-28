@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Card from '../common/Card';
 import Filter from '../common/Filter'
 import { connect } from 'react-redux'
@@ -14,7 +13,7 @@ class AllProducts extends Component {
     super();
     this.state = {
       filters: false,
-      cheap : false,
+      cheap: false,
       inexpensive: false,
       midrange: false,
       expensive: false
@@ -41,7 +40,7 @@ class AllProducts extends Component {
         let products = this.props.products.filter(product => {
           let state = this.state;
           for (let key in state) {
-            if (state.filters === false) return true;
+            if (state.filters === false) {return true;}
             else if (state[key] === true) {
               if (product.price > 70 ) return true
             }
@@ -50,9 +49,9 @@ class AllProducts extends Component {
 
 
     return (
-      <div className="container" style={{ flexDirection: "column" }}>
+      <div className="container" style={{ flexDirection: 'column' }}>
 
-          <div className="container" style={{ flexDirection: "row" }}>
+          <div className="container" style={{ flexDirection: 'row' }}>
             <Filter checkboxClicked={this.checkboxClicked} />
 
             <div className="itemsContainer">
@@ -60,16 +59,8 @@ class AllProducts extends Component {
 
               <div className="allItemsContainer" >
                 {
-                 /*  let filteredProducts = (products, filterSearch) => {
-
-                 }
-                  for (let filter in filterSearch) {
-                     if (filterSearch[filter] === 1) {}
-                  // }
-                  // this.props.products.filter( product filterSearch)
-                  */
-                  this.props.products.map(product =>
-                    <Card key={product.name} product = {product} name={product.name} imageUrl={product.imageUrl} price={product.price} addToCart = {this.props.addToCart}/>
+                  products.map(product =>
+                    <Card key={product.name} category="products" product={product} name={product.name} imageUrl={product.imageUrl} price={product.price} addToCart = {this.props.addToCart} />
                   )
               }
               </div>

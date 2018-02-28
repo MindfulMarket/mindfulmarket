@@ -7,7 +7,7 @@ class Filter extends Component {
     }
 
     cheapFilter(event) {
-      console.log("HEY")
+      console.log('HEY')
       console.log(event.target.value)
       this.props.searchFilter.cheap = 1;
     }
@@ -30,7 +30,7 @@ class Filter extends Component {
           <h4> Brand </h4>
           <input placeholder="Search" />
           <h4> Price </h4>
-            <div style={{display: 'flex', flexDirection: "row", width: '100%'}}>
+            <div style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
               <label >
                 <input type="checkbox" value="cheap" onClick={this.props.checkboxClicked.bind(this)} style={{marginRight: '10px' }} />
                 <span className="checkmark" style={{marginRight: '90px' }} >$0-$10</span>

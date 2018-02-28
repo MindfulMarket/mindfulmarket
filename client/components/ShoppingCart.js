@@ -17,7 +17,6 @@ class ShoppingCart extends Component {
   render() {
     return (
       <div id="cart">
-<<<<<<< HEAD
 <h1>SHOPPING CART</h1>
           <div className="cartContainer">
 <ul>
@@ -29,7 +28,7 @@ class ShoppingCart extends Component {
               }
               </ul>
            </div>
-=======
+
         <h1>SHOPPING CART</h1>
         <div className="cartContainer">
           <ul>
@@ -41,7 +40,7 @@ class ShoppingCart extends Component {
             }
           </ul>
         </div>
->>>>>>> 46f90fbdcf13bc55067564fc327b1eb0b18b802a
+
       </div>
     )
   }

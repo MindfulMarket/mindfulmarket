@@ -6,45 +6,60 @@ import { connect } from 'react-redux'
 import { fetchProducts } from '../../store/products'
 /* -----------------    COMPONENT     ------------------ */
 
+
 class AllProducts extends Component {
   constructor() {
     super();
+    this.state = {
+      filters: false,
+      cheap : false,
+      inexpensive: false,
+      midrange: false,
+      expensive: false
+    }
+    this.checkboxClicked = this.checkboxClicked.bind(this)
   }
 
   componentDidMount() {
-    // axios.get('/api/products')
-    // .then(res => res.data)
-    // .then((products) => this.setState({products}) )
     this.props.fetchData();
   }
 
-  // onClicking(product) {
-  //   console.log(product)
-  //   // dispatch(fetchOneProduct(product)
-  // }
+  checkboxClicked(event) {
+
+    console.log('click')
+    this.setState({
+      filters: true,
+      [event.target.value]: true
+    })
+  }
 
   render() {
-    let searchFilter = {cheap: 0, inexpensive: 0, midrange: 0, expensive: 0}
+    console.log(this.state)
+
+        let products = this.props.products.filter(product => {
+          let state = this.state;
+          for (let key in state) {
+            if (state.filters === false) return true;
+            else if (state[key] === true) {
+              if (product.price > 70 ) return true
+            }
+          } return false
+        })
+
+
     return (
       <div className="container" style={{ flexDirection: "column" }}>
 
           <div className="container" style={{ flexDirection: "row" }}>
-            <Filter searchFilter={searchFilter} />
+            <Filter checkboxClicked={this.checkboxClicked} />
 
             <div className="itemsContainer">
               <h1> Here is where we show all Items </h1>
 
               <div className="allItemsContainer" >
                 {
-                 /*  let filteredProducts = (products, filterSearch) => {
 
-                 }
-                  for (let filter in filterSearch) {
-                     if (filterSearch[filter] === 1) {}
-                  // }
-                  // this.props.products.filter( product filterSearch)
-                  */
-                  this.props.products.map(product =>
+                  products.map(product =>
                     <Card key={product.name} name={product.name} imageUrl={product.imageUrl} price={product.price} />
                   )
               }

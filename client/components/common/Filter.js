@@ -6,7 +6,9 @@ class Filter extends Component {
       super(props)
     }
 
-    cheapFilter() {
+    cheapFilter(event) {
+      console.log("HEY")
+      console.log(event.target.value)
       this.props.searchFilter.cheap = 1;
     }
     inexpensiveFilter() {
@@ -20,7 +22,6 @@ class Filter extends Component {
     }
 
     render() {
-      console.log(this.props.searchFilter)
       return (
         <div className="FilterBar">
           <h4>Refine by</h4>
@@ -31,17 +32,17 @@ class Filter extends Component {
           <h4> Price </h4>
             <div style={{display: 'flex', flexDirection: "row", width: '100%'}}>
               <label >
-                <input type="checkbox" onClick={this.cheapFilter.bind(this)} style={{marginRight: '10px' }} />
+                <input type="checkbox" value="cheap" onClick={this.props.checkboxClicked.bind(this)} style={{marginRight: '10px' }} />
                 <span className="checkmark" style={{marginRight: '90px' }} >$0-$10</span>
 
-                <input type="checkbox" style={{marginRight: '10px', marginTop: '20px'}} />
+                <input type="checkbox" value="inexpensive" onClick={this.props.checkboxClicked.bind(this)} style={{marginRight: '10px', marginTop: '20px'}} />
                 <span className="checkmark" style={{marginRight: '90px'}} >$10-$25</span>
 
 
-                <input type="checkbox" style={{marginRight: '10px', marginTop: '20px'}} />
+                <input type="checkbox" value="midrange" onClick={this.props.checkboxClicked.bind(this)} style={{marginRight: '10px', marginTop: '20px'}} />
                 <span className="checkmark" style={{marginRight: '90px'}} >$25-$100</span>
 
-                <input type="checkbox" style={{marginRight: '10px', marginTop: '20px'}} />
+                <input type="checkbox" value="expensive" onClick={this.props.checkboxClicked.bind(this)} style={{marginRight: '10px', marginTop: '20px'}} />
                 <span className="checkmark" style={{marginRight: '30px'}} >$100 and Above</span>
                 </label>
               </div>

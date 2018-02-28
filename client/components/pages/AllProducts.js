@@ -14,7 +14,7 @@ class AllProducts extends Component {
     super();
     this.state = {
       filters: false,
-      cheap : false,
+      cheap: false,
       inexpensive: false,
       midrange: false,
       expensive: false
@@ -27,8 +27,6 @@ class AllProducts extends Component {
   }
 
   checkboxClicked(event) {
-
-    console.log('click')
     this.setState({
       filters: true,
       [event.target.value]: true
@@ -36,12 +34,10 @@ class AllProducts extends Component {
   }
 
   render() {
-    console.log(this.state)
-
         let products = this.props.products.filter(product => {
           let state = this.state;
           for (let key in state) {
-            if (state.filters === false) return true;
+            if (state.filters === false) {return true;}
             else if (state[key] === true) {
               if (product.price > 70 ) return true
             }
@@ -50,9 +46,9 @@ class AllProducts extends Component {
 
 
     return (
-      <div className="container" style={{ flexDirection: "column" }}>
+      <div className="container" style={{ flexDirection: 'column' }}>
 
-          <div className="container" style={{ flexDirection: "row" }}>
+          <div className="container" style={{ flexDirection: 'row' }}>
             <Filter checkboxClicked={this.checkboxClicked} />
 
             <div className="itemsContainer">
@@ -69,7 +65,7 @@ class AllProducts extends Component {
                   // this.props.products.filter( product filterSearch)
                   */
                   this.props.products.map(product =>
-                    <Card key={product.name} product = {product} name={product.name} imageUrl={product.imageUrl} price={product.price} addToCart = {this.props.addToCart}/>
+                    <Card key={product.name} product = {product} name={product.name} imageUrl={product.imageUrl} price={product.price} addToCart = {this.props.addToCart} />
                   )
               }
               </div>
@@ -84,7 +80,6 @@ export { AllProducts }
   /* -----------------    CONTAINER     ------------------ */
 
   const mapState = ({ products, product }) => {
-    console.log(products)
     return { products, product }
   }
 

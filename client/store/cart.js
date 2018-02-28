@@ -10,11 +10,11 @@ const CHECKOUT = 'CHECKOUT'
 const cartReducer = function (state = [], action) {
   switch (action.type) {
     case ADD_PRODUCT_TO_CART:
-    // console.log("in the reducer" ,action.product)
       return  [...state, action.product]
     case DELETE_PRODUCT:
       return state.filter((prod) => prod.id !== action.product.id)
-    // case UPDATE_QUANT:
+    /* will be used to complete cartReducer*/
+      // case UPDATE_QUANT:
     //   return { ...state, allCampuses: [...state.allCampuses, action.campus] }
     default:
       return state
@@ -23,10 +23,7 @@ const cartReducer = function (state = [], action) {
 
 //ACTION CREATORS
 export const addToCart = product => {
-  console.log('PRODUCT IN ACTION CRETOR = ', product)
   return { type: ADD_PRODUCT_TO_CART, product}};
 export const deleteProduct = product => ({ type: DELETE_PRODUCT, product })
 
 export default cartReducer
-
-

@@ -13,7 +13,6 @@ const db = require('./server/db')
 const { User, Brands, Products, Reviews, Causes, Categories } = require('./server/db/models')
 
 
-
 const brands = [{
     name: 'People Tree',
     imageUrl: './public/assets/logos/PeopleTreeLogo.png',
@@ -157,24 +156,24 @@ const reviews = [
 
 const categories = [
     {
-        name:'Cleaning Supplies',
-        description: "Use these things to clean stuff"
+        name: 'Cleaning Supplies',
+        description: 'Use these things to clean stuff'
 },
 {
-    name:'Clothing',
-    description: "Wear em"
+    name: 'Clothing',
+    description: 'Wear em'
 },
 {
-    name:'Personal Hygeine',
-    description: "Use these to scrub yoself"
+    name: 'Personal Hygeine',
+    description: 'Use these to scrub yoself'
 },
 {
-    name:'Shoes',
-    description: "Use these things to cover your feet"
+    name: 'Shoes',
+    description: 'Use these things to cover your feet'
 },
 {
-    name:'Toys',
-    description: "Use these things to play"
+    name: 'Toys',
+    description: 'Use these things to play'
 }
 ]
 
@@ -182,30 +181,30 @@ const categories = [
 const causes = [
 
     {
-        name:"Stop homelessness",
-        imageUrl:"fillMeIn",
-        description:"Help imporve situation of homeless people around the world"
+        name: 'Stop homelessness',
+        imageUrl: 'fillMeIn',
+        description: 'Help imporve situation of homeless people around the world'
     }
     ,
     {
-        name:"Stop deforestation",
-        imageUrl:"fillMeIn",
-        description:"Help imporve situation of trees around the world"
+        name: 'Stop deforestation',
+        imageUrl: 'fillMeIn',
+        description: 'Help imporve situation of trees around the world'
     },
     {
-        name:"Use less water",
-        imageUrl:"fillMeIn",
-        description:"Help imporve situation of water around the world"
+        name: 'Use less water',
+        imageUrl: 'fillMeIn',
+        description: 'Help imporve situation of water around the world'
     },
     {
-        name:"Stop animal cruelty",
-        imageUrl:"fillMeIn",
-        description:"Bear rugs are out"
+        name: 'Stop animal cruelty',
+        imageUrl: 'fillMeIn',
+        description: 'Bear rugs are out'
     },
     {
-        name:"Stop chemical pollution",
-        imageUrl:"fillMeIn",
-        description:"that river smells weird"
+        name: 'Stop chemical pollution',
+        imageUrl: 'fillMeIn',
+        description: 'that river smells weird'
     }
 ]
 
@@ -235,7 +234,7 @@ async function seed() {
     console.log(`seeded ${allProducts.length} products`)
 
     const allReviews = await Promise.all(
-        reviews.map(review=> Reviews.create(review)),
+        reviews.map(review => Reviews.create(review)),
     )
     console.log(`seeded ${allReviews.length} reviews`)
 

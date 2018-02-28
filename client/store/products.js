@@ -16,16 +16,6 @@ const updateProduct = product => ({ type: UPDATE_PRODUCT, product });
 const addProduct = product => ({ type: ADD_PRODUCT, product })
 
 /* ------------       THUNK CREATORS     ------------------ */
-// export function fetchProducts() {
-//     // return function(dispatch) {
-//     return axios.get('/api/products')
-//         .then(res => res.data)
-//         .then(products => {
-//             const action = getProducts(products);
-//             dispatch(action);
-//         });
-//     // }
-// }
 
 export const fetchProducts = () => dispatch => {
     axios.get('/api/products')
@@ -33,7 +23,6 @@ export const fetchProducts = () => dispatch => {
 }
 
 export function fetchOneProduct(product) {
-    console.log('working')
     let id = product.id
     return function thunk(dispatch) {
         return axios.get(`/api/products/${id}`)

@@ -21,7 +21,7 @@ router.get('/:id', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-  Orders.findById(req,{include: {all: true}})
+  Orders.findById(req, {include: {all: true}})
     .then(order => res.json(order))
     .catch(next)
 })

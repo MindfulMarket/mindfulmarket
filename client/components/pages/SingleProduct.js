@@ -6,11 +6,8 @@ export default class SingleProduct extends Component {
   render() {
     return (
       <div>
-        <div className="navigationTBD">
-        </div>
-        <div className="productImage">
-            <img src={product.imageUrl} />
-        </div>
+        <h1> product page </h1>
+        <img src="http://africaspeaks4africa.org/the-africa-i-want-to-see/" />
       </div>
     )
   }

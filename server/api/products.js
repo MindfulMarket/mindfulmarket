@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-  Products.findById(req.params.id,{include: {all: true}})
+  Products.findById(req.params.id, {include: {all: true}})
     .then((result) => res.json(result))
 })
 
@@ -34,7 +34,7 @@ router.put('/:id', (req, res, next) => {
   },
   include: {all: true}
 })
- .then((product) =>{
+ .then((product) => {
     if (req.body.cause) product.addCause(req.body.cause)
     if (req.body.category) product.addCategory(req.body.category)
     res.json(product)

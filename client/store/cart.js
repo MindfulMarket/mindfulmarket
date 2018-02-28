@@ -29,4 +29,3 @@ export const deleteProduct = product => ({ type: DELETE_PRODUCT, product })
 
 export default cartReducer
 
-

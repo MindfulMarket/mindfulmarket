@@ -13,16 +13,6 @@ const updateProduct = product => ({ type: UPDATE_PRODUCT, product });
 
 
 /* ------------       THUNK CREATORS     ------------------ */
-// export function fetchProducts() {
-//     // return function(dispatch) {
-//     return axios.get('/api/products')
-//         .then(res => res.data)
-//         .then(products => {
-//             const action = getProducts(products);
-//             dispatch(action);
-//         });
-//     // }
-// }
 
 export const fetchProducts = () => dispatch => {
     axios.get('/api/products')
@@ -53,24 +43,3 @@ export default function reducer(state = [], action) {
             return state;
     }
 }
-
-// case GET_ONE_PRODUCT:
-// return [...state, action.product]
-//     // return Object.assign({}, state, { product: action.product });
-// case ADD_PRODUCT:
-// return Object.assign({}, state, {
-//     products: [...state.products, action.product]
-// });
-// const GET_ONE_PRODUCT = 'GET_ONE_PRODUCT';
-// const ADD_PRODUCT = 'ADD_PRODUCT';
-// const addProduct = product => ({ type: ADD_PRODUCT, product })
-// const getOneProduct = product => ({ type: GET_ONE_PRODUCT, product });
-// export function fetchOneProduct(product) {
-//   console.log('working')
-//   let id = product.id
-//   return function thunk(dispatch) {
-//       return axios.get(`/api/products/${id}`)
-//           .then(res => dispatch(getOneProduct(res.data)))
-//           .catch(err => console.error(err));
-//   }
-// }

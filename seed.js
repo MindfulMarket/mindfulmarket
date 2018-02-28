@@ -158,6 +158,10 @@ const categories = [{
         description: 'Use these things to clean stuff'
     },
     {
+        name: 'Cleaning Supplies',
+        description: 'Use these things to clean stuff'
+    },
+    {
         name: 'Clothing',
         description: 'Wear em'
     },

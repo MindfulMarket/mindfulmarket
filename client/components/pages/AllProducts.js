@@ -26,8 +26,6 @@ class AllProducts extends Component {
   }
 
   checkboxClicked(event) {
-
-    console.log('click')
     this.setState({
       filters: true,
       [event.target.value]: true
@@ -35,8 +33,6 @@ class AllProducts extends Component {
   }
 
   render() {
-    console.log(this.state)
-
         let products = this.props.products.filter(product => {
           let state = this.state;
           for (let key in state) {
@@ -75,7 +71,6 @@ export { AllProducts }
   /* -----------------    CONTAINER     ------------------ */
 
   const mapState = ({ products, product }) => {
-    console.log(products)
     return { products, product }
   }
 

@@ -7,8 +7,6 @@ class Filter extends Component {
     }
 
     cheapFilter(event) {
-      console.log('HEY')
-      console.log(event.target.value)
       this.props.searchFilter.cheap = 1;
     }
     inexpensiveFilter() {

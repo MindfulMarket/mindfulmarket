@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { connect } from 'react-redux'
+import {Link} from 'react-router-dom'
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -14,9 +15,7 @@ class ShoppingCart extends Component {
   // }
 
 
-
   render() {
-console.log('CART ===', this.props.cartContents)
     return (
       <div id="cart">
 <h1>SHOPPING CART</h1>
@@ -24,28 +23,35 @@ console.log('CART ===', this.props.cartContents)
 <ul>
                 {
 
-                  this.props.cartContents.map (
-                    product =>  <li className = "cartItem" >{product.name}</li>
+                  this.props.cartContents.map(
+                    product =>  <li className = "cartItem" key={product.product.id}>
+                    <Link to = {`/products/${product.product.id}`} >
+                    <img className = 'cartThumbnail' src = {product.product.imageUrl} />
+                    Name: {product.product.name}
+                    </Link><div className = "quantDiv">Quantity:  {product.count}</div></li>
+
                   )
               }
               </ul>
            </div>
+
+
       </div>
     )
   }
 }
 
 // export {ShoppingCart}
-  /* -----------------    CONTAINER     ------------------ */
+/* -----------------    CONTAINER     ------------------ */
 
-  const mapState = (state) => ({
-    cartContents: state.cart
-  })
+const mapState = (state) => ({
+  cartContents: state.cart
+})
 
-  const mapDispatch = null
-  // dispatch => ({
-  //   fetchCart: () =>
-  //   dispatch(())
-  // });
+const mapDispatch = null
+// dispatch => ({
+//   fetchCart: () =>
+//   dispatch(())
+// });
 
-  export default connect(mapState, mapDispatch)(ShoppingCart);
+export default connect(mapState, mapDispatch)(ShoppingCart);

@@ -30,7 +30,7 @@ const User = db.define('user', {
     shippingAddress: {
         type: Sequelize.STRING,
     },
-    privledge: {
+    privilege: {
         type: Sequelize.BOOLEAN,
     },
     billingAddress: {
@@ -49,6 +49,9 @@ const User = db.define('user', {
     },
     causeId: {
         type: Sequelize.INTEGER
+    },
+    shoppingCart: {
+        type: Sequelize.ARRAY(Sequelize.JSON)
     }
 })
 

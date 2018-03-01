@@ -49,6 +49,9 @@ const User = db.define('user', {
     },
     causeId: {
         type: Sequelize.INTEGER
+    },
+    shoppingCart: {
+        type: Sequelize.ARRAY(Sequelize.JSON)
     }
 })
 

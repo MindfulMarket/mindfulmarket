@@ -24,6 +24,13 @@ form div {
     width:7vh;
     height:auto;
 }
+.quantDiv{
+    margin-left: 2vw;
+}
+.cartThumbnail {
+    width:7vh;
+    height:auto;
+}
 .container {
     display: flex;
     flex-direction: row;

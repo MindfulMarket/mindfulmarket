@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
 import { connect } from 'react-redux'
+import {Link} from 'react-router-dom'
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -23,7 +24,11 @@ class ShoppingCart extends Component {
                 {
 
                   this.props.cartContents.map(
-                    product =>  <li className = "cartItem" key={product.id}>Name: {product.product.name} Quantity:{product.count}</li>
+                    product =>  <li className = "cartItem" key={product.product.id}>
+                    <Link to = {`/products/${product.product.id}`} >
+                    <img className = 'cartThumbnail' src = {product.product.imageUrl} />
+                    Name: {product.product.name}
+                    </Link><div className = "quantDiv">Quantity:  {product.count}</div></li>
 
                   )
               }

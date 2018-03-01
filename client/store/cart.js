@@ -38,6 +38,7 @@ const cartReducer = function (state = [], action) {
 
 //ACTION CREATORS
 export const addToCart = product => {
+
     return { type: ADD_PRODUCT_TO_CART, product }
 };
 export const deleteProduct = product => ({ type: DELETE_PRODUCT, product })

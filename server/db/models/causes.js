@@ -27,5 +27,11 @@ const Causes = db.define('causes', {
             notEmpty: true
         }
     }
-});
+}, {
+    scopes: {
+      populated: () => ({
+        include: [{all: true}]
+      })
+    }
+  });
 module.exports = Causes;

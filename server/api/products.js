@@ -3,52 +3,69 @@ const { Products } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  Products.findAll({include: {all: true}})
+  Products.scope('populated').findAll({})
     .then((result) => res.json(result))
+    .catch(next)
 })
 
 router.get('/:id', (req, res, next) => {
-  Products.findById(req.params.id, {include: {all: true}})
-    .then((result) => res.json(result))
+  Products.scope('populated').findById(req.params.id)
+    .then(result => res.json(result))
+    .catch(next)
 })
 
 router.get('/:id/reviews', (req, res, next) => {
-  Products.findById(req.params.id, {include: {all: true}})
-    .then((result) => res.json(result.reviews))
+  Products.scope('populated').findById(req.params.id)
+    .then(result =>{
+      result.getReviews()
+      .then((reviews)=>{
+        res.json(reviews)
+      })
+    })
+    .catch(next)
 })
 
-//might have to eager load
+
 router.post('/', (req, res, next) => {
-  Products.create(req.body.main)
+  Products.scope('populated').create(req.body.main)
     .then((product) => {
-      product.addCategory(req.body.category)
-      product.addCause(req.body.cause)
-      res.json(product)
+      let promises = []
+      if (req.body.cause) promises.push(product.addCause(req.body.cause))
+      if (req.body.category) promises.push(product.addCategory(req.body.category))
+      Promise.all(promises)
+      .then(_ => product.reload())
+      .then(reloadedProduct => {
+        res.json(reloadedProduct)
+      })
     })
- 
+    .catch(next)
 })
 
 router.put('/:id', (req, res, next) => {
-  Products.update({ where: { 
-    id: req.params.id 
-  },
-  include: {all: true}
-})
- .then((product) => {
-    if (req.body.cause) product.addCause(req.body.cause)
-    if (req.body.category) product.addCategory(req.body.category)
-    res.json(product)
-  })
-})
-
-
-router.delete('/:id', (req, res, next) => {
-  Products.delete({ 
+  Products.update(req.body, { 
     where: { 
       id: req.params.id 
     },
-    include: {all: true}
+    returning: true
   })
-    .then((result) => res.json(result))
-})
+.then((product) => {
+    let promises = []
+    if (req.body.cause) promises.push(product[1][0].addCause(req.body.cause))
+    if (req.body.category) promises.push(product[1][0].addCategory(req.body.category))
+    Promise.all(promises)
+      .then(_ => Products.scope('populated').findById(req.params.id))
+      .then(reloadedProduct => {
+        res.json(reloadedProduct)
+      })   
+  })
+  .catch(next)
+  })
 
+router.delete('/:id', (req, res, next) => {
+  Products.destroy({ 
+    where: { 
+      id: req.params.id 
+    },
+  })
+  .catch(next)
+})

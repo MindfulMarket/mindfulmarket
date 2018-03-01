@@ -17,11 +17,12 @@ const Services = db.define('services', {
     description: {
         type: Sequelize.TEXT,
     },
-    // rating: {}
-    // brandId
-    //  ReviewId
-    // 	CategoryId
-    // 	CauseId
-})
+},{
+    scopes: {
+      populated: () => ({
+        include: [{all: true}]
+      })
+    }
+  })
 
 module.exports = Services;

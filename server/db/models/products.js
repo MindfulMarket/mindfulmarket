@@ -17,6 +17,12 @@ const Products = db.define('product', {
     description: {
         type: Sequelize.TEXT,
     }
-})
+}, {
+    scopes: {
+      populated: () => ({
+        include: [{all: true}]
+      })
+    }
+  })
 
 module.exports = Products;

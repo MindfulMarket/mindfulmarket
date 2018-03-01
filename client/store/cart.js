@@ -7,15 +7,30 @@ const UPDATE_QUANT = 'UPDATE_QUANT'
 const CHECKOUT = 'CHECKOUT'
 
 //editing will update the db and retreve the campuses again (no new action needed)
-const cartReducer = function(state = [], action) {
+const cartReducer = function (state = [], action) {
     switch (action.type) {
         case ADD_PRODUCT_TO_CART:
-            return [...state, action.product]
+
+            for (let i = 0; i < state.length; i++) {
+                if (state[i].product.id === action.product.id) {
+                    return state.map((prod) => {
+                        if (prod.product.id === action.product.id) {
+                            prod.count++
+                            return prod
+                        }
+                        return prod
+                    })
+                }
+            }
+
+            return [...state, {product: action.product, count: 1} ]
+
+
         case DELETE_PRODUCT:
             return state.filter((prod) => prod.id !== action.product.id)
-                /* will be used to complete cartReducer*/
-                // case UPDATE_QUANT:
-                //   return { ...state, allCampuses: [...state.allCampuses, action.campus] }
+        /* will be used to complete cartReducer*/
+        // case UPDATE_QUANT:
+        //   return { ...state, allCampuses: [...state.allCampuses, action.campus] }
         default:
             return state
     }

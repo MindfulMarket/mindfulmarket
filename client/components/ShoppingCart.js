@@ -23,23 +23,13 @@ class ShoppingCart extends Component {
                 {
 
                   this.props.cartContents.map(
-                    product =>  <li className = "cartItem" key={product.id}>{product.name}</li>
+                    product =>  <li className = "cartItem" key={product.id}>Name: {product.product.name} Quantity:{product.count}</li>
+
                   )
               }
               </ul>
            </div>
 
-        <h1>SHOPPING CART</h1>
-        <div className="cartContainer">
-          <ul>
-            {
-
-              this.props.cartContents.map(
-                product => <li className="cartItem" >{product.name}</li>
-              )
-            }
-          </ul>
-        </div>
 
       </div>
     )

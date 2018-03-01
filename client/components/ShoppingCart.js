@@ -18,7 +18,6 @@ class ShoppingCart extends Component {
   render() {
     return (
       <div id="cart">
-<<<<<<< HEAD
 <h1>SHOPPING CART</h1>
           <div className="cartContainer">
 <ul>
@@ -36,19 +35,6 @@ class ShoppingCart extends Component {
               </ul>
            </div>
 
-=======
-        <h1>SHOPPING CART</h1>
-        <div className="cartContainer">
-          <ul>
-            {
-
-              this.props.cartContents.map(
-                product => <li className="cartItem" >{product.name}</li>
-              )
-            }
-          </ul>
-        </div>
->>>>>>> master
 
       </div>
     )

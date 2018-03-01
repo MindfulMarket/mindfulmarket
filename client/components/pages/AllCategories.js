@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Card from '../common/Card';
 import { connect } from 'react-redux';
-import { fetchAllBrands } from '../../store/brands';
+import { fetchAllCategories } from '../../store/categories';
 /* -----------------    COMPONENT     ------------------ */
 
-class AllBrands extends Component {
+class AllCategories extends Component {
   constructor() {
     super();
   }
 
   componentDidMount() {
-   this.props.fetchBrandData();
+   this.props.fetchCategoryData();
   }
 
   render() {
@@ -29,12 +28,12 @@ class AllBrands extends Component {
             </div>
 
             <div className="itemsContainer">
-              <h1> Here is where we show all Items </h1>
+              <h1> TBD Categories</h1>
 
               <div className="allItemsContainer" >
               {
-                this.props.brands.map(brand =>
-                  <Card key={brand.name} category="brand" id={brand.id} brand={brand} name={brand.name} imageUrl={brand.imageUrl} />
+                this.props.categories.map(category =>
+                  <Card key={category.name} category="brand" id={category.id} brand={category} name={category.name} imageUrl={category.imageUrl} />
                 )
               }
               </div>
@@ -46,12 +45,12 @@ class AllBrands extends Component {
   }
 }
 
-const mapState = ({ products, product, brands }) => {
-  return { products, product, brands }
+const mapState = ({ products, product, brands, categories }) => {
+  return { products, product, brands, categories }
 }
 
 const mapDispatch = dispatch => ({
-  fetchBrandData: () => dispatch(fetchAllBrands())
+  fetchCategoryData: () => dispatch(fetchAllCategories())
 });
 
-export default connect(mapState, mapDispatch)(AllBrands);
+export default connect(mapState, mapDispatch)(AllCategories);

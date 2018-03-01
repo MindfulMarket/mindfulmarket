@@ -3,8 +3,6 @@ import axios from 'axios';
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
-/* --------------- INIITIAL STATE --------------- */
-const initialState = []
 
 /* ------------       ACTION CREATOR     ------------------ */
 const getProducts = products => ({ type: GET_ALL_PRODUCTS, products });

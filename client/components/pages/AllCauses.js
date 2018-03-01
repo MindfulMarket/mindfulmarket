@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Card from '../common/Card';
 import { connect } from 'react-redux';
-import { fetchAllBrands } from '../../store/brands';
+import { fetchAllCauses } from '../../store/causes';
 /* -----------------    COMPONENT     ------------------ */
 
-class AllBrands extends Component {
+class AllCauses extends Component {
   constructor() {
     super();
   }
 
   componentDidMount() {
-   this.props.fetchBrandData();
+   this.props.fetchCauseData();
   }
 
   render() {
@@ -20,21 +19,21 @@ class AllBrands extends Component {
 
         <div className="itemsContainer">
           <div className="featuredContainer">
-            <h1> Here is where we show featured Items </h1>
+            <h1> Here is where we show featured Causes </h1>
           </div>
 
           <div className="container" style={{ flexDirection: 'row' }}>
             <div className="filterContainer">
-            <h1> Here is where we filter Items</h1>
+            <h1> Here is where we filter Causes</h1>
             </div>
 
             <div className="itemsContainer">
-              <h1> Here is where we show all Items </h1>
+              <h1> Here is where we show all Causes </h1>
 
               <div className="allItemsContainer" >
               {
-                this.props.brands.map(brand =>
-                  <Card key={brand.name} category="brand" id={brand.id} brand={brand} name={brand.name} imageUrl={brand.imageUrl} />
+                this.props.causes.map(cause =>
+                  <Card key={cause.name} category="brand" id={cause.id} brand={cause} name={cause.name} imageUrl={cause.imageUrl} />
                 )
               }
               </div>
@@ -46,12 +45,12 @@ class AllBrands extends Component {
   }
 }
 
-const mapState = ({ products, product, brands }) => {
-  return { products, product, brands }
+const mapState = ({ products, product, brands, causes }) => {
+  return { products, product, brands, causes }
 }
 
 const mapDispatch = dispatch => ({
-  fetchBrandData: () => dispatch(fetchAllBrands())
+  fetchCauseData: () => dispatch(fetchAllCauses())
 });
 
-export default connect(mapState, mapDispatch)(AllBrands);
+export default connect(mapState, mapDispatch)(AllCauses);

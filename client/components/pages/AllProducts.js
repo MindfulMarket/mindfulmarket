@@ -67,7 +67,6 @@ class AllProducts extends Component {
   }
 }
 
-export { AllProducts }
   /* -----------------    CONTAINER     ------------------ */
 
   const mapState = ({ products, product }) => {

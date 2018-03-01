@@ -22,5 +22,11 @@ const Orders = db.define('order', {
         type: Sequelize.FLOAT,
         allowNull: false
     },
-});
+}, {
+    scopes: {
+      populated: () => ({
+        include: [{all: true}]
+      })
+    }
+  });
 module.exports = Orders;

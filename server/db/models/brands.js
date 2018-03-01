@@ -27,5 +27,12 @@ const Brands = db.define('brands', {
              notEmpty: true
          }
     }
-});
+}, {
+    scopes: {
+      populated: () => ({
+        include: [{all: true}]
+      })
+    }
+  });
+
 module.exports = Brands;

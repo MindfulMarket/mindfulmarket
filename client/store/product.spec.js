@@ -15,7 +15,7 @@ describe('thunk creators', () => {
   let store
   let mockAxios
 
-  const initialState = { user: {} }
+  const initialState = { product: [] }
 
   beforeEach(() => {
     mockAxios = new MockAdapter(axios)
@@ -28,7 +28,7 @@ describe('thunk creators', () => {
   })
 
   describe('fetchProducts', () => {
-    xit('eventually dispatches the GET ALL PRODUCTS action', () => {
+    it('eventually dispatches the GET ALL PRODUCTS action', () => {
       const fakeProduct = {
         brand: 'Everlane',
         name: 'The Cropped City Anorak',

@@ -13,11 +13,10 @@ const updateProduct = product => ({ type: UPDATE_PRODUCT, product });
 /* ------------       THUNK CREATORS     ------------------ */
 
 export const fetchProducts = () => dispatch => {
-    axios.get('/api/products')
+ return    axios.get('/api/products')
         .then(res => dispatch(getProducts(res.data)))
         .catch(err => console.error(err));
 }
-
 //
 export default function reducer(state = [], action) {
     switch (action.type) {

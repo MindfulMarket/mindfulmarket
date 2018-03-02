@@ -20,17 +20,21 @@ form div {
     margin: 1em;
     display: inline-block;
 }
-#cartImg{
-    width:10vh;
-    height:auto;
+
+#cartImg {
+    width: 10vh;
+    height: auto;
 }
-.quantDiv{
+
+.quantDiv {
     margin-left: 2vw;
 }
+
 .cartThumbnail {
-    width:7vh;
-    height:auto;
+    width: 7vh;
+    height: auto;
 }
+
 .container {
     display: flex;
     flex-direction: row;
@@ -94,13 +98,13 @@ form div {
 .doubleNavbar {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    /* align-items: flex-end; */
     /* border-bottom: 2px solid rgb(140, 191, 132); */
     /* height: 50px; */
     /* flex-direction: row; */
 }
 
-.navbar2 {
+.topnavbar {
     display: flex;
     flex: 1;
     align-items: center;
@@ -112,10 +116,10 @@ form div {
     /* flex-direction: row; */
 }
 
-.navbar {
+.bottomnavbar {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
     /* flex: 1; */
     width: 100%;
     align-items: center;
@@ -127,12 +131,24 @@ form div {
 
 #title {
     color: rgb(140, 191, 132);
-    flex: 1;
+    /* flex: 1; */
     font-size: 20px;
+    font-weight: 800;
+    margin-left: 5px;
+}
+
+#subtitle {
+    color: grey;
+    font-weight: 800;
+    /* flex: 1; */
+    font-size: 14px;
+    margin-left: 10px;
 }
 
 .nav {
+    flex-direction: row;
     align-items: flex-end;
+    justify-content: flex-end;
     font-size: 14px;
     color: rgb(140, 191, 132);
 }
@@ -140,10 +156,61 @@ form div {
 .titlebar {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    flex: 1;
+    /* flex: 1; */
     align-items: center;
     justify-content: flex-start;
     height: 35px;
     /* flex-direction: row; */
+}
+
+.menu {
+    margin-top: 15px;
+}
+
+.menu>li {
+    display: inline;
+    margin-right: 50px;
+}
+
+.menu>li:last-of-type {
+    margin-right: 0;
+}
+
+.features-menu {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    padding-top: 60px;
+    position: absolute;
+    top: -25px;
+    left: -30px;
+    z-index: 1;
+}
+
+.features-menu {
+    /* Add this as a new rule */
+    display: none;
+}
+
+.dropdown:hover .features-menu {
+    /* This used to be `.features-menu` */
+    display: flex;
+    /* Leave everything else alone */
+    flex-direction: column;
+    /* ... */
+}
+
+.features-menu li:last-of-type {
+    border-bottom: none;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown>span {
+    z-index: 2;
+    position: relative;
+    /* This is important! */
+    cursor: pointer;
 }

@@ -29,11 +29,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 
               <div >
                 {/* Links for main page components for navigation, NOT for presentational use*/}
-                <Link to="/products">All Products</Link>
-                <Link to="/brands">All Brands</Link>
-                <Link to="/categories">All Categories</Link>
+                <Link to="/products">All Products</Link>                <Link to="/categories">All Categories</Link>
                 <Link to="/causes">All Causes</Link>
-                <Link to="/">Home</Link>
+
 
                 <Link to="/cart" ><img id="cartImg" src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/green-metallic-orbs-icons-business/082438-green-metallic-orb-icon-business-basket.png" /></Link>
               </div>

@@ -155,22 +155,20 @@ form div {
     width: 100%;
     align-items: center;
     /* justify-content: flex-end; */
-    border-bottom: 2px solid rgb(140, 191, 132);
+    /* border-bottom: 2px solid rgb(140, 191, 132); */
     /* height: 20px; */
     /* flex-direction: row; */
 }
 
 #title {
-    <<<<<<< HEAD color: rgb(140, 191, 132);
-    /* flex: 1; */
+    /* color: rgb(140, 191, 132); */
     font-size: 20px;
     font-weight: 800;
     margin-left: 5px;
-    =======color: rgb(213, 247, 208);
+    color: rgb(213, 247, 208);
     font-size: 34pt;
     margin-right: auto;
     width: auto;
-    >>>>>>>master
 }
 
 #subtitle {

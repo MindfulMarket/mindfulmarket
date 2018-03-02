@@ -17,15 +17,16 @@ class SingleProduct extends Component {
     return (
       <div>
       {
-        (singleProduct === undefined)
-        ? <h1>hi</h1>
-        :
+        singleProduct
+        ?
         <div>
         <h2>{singleProduct.name}</h2>
         <img width="300px" height="auto" src={singleProduct.imageUrl} />
         <p>Description: {singleProduct.description}</p>
         <p>Price: ${singleProduct.price}</p>
         </div>
+        :
+        <h1>This Item is No Longer Available</h1>
       }
       </div>
     )

@@ -38,8 +38,10 @@ Reviews.belongsTo(User);
 
 //Products associations
 Products.belongsTo(Brands);
-Products.belongsToMany(Causes, {through: 'ProductCauses'});
-Products.belongsToMany(Categories, { through: 'ProductCategories' });
+Products.belongsTo(Causes);
+Products.belongsTo(Categories);
+// Products.belongsToMany(Causes, {through: 'ProductCauses'});
+// Products.belongsToMany(Categories, { through: 'ProductCategories' });
 Products.hasMany(Reviews, {as: 'Reviews'})
 
 //Services associations
@@ -48,14 +50,16 @@ Services.belongsToMany(Causes, { through: 'ServiceCauses' });
 Services.belongsToMany(Categories, { through: 'ServiceCategories' });
 
 //Causes associations
-Causes.belongsToMany(Products, { through: 'ProductCauses' });
-Causes.belongsToMany(Services, { through: 'ServiceCauses' });
-Causes.belongsToMany(Brands, { through: 'BrandCauses' });
+// Causes.belongsToMany(Products, { through: 'ProductCauses' });
+// Causes.belongsToMany(Services, { through: 'ServiceCauses' });
+// Causes.belongsToMany(Brands, { through: 'BrandCauses' });
+Causes.hasMany(Products)
 
 //Categories associations
-Categories.belongsToMany(Products, { through: 'ProductCategories' });
-Categories.belongsToMany(Services, { through: 'ServiceCategories' });
-Categories.belongsToMany(Brands, { through: 'BrandCategories' });
+// Categories.belongsToMany(Products, { through: 'ProductCategories' });
+// Categories.belongsToMany(Services, { through: 'ServiceCategories' });
+// Categories.belongsToMany(Brands, { through: 'BrandCategories' });
+Categories.hasMany(Products)
 
 module.exports = {
     User,

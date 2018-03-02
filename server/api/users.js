@@ -12,3 +12,12 @@ router.get('/', (req, res, next) => {
     .then(users => res.json(users))
     .catch(next)
 })
+
+router.put('/:id',(req,res,next)=>{
+  console.log('this route was hit')
+  User.update(req.body,{
+    where: {
+      id: req.params.id
+    }
+  })
+})

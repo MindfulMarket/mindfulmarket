@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import Card from '../common/Card';
 import Filter from '../common/Filter'
 import { connect } from 'react-redux'
-import { fetchProducts } from '../../store/products'
+import { fetchAllCategories } from '../../store/products'
 import { addToCart } from '../../store/cart'
 
 /* -----------------    COMPONENT     ------------------ */
 
-
-class AllProducts extends Component {
+class SingleCategory extends Component {
   constructor() {
     super();
     this.state = {
@@ -45,23 +44,18 @@ class AllProducts extends Component {
 
 
     return (
-      <div className="container" style={{ marginTop: '3em',flexDirection: 'column' }}>
+      <div className="container" style={{ flexDirection: 'column' }}>
 
           <div className="container" style={{ flexDirection: 'row' }}>
             <Filter checkboxClicked={this.checkboxClicked} />
 
             <div className="itemsContainer">
+              <h1> Here is where we show all Items </h1>
 
               <div className="allItemsContainer" >
                 {
-<<<<<<< HEAD
-                  products.map(product =>{
-                    console.log('PRODUCT ON CARD',product)
-                   return( <Card key={product.name} category="product" brand = {product.brand} product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart = {this.props.addToCart} />)}
-=======
                   products.map(product =>
-                    <Card key={product.name} category="products" type="product" product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart = {this.props.addToCart} />
->>>>>>> master
+                    <Card key={product.name} category="product" product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart = {this.props.addToCart} />
                   )
               }
               </div>
@@ -79,8 +73,8 @@ class AllProducts extends Component {
   }
 
   const mapDispatch = dispatch => ({
-    fetchData: () => dispatch(fetchProducts()),
+    fetchData: () => dispatch(fetchAllCategories()),
     addToCart: (product) => dispatch(addToCart(product))
   });
 
-  export default connect(mapState, mapDispatch)(AllProducts);
+  export default connect(mapState, mapDispatch)(SingleCategory);

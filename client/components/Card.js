@@ -13,8 +13,12 @@ const Card = (props) => {
       {props.price &&  // we may do a props.price? :
         <h4>${props.price}</h4>
       }
+<<<<<<< HEAD
 
       <button style={{marginLeft: '30px', height: '20px'}}> Add to Cart </button>
+=======
+      <button style={{marginLeft: '30px', height: '20px'}}> {this.props.button} </button>
+>>>>>>> master
    </div>
    </div>
   )

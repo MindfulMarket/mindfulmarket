@@ -35,7 +35,7 @@ class AllBrands extends Component {
               <div className="allItemsContainer" >
               {
                 this.props.brands.map(brand =>
-                  <Card key={brand.name} category="brand" id={brand.id} brand={brand} name={brand.name} imageUrl={brand.imageUrl} />
+                  <Card key={brand.name} category="brands" type="brand" id={brand.id} brand={brand} name={brand.name} button="explore" imageUrl={brand.imageUrl} />
                 )
               }
               </div>

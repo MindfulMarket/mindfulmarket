@@ -14,10 +14,11 @@ router.get('/', (req, res, next) => {
 })
 
 router.put('/:id',(req,res,next)=>{
-  console.log('this route was hit')
+  console.log('this route was hit TEL EM SUCKA')
   User.update(req.body,{
     where: {
       id: req.params.id
     }
   })
+  .then((result)=>res.json(result))
 })

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand } from './components'
+import { Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, Checkout, ThankYou,UserProfile} from './components'
 import {me} from './store'
 import {fetchAndSetCart} from './store/cart' //WHERE
 import axios from 'axios' //wast throwing as error without import......WHY
@@ -31,6 +31,8 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/cart" component={ShoppingCart} />
+        <Route path="/thankyou/:action" component={ThankYou} />
+        <Route path="/profile" component={UserProfile} />
 
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
@@ -41,6 +43,9 @@ class Routes extends Component {
         <Route exact path="/categories" component={AllCategories} />
         <Route path="/products" component={SingleProduct} />
         <Route path="/brands/:id" component={SingleBrand} />
+        <Route path="/checkout" component={Checkout} />
+
+
 
         {
           isLoggedIn &&
@@ -62,7 +67,7 @@ class Routes extends Component {
 const mapState = (state) => {
   return {
     cartContents: state.cart,
-    initial: state.user|| [],
+    initial: state.user || [],
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id

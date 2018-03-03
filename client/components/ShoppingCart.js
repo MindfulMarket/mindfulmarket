@@ -32,7 +32,7 @@ class ShoppingCart extends Component {
             }
           </ul>
         </div>
-        <button onClick = {this.props.checkout}>Checkout</button>
+        <button onClick = {()=>this.props.history.push('/checkout')}>Checkout</button>
       </div>
     )
   }

@@ -7,17 +7,25 @@ import axios from 'axios'
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div className="doubleNavbar">
-    <div className="navbar2">
+
+    <div className="topNavbar">
       <p id = "topDeal" >Top Deals</p>
-      <Link id = "logout" onClick={() => {
-        handleClick()
-        axios.put(`/api/users/${this.props.initial.id}`, { shoppingCart: this.props.cart })
-      }} to='/'>Logout</Link>
-      <Link id = "profileLink" to="/profile">Your Account</Link>
+
+            {isLoggedIn ? (
+              <Link id = "logout" style={{marginRight:"20px"}}   onClick={() => {
+              handleClick()
+              axios.put(`/api/users/${this.props.initial.id}`, { shoppingCart: this.props.cart })
+            }} to='/'>Logout</Link>
+              ) : (
+              <div style={{marginRight:"20px" }}>
+                <Link to="/login" style={{marginRight:"20px"}}>Login</Link>
+                <Link to="/signup">Sign Up</Link>
+              </div>
+            )}
 
     </div>
 
-    <div className="navbar">
+    <div className="bottomNavbar">
       <div className="titlebar">
         <a href="/" id="title"><p>MINDFUL MARKET</p></a>
         <p id='snootyCaption'>...shopping, for those who care</p>
@@ -25,35 +33,40 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 
       <div className="links-container">
         <nav >
-          {isLoggedIn ? (
-            <div>
-              {/* The navbar will show these links after you log in */}
-
-              <div >
+             {<div className='dropdown'>
                 {/* Links for main page components for navigation, NOT for presentational use*/}
+                <ul className='menu'>
+                 <li className='dropdown2' ><span>Causes</span>
+                   <ul className='features-menu'>
+                     <li><a href='#'>Environment</a></li>
+                     <li><a href='#'>Homelessness</a></li>
+                     <li><a href='#'>Fair Wages</a></li>
+                   </ul>
+                 </li>
+                 <li className='dropdown3'><span>Categories</span>
+                   <ul className='features-menu2'>
+                { /* this.props.categories.map( category => (
+                      <li><a href=`/categories/${caegory.name}`>{category.name}</a></li>
+                ))
+                */ }
+                      <li><a href='#'>Clothing</a></li>
+                     <li><a href='#'>Beauty</a></li>
+                     <li><a href='#'>Cleaning Supplies</a></li>
+
+                   </ul>
+                 </li>
+                 <li><a href='#'>About Mindful Market</a></li>
+                 </ul>
+                <Link to="/cart" ><img id="cartImg" src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/green-metallic-orbs-icons-business/082438-green-metallic-orb-icon-business-basket.png" /></Link>
                 <Link to="/products">All Products</Link>                <Link to="/categories">All Categories</Link>
                 <Link to="/causes">All Causes</Link>
-                <Link to="/">Home</Link>
+                <Link to="/">Home</Link>            
+</div>}
 
-
-                <Link to="/cart" ><img id="cartImg" src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/green-metallic-orbs-icons-business/082438-green-metallic-orb-icon-business-basket.png" /></Link>
-              </div>
-            </div>
-          ) : (
-              <div className="navbar">
-                {/* Links for main page components for navigation, NOT for presentational use*/}
-                <Link to="/categories">All Categories</Link>
-                <Link to="/causes">All Causes</Link>
-                <Link to="/">Home</Link>
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
-                <Link to="/cart" ><img id="cartImg" src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/green-metallic-orbs-icons-business/082438-green-metallic-orb-icon-business-basket.png" /></Link>
-              </div>
-            )}
         </nav>
-        </div>
       </div>
       <hr />
+    </div>
   </div>
 )
 
@@ -66,14 +79,14 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    cart: state.cart || []
+    cart: state.cart || [],
+    categories: state.categories || [],
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     handleClick() {
-
       dispatch(logout())
 
     }

@@ -177,13 +177,17 @@ transition:all .2s;
     align-items: flex-start;
     color: rgb(213, 247, 208);
     /* border-bottom: 2px solid rgb(140, 191, 132); */
-    height: 55px;
+    height: 85px;
     /* flex-direction: row; */
 }
 
 #topDeal {
     margin-right: auto
 }
+
+.topNavbar {
+}
+
 #checkout-title{
     color: rgb(213, 247, 208);
     margin-left: 1vw;
@@ -194,21 +198,22 @@ transition:all .2s;
     display: flex;
     flex: 1;
     align-items: center;
-    /* width: 100%; */
-    justify-content: flex-end;
-    /* height: 20px; */
+    width: 100%;
+    justify-content: flex-start;
+    border-bottom: 1px solid rgb(140, 191, 132);
+    height: 15px;
+    /* background-color: rgba(255, 255, 255, 0.2); */
+    /* flex-direction: row; */
 }
 
-.navbar2 {
+.bottomNavbar {
     display: flex;
     flex: 1;
     align-items: center;
     width: 100%;
-    justify-content: flex-start;
-    border-bottom: 1px solid rgb(140, 191, 132);
-    height: 20px;
+    justify-content: flex-end;
     background-color: rgba(255, 255, 255, 0.2);
-    /* flex-direction: row; */
+    height: 60px;
 }
 
 #snootyCaption {
@@ -217,14 +222,15 @@ transition:all .2s;
 }
 
 .navbar {
-    margin-top: 1vh;
+    /* margin-top: 1vh; */
     display: flex;
     flex-direction: row;
+    background-color: rgba(255, 255, 255, 0.2);
     /* flex-wrap: wrap; */
     flex: 1;
     width: 100%;
     align-items: center;
-    /* justify-content: flex-end; */
+    justify-content: flex-end;
     /* border-bottom: 2px solid rgb(140, 191, 132); */
     /* height: 20px; */
     /* flex-direction: row; */
@@ -249,6 +255,13 @@ transition:all .2s;
     margin-left: 10px;
 }
 
+.dropdown {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: flex-end;
+}
+
 
 /* .nav {
     flex-direction: column;
@@ -261,92 +274,77 @@ transition:all .2s;
 .titlebar {
     display: flex;
     flex-direction: row;
-    /* flex: 1; */
+    flex: 1;
     align-items: center;
     justify-content: flex-start;
-    height: 35px;
+    height: 55px;
     /* flex-direction: row; */
 }
 
-
-/* .menu {
+.menu {
     margin-top: 15px;
-} */
+}
 
-
-/* .menu>li {
+.menu>li {
     display: inline;
     margin-right: 50px;
 }
 
 .menu>li:last-of-type {
     margin-right: 0;
-} */
+}
 
-
-/* .features-menu {
-    display: flex;
+.features-menu,
+.features-menu2 {
     flex-direction: column;
     border-radius: 5px;
-    padding-top: 60px;
+    padding-top: 10px;
     position: absolute;
-    top: -25px;
-    left: -30px;
     z-index: 1;
-} */
+    display: none;
+}
 
+.dropdown2:hover .features-menu,
+.dropdown3:hover .features-menu2 {
+    /* This used to be `.features-menu` */
+    display: flex;
+    /* Leave everything else alone */
+    flex-direction: column;
+    background-color: rgba(16, 119, 23, 0.671);
+    margin-top: -15px;
+    /* padding-top: -20px; */
+    /* ... */
+}
 
-/* .features-menu { */
+.features-menu:hover,
+.features-menu2:hover {
+    /* This used to be `.features-menu` */
+    display: flex;
+    /* Leave everything else alone */
+    flex-direction: column;
+    background-color: rgba(16, 119, 23, 0.671);
+    /* margin-top: -100px; */
+    /* padding-top: -100px; */
+    z-index: 1;
+    /* ... */
+}
 
-
-/* Add this as a new rule */
-
-
-/* display: none; */
-
-
-/* } */
-
-
-/* .dropdown:hover .features-menu { */
-
-
-/* This used to be `.features-menu` */
-
-
-/* display: flex; */
-
-
-/* Leave everything else alone */
-
-
-/* flex-direction: column; */
-
-
-/* ... */
-
-
-/* } */
-
-
-/* .features-menu li:last-of-type {
+.features-menu li:last-of-type {
     border-bottom: none;
-} */
+}
 
-
-/* .dropdown {
+.dropdown,
+.dropdown2,
+.dropdown3,
+{
     position: relative;
-} */
+}
 
-
-/*
-.dropdown>span {
-    z-index: 2;
+.dropdown2>span,
+.dropdown3>span {
+    z-index: 1;
     position: relative;
     /* This is important! */
+    /* cursor: pointer; */
+}
 
-
-/* cursor: pointer; */
-
-
-/* }  */

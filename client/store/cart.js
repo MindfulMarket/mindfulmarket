@@ -10,7 +10,6 @@ const CHECKOUT = 'CHECKOUT'
 const cartReducer = function (state = [], action) {
     switch (action.type) {
         case GET_CART:
-
             return action.cart
         case ADD_PRODUCT_TO_CART:
 
@@ -42,12 +41,10 @@ const cartReducer = function (state = [], action) {
 //ACTION CREATORS
 export const fetchAndSetCart = (cart) => {
 
-    console.log("cart inside of actionc reatoooooooor", cart)
-    return{ type: GET_CART, cart}}
-
+    console.log("cart inside of actionc reatoooooooor REEEEEEESE", cart)
+    return { type: GET_CART, cart}}
 
 export const addToCart = product => ({ type: ADD_PRODUCT_TO_CART, product })
-
 
 export const deleteProduct = product => ({ type: DELETE_PRODUCT, product })
 

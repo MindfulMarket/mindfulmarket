@@ -15,6 +15,7 @@ class AllBrands extends Component {
   }
 
   render() {
+    console.log('PRROPS IN ALL BRANDS',this.props)
     return (
       <div className="container">
 

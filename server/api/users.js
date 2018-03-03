@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const { User } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -13,12 +13,19 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-router.put('/:id',(req,res,next)=>{
-  console.log('this route was hit')
-  User.update(req.body,{
-    where: {
-      id: req.params.id
-    }
-  })
-  .catch(next)
+router.put('/:id', (req, res, next) => {
+  console.log('this route was hit TEL EM SUCKA')
+  console.log('REQN PARRRAMS',req.params.id)
+  if (req.params.id !== undefined) {
+    User.update(req.body, {
+      where: {
+        id: req.params.id
+      }
+    })
+      .then((result) => res.json(result))
+      .catch(next)
+  } else {
+    console.log('put user route')
+    res.sendStatus(230)
+  }
 })

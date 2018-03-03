@@ -45,19 +45,19 @@ class AllProducts extends Component {
     console.log(this.props)
 
     return (
-      <div className="container" style={{ flexDirection: 'column' }}>
+      <div className="container" style={{ marginTop: '3em',flexDirection: 'column' }}>
 
         <div className="container" style={{ flexDirection: 'row' }}>
           <Filter checkboxClicked={this.checkboxClicked} />
 
-          <div className="itemsContainer">
-            <h1> Here is where we show all Items </h1>
+            <div className="itemsContainer">
 
-            <div className="allItemsContainer" >
-              {
-                products.map(product =>
-                  <Card key={product.name} category="products" type="product" product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart={this.props.addToCart} />
-                )
+              <div className="allItemsContainer" >
+                {
+                  products.map(product =>{
+                    console.log('PRODUCT ON CARD',product)
+                   return( <Card key={product.name} category="product" brand = {product.brand} product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart = {this.props.addToCart} />)}
+                  )
               }
             </div>
           </div>

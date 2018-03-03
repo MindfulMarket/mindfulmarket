@@ -37,7 +37,7 @@ class SingleBrand extends Component {
             (singleBrandProducts === undefined)
               ? ''
               : singleBrandProducts.map(product =>
-                <Card key={product.name} category="product" product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart = {this.props.addToCart} />
+                <Card key={product.name} category="product" product={product} brand = {product.brand} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart = {this.props.addToCart} />
               )
           }
         </div>

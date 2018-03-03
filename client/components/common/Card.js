@@ -2,14 +2,14 @@ import React from 'react'
 
 
 const Card = (props) => {
-  console.log('PROPS IN THE CARD', props.product.brand)
+  console.log('PROPS IN THE CARD', props)
 
   return (
    <div className="card" >
 <div className = 'cardContents' align = "center">
    <a href={`/${props.category}s/${props.id}`}> <img  src={props.imageUrl} className = 'cardImg'/></a>
     <h3 className = "cardName" ><a href={`/${props.category}s/${props.id}`}>{props.name}</a>
-    <div className = "cardBrand"> <a href = {`/brands/${props.product.brand.id}`} >by {props.product.brand.name}</a></div>
+    <div className = "cardBrand"> <a href = {`/brands/${props.brand.id}`} >by {props.brand.name}</a></div>
     </h3>
 
 

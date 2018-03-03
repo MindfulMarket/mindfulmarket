@@ -22,10 +22,7 @@ class ShoppingCart extends Component {
         <div className="cartContainer">
           <ul>
             {
-<<<<<<< HEAD
-=======
 
->>>>>>> master
               this.props.cartContents.map(
                 product => <li className="cartItem" key={product.product.id}>
                   <Link to={`/products/${product.product.id}`} >
@@ -36,10 +33,7 @@ class ShoppingCart extends Component {
             }
           </ul>
         </div>
-<<<<<<< HEAD
         <button onClick = {()=>this.props.history.push('/checkout')}>Checkout</button>
-=======
->>>>>>> master
       </div>
     )
   }

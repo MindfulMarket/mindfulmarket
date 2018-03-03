@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, Checkout, ThankYou, About, UserProfile,SingleCategory } from './components'
+import { Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile,SingleCategory } from './components'
 
 import {me} from './store'
 import {fetchAndSetCart} from './store/cart' //WHERE
@@ -35,7 +35,7 @@ class Routes extends Component {
         <Route path="/thankyou/:action" component={ThankYou} />
         <Route path="/profile" component={UserProfile} />
 
-        <Route exact path="/" component={UserHome} />
+        {/*<Route exact path="/" component={UserHome} />*/}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/about" component={About} />

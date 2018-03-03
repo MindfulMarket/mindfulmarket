@@ -27,13 +27,20 @@ form div {
     margin: 1em;
     display: inline-block;
 }
-
-#cartImg {
-    width: 7vh;
-    height: auto;
+.cardBrand{
+    margin-bottom: 2vh;
+    font-size: 10pt;
+    text-decoration: underline;
 }
-
-.quantDiv {
+#cartImg{
+    width:6vh;
+    height:auto;
+}
+#thanksContainer{
+    margin-left: 2vw;
+    color:rgb(213, 247, 208);
+}
+.quantDiv{
     margin-left: 2vw;
 }
 
@@ -67,29 +74,85 @@ form div {
     flex-direction: row;
     flex-wrap: wrap;
 }
-
-.Card {
+.cardContents{
+    display: flex;
     flex-direction: column;
-    max-height: 200px;
-    max-width: 200px;
-    border: solid brown;
-    border-width: thin;
+    margin-right: auto;
+    align-items: center;
+}
+.cardPrice{
+    display: flex;
+    margin-right: 1.5vw;
+    background-color: rgba(255,255,255,.5);
+    border-radius: 1vh;
+    width:4vw;
+    padding:.2vw;
+}
+.cardBtn{
+    cursor: pointer;
+    height:3vh;
+    border-radius: 1vh;
+    background-color: rgba(102, 51, 153,0.8);
+    color:white;
+    font-weight:300;
+}
+.cardName{
+    font-weight: 200;
+    border-radius: .3vh;
+    font-size: 12pt;
+    padding:.3vw;
+    margin-bottom: 20vh;
+
+}
+.cardName a {
+    color:black
+}
+.cardPriceBtnDiv{
+    display:flex;
+    align-items:center;
+
+}
+.card {
+
+    display:flex;
+    flex-direction: column;
+    width:12vw;
+    height:35vh;
+    align-items:center;
+    /*max-width: 200px;*/
     border-radius: 3px;
-    margin: 20px 20px 20px 20px;
-    padding: 20px 20px 20px 20px;
-    background-color: antiquewhite;
-    align-items: flex-end;
+margin: 10px;
+    background-color:rgba(248, 245, 221, 0.5);
+    padding:.9vw;
+transition:all .2s;
+    border-radius: .6vw;
+
+}
+.card:hover{
+    background-color:rgba(248, 245, 221, 0.7);
+
+}
+.cardImg{
+    max-height:19vh;
+    overflow: hidden;
+    width:11vw;
+    border-radius:1vw;
+    height:auto;
+    border:1px solid green;
 }
 
+
 .FilterBar {
+
     flex-direction: column;
     height: 100%;
     width: 180px;
-    border: solid brown;
     border-width: thin;
-    border-radius: 3px;
-    margin: 10px 20px 0 0;
-    background-color: antiquewhite;
+    border-radius: 4px;
+    margin-right:1.4vw;
+    margin-left:.3vw;
+    padding:.3vw;
+    background-color:rgba(255,255,255,.6)
 }
 
 .row {
@@ -97,7 +160,9 @@ form div {
     align-items: center;
     /* flex-direction: row; */
 }
-
+#profileLink{
+    margin-right: 1vw;
+}
 .HomePage {
     background-color: rgb(140, 191, 132);
 }
@@ -121,6 +186,15 @@ form div {
 }
 
 .topNavbar {
+}
+
+#checkout-title{
+    color: rgb(213, 247, 208);
+    margin-left: 1vw;
+}
+.navbar2 {
+}
+.navbarsearch {
     display: flex;
     flex: 1;
     align-items: center;
@@ -273,3 +347,4 @@ form div {
     /* This is important! */
     /* cursor: pointer; */
 }
+

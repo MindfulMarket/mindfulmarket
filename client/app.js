@@ -11,21 +11,6 @@ class App extends Component {
     super(props)
   }
 
-  // componentWillUnmount(){
-  //   //axios.put('/api/users/')
-  //   console.log('APP EXITED')
-   //axios.put('/api/users/2', {shoppingCart:[{hellow:'world'}]})
-  //   axios.get('/api/brands')
-  // }
-
-  // componentDidMount(){
-  //   console.log('THE USER IS', this.props.initialCart)
-  //   console.log('APP STARTED')
-  //   this.props.fetchCart(this.props.initialCart)
-  //   window.addEventListener("beforeunload", () => {axios.put(`/api/users/${2}`, {shoppingCart: this.props.cartContents})
-  // })
-  // }
-
   render () {
     return(
     <div>
@@ -35,14 +20,8 @@ class App extends Component {
   )
 }
 }
-const mapState = (state) => ({
-  cartContents: state.cart,
-  initialCart: state || []
-
-})
-const mapDispatch = (dispatch) => ({
-  fetchCart: (cart) => dispatch(fetchAndSetCart(cart))
-})
+const mapState = null
+const mapDispatch = null
 
 
 export default withRouter(connect(mapState, mapDispatch)(App));

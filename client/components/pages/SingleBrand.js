@@ -18,6 +18,7 @@ class SingleBrand extends Component {
     let singleBrand = this.props.brands.filter(brand => brand.id === Number(this.props.match.params.id))[0];
 
     let singleBrandProducts = this.props.products.filter(product => product.brandId === Number(this.props.match.params.id));
+    console.log(singleBrandProducts, 'helllloooo')
     return (
       <div>
         <div>

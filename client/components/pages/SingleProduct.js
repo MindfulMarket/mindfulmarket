@@ -12,8 +12,7 @@ class SingleProduct extends Component {
   }
 
   render() {
-    let singleProduct = this.props.products.filter(product => product.id === Number(this.props.match.params.id))[0]
-
+    let singleProduct = this.props.products.find(product => product.id === Number(this.props.match.params.id))
     return (
       <div>
       {
@@ -24,6 +23,21 @@ class SingleProduct extends Component {
         <img width="300px" height="auto" src={singleProduct.imageUrl} />
         <p>Description: {singleProduct.description}</p>
         <p>Price: ${singleProduct.price}</p>
+        <div>
+        <h1>Checkout reviews on the {singleProduct.name}</h1>
+        {
+          singleProduct.Reviews.map(review => {
+            return (
+              <div key={review.id}>
+              <h2>Title: {review.title}</h2>
+              <h2>Description: {review.content}</h2>
+              <h2>Rating: {review.rating}</h2>
+              <br />
+              </div>
+            )
+          })
+        }
+        </div>
         </div>
         :
         <h1>This Item is No Longer Available</h1>

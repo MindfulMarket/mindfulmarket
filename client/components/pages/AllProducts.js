@@ -33,49 +33,49 @@ class AllProducts extends Component {
   }
 
   render() {
-        let products = this.props.products.filter(product => {
-          let state = this.state;
-          for (let key in state) {
-            if (state.filters === false) {return true;}
-            else if (state[key] === true) {
-              if (product.price > 70 ) return true
-            }
-          } return false
-        })
-
+    let products = this.props.products.filter(product => {
+      let state = this.state;
+      for (let key in state) {
+        if (state.filters === false) { return true; }
+        else if (state[key] === true) {
+          if (product.price > 70) return true
+        }
+      } return false
+    })
+    console.log(this.props)
 
     return (
       <div className="container" style={{ flexDirection: 'column' }}>
 
-          <div className="container" style={{ flexDirection: 'row' }}>
-            <Filter checkboxClicked={this.checkboxClicked} />
+        <div className="container" style={{ flexDirection: 'row' }}>
+          <Filter checkboxClicked={this.checkboxClicked} />
 
-            <div className="itemsContainer">
-              <h1> Here is where we show all Items </h1>
+          <div className="itemsContainer">
+            <h1> Here is where we show all Items </h1>
 
-              <div className="allItemsContainer" >
-                {
-                  products.map(product =>
-                    <Card key={product.name} category="products" type="product" product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart = {this.props.addToCart} />
-                  )
+            <div className="allItemsContainer" >
+              {
+                products.map(product =>
+                  <Card key={product.name} category="products" type="product" product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart={this.props.addToCart} />
+                )
               }
-              </div>
             </div>
           </div>
+        </div>
       </div>
     )
   }
 }
 
-  /* -----------------    CONTAINER     ------------------ */
+/* -----------------    CONTAINER     ------------------ */
 
-  const mapState = ({ products, product }) => {
-    return { products, product }
-  }
+const mapState = ({ products, product }) => {
+  return { products, product }
+}
 
-  const mapDispatch = dispatch => ({
-    fetchData: () => dispatch(fetchProducts()),
-    addToCart: (product) => dispatch(addToCart(product))
-  });
+const mapDispatch = dispatch => ({
+  fetchData: () => dispatch(fetchProducts()),
+  addToCart: (product) => dispatch(addToCart(product))
+});
 
-  export default connect(mapState, mapDispatch)(AllProducts);
+export default connect(mapState, mapDispatch)(AllProducts);

@@ -20,4 +20,5 @@ router.put('/:id',(req,res,next)=>{
       id: req.params.id
     }
   })
+  .catch(next)
 })

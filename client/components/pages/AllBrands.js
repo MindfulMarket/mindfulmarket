@@ -15,6 +15,7 @@ class AllBrands extends Component {
   }
 
   render() {
+    console.log(this.props, 'props within all brands')
     return (
       <div className="container">
 

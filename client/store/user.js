@@ -38,7 +38,7 @@ export const me = () => dispatch =>
         .then(res => {
             dispatch(getUser(res.data || defaultUser))
             dispatch(fetchAndSetCart(res.data.shoppingCart || []))
-            // dispatch(getOrders(res.data.id))
+            dispatch(getOrders(res.data.id))
         }
         )
         .catch(err => console.error(err))

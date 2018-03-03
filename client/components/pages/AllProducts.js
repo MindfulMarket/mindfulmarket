@@ -56,7 +56,7 @@ class AllProducts extends Component {
                 {
                   products.map(product =>{
                     console.log('PRODUCT ON CARD',product)
-                   return( <Card key={product.name} category="product" brand = {product.brand} product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart = {this.props.addToCart} />)}
+                   return( <Card key={product.name} category="products" brand = {product.brand} product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart = {this.props.addToCart} />)}
                   )
               }
             </div>

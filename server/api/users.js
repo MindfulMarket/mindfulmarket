@@ -14,9 +14,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-  console.log('this route was hit TEL EM SUCKA')
-  console.log('REQN PARRRAMS',req.params.id)
-  if (req.params.id !== undefined) {
+  if (req.params.id !== 'undefined') {
     User.update(req.body, {
       where: {
         id: req.params.id

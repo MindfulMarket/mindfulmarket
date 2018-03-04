@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom'
 import { logout } from '../store'
 import axios from 'axios'
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
-  <div className="doubleNavbar">
 
+const Navbar = (props, { handleClick, isLoggedIn }) => (
+
+  <div className="doubleNavbar">
+      { console.log(props)}
     <div className="topNavbar">
       <p id = "topDeal" >Top Deals</p>
 
@@ -39,20 +41,21 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                 <ul className='menu'>
                  <li className='dropdown2' ><Link to="/causes" style={{color:'black'}}>Causes</Link>
                    <ul className='features-menu'>
-                     <li><a href='#'>Environment</a></li>
-                     <li><a href='#'>Homelessness</a></li>
-                     <li><a href='#'>Fair Wages</a></li>
+                   {  props.causes.map(cause => (
+                     <li key={cause.id}><a href={`/causes/${cause.id}`}>{cause.name}</a></li>
+
+                    //  <li><a href='#'>Homelessness</a></li>
+                    //  <li><a href='#'>Fair Wages</a></li>
+                   ))
+                  }
                    </ul>
                  </li>
                  <li className='dropdown3'><Link to="/categories" style={{color:'black'}}>Categories</Link>
                    <ul className='features-menu2'>
-                { /* this.props.categories.map( category => (
-                      <li><a href=`/categories/${caegory.name}`>{category.name}</a></li>
+                {   props.categories.map( category => (
+                  <li key={category.id}><a href={`/categories/${category.id}`}>{category.name}</a></li>
                 ))
-                */ }
-                      <li><a href='#'>Clothing</a></li>
-                     <li><a href='#'>Beauty</a></li>
-                     <li><a href='#'>Cleaning Supplies</a></li>
+              }
                    </ul>
                  </li>
                 <li ><Link to="/products" style={{color:'black'}}>Products</Link></li>
@@ -76,7 +79,10 @@ const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
     cart: state.cart || [],
+    causes: state.causes || [],
     categories: state.categories || [],
+
+    // categories: state.categories || [],
   }
 }
 

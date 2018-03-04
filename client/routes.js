@@ -6,6 +6,8 @@ import { Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SinglePr
 
 import { me } from './store'
 import { fetchAndSetCart } from './store/cart' //WHERE
+import { fetchProducts } from './store/products'
+import { fetchAllCauses } from './store/causes';
 import axios from 'axios' //wast throwing as error without import......WHY
 
 /**
@@ -86,13 +88,14 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData() {
+    loadInitialData: () => {
       dispatch(me())
-    },
-    //fetchCart: (cart) => dispatch(fetchAndSetCart(cart))
+      dispatch(fetchProducts())
+      dispatch(fetchAllCauses())
 
-
+    }
   }
+    //fetchCart: (cart) => dispatch(fetchAndSetCart(cart))
 }
 
 // The `withRouter` wrapper makes sure that updates are not blocked

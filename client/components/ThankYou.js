@@ -7,7 +7,6 @@ class ThankYou extends Component {
     super(props)
   }
   render() {
-    //console.log('PROPS IN THANKYOU',this.props)
     return (
       <div id = 'thanksContainer'>
       <h1>Thank you for {this.props.match.params.action === "ordered" ? "your order":"signing up"} {this.props.userName}!</h1>

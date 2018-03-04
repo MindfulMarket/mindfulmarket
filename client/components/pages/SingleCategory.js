@@ -38,7 +38,7 @@ class SingleCategory extends Component {
               <p>Want to get involved? Shop products that believe in this cause too.</p>
               {
                 categoryProducts.map(product =>
-                  <Card key={product.name} category="products" type="product" product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} brand={product.brand} addToCart={this.props.addToCart} />
+                  <Card key={product.name} category="product" type="product" product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} brand={product.brand} addToCart={this.props.addToCart} />
                 )
               }
             </div>

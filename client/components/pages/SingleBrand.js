@@ -18,7 +18,6 @@ class SingleBrand extends Component {
     let singleBrand = this.props.brands.filter(brand => brand.id === Number(this.props.match.params.id))[0];
 
     let singleBrandProducts = this.props.products.filter(product => product.brandId === Number(this.props.match.params.id));
-    console.log(singleBrandProducts, 'helllloooo')
     return (
       <div>
         <div>
@@ -38,7 +37,7 @@ class SingleBrand extends Component {
             (singleBrandProducts === undefined)
               ? ''
               : singleBrandProducts.map(product =>
-                <Card key={product.name} category="product" product={product} brand = {product.brand} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart = {this.props.addToCart} />
+                <Card key={product.name} category="product" product={product} brand ={product.brand} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart={this.props.addToCart} button="Add to card" />
               )
           }
         </div>

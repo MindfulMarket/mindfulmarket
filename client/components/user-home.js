@@ -7,7 +7,7 @@ import { Card } from './index'
  */
 export const UserHome = (props) => {
   const {email} = props
-  console.log(props)
+  console.log(props, 'from home page')
   return (
     <div className="HomePage">
     <h3>Welcome, {email}</h3>

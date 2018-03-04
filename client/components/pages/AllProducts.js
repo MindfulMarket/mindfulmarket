@@ -42,7 +42,6 @@ class AllProducts extends Component {
         }
       } return false
     })
-    console.log(this.props)
 
     return (
       <div className="container" style={{ marginTop: '3em', flexDirection: 'column' }}>
@@ -55,8 +54,7 @@ class AllProducts extends Component {
             <div className="allItemsContainer" >
               {
                 products.map(product => {
-                  console.log('PRODUCT ON CARD', product)
-                  return (<Card key={product.name} category="products" brand={product.brand} product={product} name={product.name} button="Add to cart" imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart={this.props.addToCart} />)
+                  return (<Card key={product.name} category="product" brand={product.brand} product={product} name={product.name} button="Add to cart" imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart={this.props.addToCart} />)
                 }
                 )
               }

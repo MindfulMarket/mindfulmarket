@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { fetchProducts } from '../../store/products';
+import { postReview, fetchReview } from '../../store/review';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -10,14 +11,16 @@ class SingleProduct extends Component {
     this.state = {
       title: '',
       review: '',
-      rating: 0
+      rating: 0,
+      productId: Number(this.props.match.params.id)
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount() {
-    this.props.fetchData();
+    const id = Number(this.props.match.params.id);
+    this.props.fetchData(id);
   }
 
   handleChange(evt) {
@@ -26,11 +29,23 @@ class SingleProduct extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    // this.props.sendReview(this.state)
+    this.props.sendReview(this.state)
+    this.setState({
+      title: '',
+      review: '',
+      rating: '',
+      productId: Number(this.props.match.params.id)
+    })
   }
 
   render() {
+    // let productReviews;
+
     let singleProduct = this.props.products.find(product => product.id === Number(this.props.match.params.id))
+
+    // if (this.props.reviews) {
+    //   productReviews = this.props.reviews.filter(reviews => reviews.productId === Number(this.props.match.params.id))
+    // }
     return (
       <div>
         {
@@ -46,10 +61,10 @@ class SingleProduct extends Component {
                   <h1>Submit your review</h1>
                   <form onSubmit={this.handleSubmit}>
                     <div>
-                      <label>Name: </label>
+                      <label>Title: </label>
                       <input
-                        name="name"
-                        type="name"
+                        name="title"
+                        type="title"
                         value={this.state.name}
                         onChange={this.handleChange}
                         required
@@ -61,7 +76,6 @@ class SingleProduct extends Component {
                       <input
                         name="review"
                         type="review"
-                        placeholder="What do you think of this product"
                         value={this.state.review}
                         onChange={this.handleChange}
                         required
@@ -80,13 +94,14 @@ class SingleProduct extends Component {
                     </div>
                     <br />
                     <div>
-                    <button type="submit">Submit Review</button>
+                      <button type="submit">Submit Review</button>
                     </div>
                   </form>
                 </div>
                 <h1>Checkout reviews on the {singleProduct.name}</h1>
-                {
-                  singleProduct.Reviews.map(review => {
+                {!singleProduct
+                  ? ''
+                  : singleProduct.Reviews.map(review => {
                     return (
                       <div key={review.id}>
                         <h2>Title: {review.title}</h2>
@@ -109,18 +124,19 @@ class SingleProduct extends Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = ({ products }) => {
+const mapState = ({ products, reviews }) => {
   return {
-    products
+    products, reviews
   }
 }
 
 const mapDispatch = dispatch => ({
   fetchData: () => {
     dispatch(fetchProducts())
+    dispatch(fetchReview())
   },
   sendReview: (state) => {
-    // dispatch(addReview(state))
+    dispatch(postReview(state))
   }
 });
 

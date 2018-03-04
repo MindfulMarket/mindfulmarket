@@ -2,15 +2,13 @@ import React from 'react'
 
 
 const Card = (props) => {
-  console.log('PROPS IN THE CARD', props)
-
   return (
     <div className="card" >
-      <div className='cardContents' align="center">
-        <a href={`/${props.category}/${props.id}`}> <img src={props.imageUrl} className='cardImg' /></a>
+      <div className="cardContents" align="center">
+        <a href={`/${props.category}s/${props.id}`}> <img src={props.imageUrl} className="cardImg" /></a>
         <h3 className="cardName" ><a href={`/${props.category}/${props.id}`}>{props.name}</a>
           {
-            (props.category === 'brands' || props.category === 'categories')
+            (props.category === 'brand' || props.category === 'categorie')
               ? ''
               : <div className="cardBrand"> <a href={`/brands/${props.brand.id}`} >by {props.brand.name}</a></div>
 
@@ -20,7 +18,7 @@ const Card = (props) => {
           <h4>{props.causes}</h4>
         }
       </div>
-      <div className='cardPriceBtnDiv'>
+      <div className="cardPriceBtnDiv">
         {props.price &&  // we may do a props.price? :
           <h4 className="cardPrice">{'       '}${'            ' + props.price}</h4>
         }

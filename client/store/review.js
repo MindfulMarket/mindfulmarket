@@ -1,39 +1,50 @@
-// import axios from 'axios';
-// /* -----------------    ACTION TYPES    ------------------ */
-// const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
-// const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
-// const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
-
-// /* ------------       ACTION CREATOR     ------------------ */
-// const getProducts = products => ({ type: GET_ALL_PRODUCTS, products });
-// const removeProduct = id => ({ type: GET_ALL_PRODUCTS, id });
-// const updateProduct = product => ({ type: UPDATE_PRODUCT, product });
+import axios from 'axios';
+/* -----------------    ACTION TYPES    ------------------ */
+const ADD_REVIEW = 'ADD_REVIEW';
+const GET_REVIEWS = 'GET_REVIEWS';
+const GET_PRODUCT_REVIEWS = 'GET_PRODUCT_REVIEWS'
 
 
-// /* ------------       THUNK CREATORS     ------------------ */
+/* ------------       ACTION CREATOR     ------------------ */
 
-// export const fetchProducts = () => dispatch => {
-//     axios.get('/api/products')
-//         .then(res => dispatch(getProducts(res.data)))
-//         .catch(err => console.error(err));
-// }
+const addReview = review => ({
+  type: ADD_REVIEW, review
+})
 
-// //
-// export default function reducer(state = [], action) {
-//     switch (action.type) {
-//         case GET_ALL_PRODUCTS:
-//             return action.products
-//         case REMOVE_PRODUCT:
-//             return  state.filter(product => product.id !== action.product)
-//         case UPDATE_PRODUCT:
-//               return state.map(product => {
-//                     if (product.id === action.product.id) {
-//                         return action.product;
-//                     } else {
-//                         return product;
-//                     }
-//                 })
-//         default:
-//             return state;
-//     }
-// }
+const getReviews = reviews => ({
+  type: GET_REVIEWS, reviews
+})
+
+const getProductReviews = reviews => ({
+  type: GET_PRODUCT_REVIEWS, reviews
+})
+
+/* ------------       THUNK CREATORS     ------------------ */
+
+export const fetchProductReviews = (id) => dispatch => {
+  axios.get(`/api/reviews/${id}`)
+    .then(res => dispatch(getProductReviews(res.data)))
+    .catch(err => console.error(err))
+}
+
+export const fetchReview = () => dispatch => {
+  axios.get('/api/reviews')
+    .then(res => dispatch(getReviews(res.data)))
+    .catch(err => console.error(err))
+}
+
+export const postReview = (review) => dispatch => {
+  axios.post('/api/reviews', review)
+    .then(res => dispatch(addReview(res.data)))
+}
+
+export default function reducer (state = [], action) {
+  switch (action.type) {
+    case GET_REVIEWS:
+      return action.reviews;
+    case ADD_REVIEW:
+      return [...state, action.review];
+    default:
+      return state;
+  }
+}

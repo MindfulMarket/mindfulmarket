@@ -26,7 +26,6 @@ class SingleCause extends Component {
 
   render() {
     let singleCause = this.props.causes.find(cause => cause.id === Number(this.props.match.params.id))
-    console.log(this.props, ' cause props')
     return (
       <div>
         {
@@ -63,7 +62,7 @@ class SingleCause extends Component {
                   this.props.products.filter(product => product.causeId === singleCause.id).map(causeProduct => {
                     return (
                       <div key={causeProduct.id}>
-                      <Card category="products" type="brand" product={causeProduct} id={causeProduct.id} brand={causeProduct.brand} name={causeProduct.name} price={causeProduct.price} button="Add to cart" imageUrl={causeProduct.imageUrl} addToCart={this.props.addToCart} />
+                      <Card category="product" type="brands" product={causeProduct} id={causeProduct.id} brand={causeProduct.brand} name={causeProduct.name} price={causeProduct.price} button="Add to cart" imageUrl={causeProduct.imageUrl} addToCart={this.props.addToCart} />
                     </div>
                     )
                   })

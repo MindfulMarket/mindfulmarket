@@ -26,7 +26,7 @@ class SingleBrand extends Component {
     }
 
     return (
-      <div>
+      <div className='page'>
         <div>
           <br />
           {

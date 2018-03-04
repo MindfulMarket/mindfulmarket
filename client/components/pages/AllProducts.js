@@ -51,7 +51,7 @@ class AllProducts extends Component {
     })
 
     return (
-      <div className="container" style={{ marginTop: '3em', flexDirection: 'column' }}>
+      <div className="container page" style={{ marginTop: '3em', flexDirection: 'column' }}>
 
         <div className="container" style={{ flexDirection: 'row' }}>
           <Filter checkboxClicked={this.checkboxClicked} />

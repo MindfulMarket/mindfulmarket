@@ -19,7 +19,7 @@ class AllBrands extends Component {
     }
 
     return (
-      <div className="container">
+      <div className="page container">
 
         <div className="itemsContainer">
           <div className="featuredContainer">

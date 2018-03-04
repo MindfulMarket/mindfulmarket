@@ -9,7 +9,7 @@ export const UserHome = (props) => {
   const { email } = props
   console.log(props, 'from home page')
   return (
-    <div className="HomePage">
+    <div className="page">
       <h3>Welcome, {email}</h3>
       <div className="carousel">
         <h1>BRUCE RECOMMENDS .... BECAUSE THEY GIVE 10% OF THEIR CAUSES</h1>

@@ -2,6 +2,7 @@ import React from 'react'
 
 
 const Card = (props) => {
+  console.log(props, 'props on card')
   return (
     <div className="card" >
       <div className="cardContents" align="center">

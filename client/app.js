@@ -8,7 +8,7 @@ import { fetchProducts } from './store/products'
 import { fetchAllCauses } from './store/causes';
 import { fetchAllCategories } from './store/categories';
 import {fetchAndSetCart} from './store/cart' //WHERE
-import { Navbar } from './components'
+import { Navbar, Footer } from './components'
 import Routes from './routes'
 
 
@@ -26,6 +26,7 @@ class App extends Component {
     <div>
       <Navbar component={this.props} />
       <Routes />
+      <Footer component={this.props} />
     </div>
   )
 }

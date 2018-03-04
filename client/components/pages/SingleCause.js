@@ -6,6 +6,7 @@ import { fetchAllBrands } from '../../store/brands';
 import { addToCart } from '../../store/cart'
 import { fetchProducts } from '../../store/products';
 import AllBrands from './AllBrands'
+import AllProducts from './AllProducts';
 
 
 /* -----------------    COMPONENT     ------------------ */
@@ -25,7 +26,19 @@ class SingleCause extends Component {
 
 
   render() {
-    let singleCause = this.props.causes.find(cause => cause.id === Number(this.props.match.params.id))
+    let singleCause, filteredCauseProducts, filteredCauseBrands;
+
+    if (this.props.causes.length) {
+      singleCause = this.props.causes.find(cause => cause.id === Number(this.props.match.params.id));
+      filteredCauseBrands = singleCause.brands;
+
+      if (this.props.products.length) {
+        filteredCauseProducts = this.props.products.filter(product => product.causeId === singleCause.id);
+      }
+
+    }
+
+
     return (
       <div>
         {
@@ -41,32 +54,15 @@ class SingleCause extends Component {
               {
                 this.state.showCauseBrands &&
                 <div>
-                  {
-                    singleCause.brands.map(brand => {
-                      return (
-                        <div key={brand.id}>
-                        <Card key={brand.name} category="brands" type="brand" id={brand.id} brand={brand} name={brand.name} button="explore" imageUrl={brand.imageUrl} />
-                        </div>
-                      )
-                    }
-                    )
-                  }
+                  <AllBrands filteredBrands={filteredCauseBrands} />
                 </div>
               }
-                <h3>Want to get involved? Check out the products that believe in this cause too.</h3>
+              <h3>Want to get involved? Check out the products that believe in this cause too.</h3>
               <button onClick={() => { this.setState({ showCauseProducts: !this.state.showCauseProducts }) }}>Products</button>
               {
                 this.state.showCauseProducts &&
                 <div>
-                {
-                  this.props.products.filter(product => product.causeId === singleCause.id).map(causeProduct => {
-                    return (
-                      <div key={causeProduct.id}>
-                      <Card category="product" type="brands" product={causeProduct} id={causeProduct.id} brand={causeProduct.brand} name={causeProduct.name} price={causeProduct.price} button="Add to cart" imageUrl={causeProduct.imageUrl} addToCart={this.props.addToCart} />
-                    </div>
-                    )
-                  })
-                }
+                  <AllProducts filteredProducts={filteredCauseProducts} />
                 </div>
               }
             </div>
@@ -76,6 +72,16 @@ class SingleCause extends Component {
   }
 }
 
+
+// {
+//   this.props.products.filter(product => product.causeId === singleCause.id).map(causeProduct => {
+//     return (
+//       <div key={causeProduct.id}>
+//       <Card category="product" type="brands" product={causeProduct} id={causeProduct.id} brand={causeProduct.brand} name={causeProduct.name} price={causeProduct.price} button="Add to cart" imageUrl={causeProduct.imageUrl} addToCart={this.props.addToCart} />
+//     </div>
+//     )
+//   })
+// }
 
 /* -----------------    CONTAINER     ------------------ */
 
@@ -96,10 +102,3 @@ const mapDispatch = dispatch => ({
 
 export default connect(mapState, mapDispatch)(SingleCause);
 
-// {
-//   this.props.products.filter(product => product.brandId === brand.id).map(product => {
-//     return (
-//       <Card key={product.id} category="products" type="product" product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart={this.props.addToCart} />
-//     )
-//   })
-// }

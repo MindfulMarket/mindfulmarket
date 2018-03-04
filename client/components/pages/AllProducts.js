@@ -33,7 +33,14 @@ class AllProducts extends Component {
   }
 
   render() {
-    let products = this.props.products.filter(product => {
+    let productsToRender = this.props.products
+    console.log(this.props, 'props of all products')
+
+    if (this.props.filteredProducts) {
+      productsToRender = this.props.filteredProducts
+    }
+
+    const products = productsToRender.filter(product => {
       let state = this.state;
       for (let key in state) {
         if (state.filters === false) { return true; }
@@ -53,12 +60,13 @@ class AllProducts extends Component {
 
             <div className="allItemsContainer" >
               {
-                products.map(product => {
-                  return (
-                    <Card key={product.name} category="product" brand={product.brand} product={product} name={product.name} button="Add to cart" imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart={this.props.addToCart} />
-                  )
-                }
-                )
+                !products.length
+                  ? <h1>There are no products</h1>
+                  : products.map(product => {
+                    return (
+                      <Card key={product.name} category="product" brand={product.brand} product={product} name={product.name} button="Add to cart" imageUrl={product.imageUrl} id={product.id} price={product.price} reviewsAvg={product.Reviews} reviewsQuantity={product.Reviews.length} addToCart={this.props.addToCart} />
+                    )
+                  })
               }
             </div>
           </div>

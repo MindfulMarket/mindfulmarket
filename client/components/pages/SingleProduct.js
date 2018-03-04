@@ -39,13 +39,8 @@ class SingleProduct extends Component {
   }
 
   render() {
-    // let productReviews;
-
     let singleProduct = this.props.products.find(product => product.id === Number(this.props.match.params.id))
 
-    // if (this.props.reviews) {
-    //   productReviews = this.props.reviews.filter(reviews => reviews.productId === Number(this.props.match.params.id))
-    // }
     return (
       <div>
         {
@@ -99,18 +94,19 @@ class SingleProduct extends Component {
                   </form>
                 </div>
                 <h1>Checkout reviews on the {singleProduct.name}</h1>
-                {!singleProduct
-                  ? ''
-                  : singleProduct.Reviews.map(review => {
-                    return (
-                      <div key={review.id}>
-                        <h2>Title: {review.title}</h2>
-                        <h2>Description: {review.content}</h2>
-                        <h2>Rating: {review.rating}</h2>
-                        <br />
-                      </div>
-                    )
-                  })
+                {
+                  !singleProduct
+                    ? ''
+                    : singleProduct.Reviews.map(review => {
+                      return (
+                        <div key={review.id}>
+                          <h2>Title: {review.title}</h2>
+                          <h2>Description: {review.content}</h2>
+                          <h2>Rating: {review.rating}</h2>
+                          <br />
+                        </div>
+                      )
+                    })
                 }
               </div>
             </div>

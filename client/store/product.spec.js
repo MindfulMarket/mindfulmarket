@@ -6,7 +6,6 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunkMiddleware from 'redux-thunk'
-import history from '../history'
 
 const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
@@ -28,7 +27,7 @@ describe('thunk creators', () => {
   })
 
   describe('fetchProducts', () => {
-    xit('eventually dispatches the GET ALL PRODUCTS action', () => {
+    it('eventually dispatches the GET ALL PRODUCTS action', () => {
       const fakeProduct = {
         brand: 'Everlane',
         name: 'The Cropped City Anorak',

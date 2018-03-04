@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import {getOrders} from '../store/user'
  import { fetchAndSetCart } from '../store/cart'
+ import { Link } from 'react-router-dom'
 
 
 /**
@@ -12,9 +13,11 @@ const Checkout = (props) => {
   const { name, displayName, handleSubmit } = props
 
   return (
-    <div id="checkout-container">
+    <div className="page" id="checkout-container">
+    <div id="checkout-form">
       <h1 id="checkout-title">Checkout</h1>
-      <form onSubmit={(evt) => {
+      <form
+onSubmit={(evt) => {
             evt.preventDefault()
             axios.put(`/api/users/${props.userId}`, {shoppingCart: []})
             props.emptyCart()
@@ -24,7 +27,7 @@ const Checkout = (props) => {
             const order = { productsOrdered: props.order, totalPrice, userId: props.userId }
 
               axios.post('/api/orders', order)
-              .then(()=>props.getOrders(props.userId))
+              .then(() => props.getOrders(props.userId))
               //clear the frontend cart on logout
 
             props.history.push('/thankyou/ordered')
@@ -49,10 +52,32 @@ const Checkout = (props) => {
           <button type="submit">SUBMIT ORDER</button>
         </div>
       </form>
+     </div>
+      <div>
+      <div className="cartContainer">
+            {
+
+              props.cartContents.map(
+                product => (
+                <div className="cartItem" key={product.product.id}>
+                  <div >
+                    <Link className="cartItem" to={`/products/${product.product.id}`} >
+                      <img className="cartThumbnail" src={product.product.imageUrl} />
+                    </Link>
+                  </div>
+                  <div className="cartDetails">
+                    {product.product.name}
+                    <br />
+                    Quantity:  {product.count}
+                  </div>
+                </div>
+              ))
+              }
+        </div>
+      </div>
     </div>
   )
 }
-
 
 
 const mapState = (state) => {
@@ -61,6 +86,7 @@ const mapState = (state) => {
     lastName: state.user.lastName,
     order: state.cart,
     userId: state.user.id,
+    cartContents: state.cart
 
   }
 }
@@ -78,8 +104,8 @@ const mapDispatch = (dispatch) => {
       }
       // dispatch(checkout(paymentInfo))
     },
-    getOrders:(id)=>dispatch(getOrders(id)),
-    emptyCart:()=> dispatch(fetchAndSetCart([]))
+    getOrders: (id) => dispatch(getOrders(id)),
+    emptyCart: () => dispatch(fetchAndSetCart([]))
 
   }
 }

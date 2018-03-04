@@ -15,7 +15,7 @@ class SingleProduct extends Component {
     let singleProduct = this.props.products.filter(product => product.id === Number(this.props.match.params.id))[0]
 
     return (
-      <div>
+      <div className="page">
       {
         singleProduct
         ?

@@ -15,23 +15,21 @@ const Checkout = (props) => {
     <div id="checkout-container">
       <h1 id="checkout-title">Checkout</h1>
       <form onSubmit={(evt) => {
-        evt.preventDefault()
-        axios.put(`/api/users/${props.userId}`, {shoppingCart: []})
-        props.emptyCart()
-        let totalPrice = props.order.reduce((total, productObj) => {
-          return total + (productObj.product.price * productObj.count)
-        }, 0)
-      const order = { productsOrdered: props.order, totalPrice, userId: props.userId }
+            evt.preventDefault()
+            axios.put(`/api/users/${props.userId}`, {shoppingCart: []})
+            props.emptyCart()
+            let totalPrice = props.order.reduce((total, productObj) => {
+              return total + (productObj.product.price * productObj.count)
+              }, 0)
+            const order = { productsOrdered: props.order, totalPrice, userId: props.userId }
 
-          axios.post('/api/orders', order)
-          .then(()=>props.getOrders(props.userId))
+              axios.post('/api/orders', order)
+              .then(()=>props.getOrders(props.userId))
+              //clear the frontend cart on logout
 
+            props.history.push('/thankyou/ordered')
 
-           //clear the frontend cart on logout
-
-        props.history.push('/thankyou/ordered')
-
-      }} name={name}>
+        }} name={name}>
         <div>
           <label htmlFor="firstName"><small>First Name</small></label>
           <input name="firstName" type="text" />

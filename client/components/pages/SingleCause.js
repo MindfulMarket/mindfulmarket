@@ -15,7 +15,7 @@ class SingleCause extends Component {
     let singleCause = this.props.causes.filter(cause => cause.id === Number(this.props.match.params.id))[0]
     console.log('line 16', this.props, this.props.match.params.id)
     return (
-      <div>
+      <div className='page'>
       {
         (singleCause === undefined)
         ? <h1>hi</h1>

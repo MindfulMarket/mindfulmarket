@@ -19,7 +19,7 @@ class SingleBrand extends Component {
 
     let singleBrandProducts = this.props.products.filter(product => product.brandId === Number(this.props.match.params.id));
     return (
-      <div>
+      <div className='page'>
         <div>
           <br />
           {

@@ -25,10 +25,10 @@ const setUserOrders = (orders) => ({ type: GET_ORDERS, orders })
  * THUNK CREATORS
  */
 export const getOrders = (userId) => dispatch => {
-    console.log('IGOTHIT YOU KNOW', userId)
+   // console.log('IGOTHIT YOU KNOW', userId)
     axios.get(`/api/orders/${userId}`)
         .then((res) => {
-            console.log('HERE WHAT CAME BACK', res.data)
+            //console.log('HERE WHAT CAME BACK', res.data)
             dispatch(setUserOrders(res.data))
         })
 }

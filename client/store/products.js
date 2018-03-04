@@ -3,11 +3,16 @@ import axios from 'axios';
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
+const FILTER_PRODUCTS_LOW_HIGH = 'FILTER_PRODUCTS_LOW_HIGH'
 
 /* ------------       ACTION CREATOR     ------------------ */
 const getProducts = products => ({ type: GET_ALL_PRODUCTS, products });
 const removeProduct = id => ({ type: GET_ALL_PRODUCTS, id });
 const updateProduct = product => ({ type: UPDATE_PRODUCT, product });
+
+export const filterProductsLowHigh = () => {
+    console.log('FILTER HITTTTTT')
+    return {type: FILTER_PRODUCTS_LOW_HIGH} };
 
 
 /* ------------       THUNK CREATORS     ------------------ */
@@ -25,6 +30,9 @@ export default function reducer(state = [], action) {
             return action.products
         case REMOVE_PRODUCT:
             return  state.filter(product => product.id !== action.product)
+
+        case FILTER_PRODUCTS_LOW_HIGH:
+            return Object.assign({},state).sort((product1, product2)=>product1.price-product2.price)
         case UPDATE_PRODUCT:
               return state.map(product => {
                     if (product.id === action.product.id) {

@@ -8,7 +8,7 @@ class SingleProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      title: '',
       review: '',
       rating: 0
     }
@@ -26,12 +26,11 @@ class SingleProduct extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    console.log(this.state, 'state on submit')
+    // this.props.sendReview(this.state)
   }
 
   render() {
     let singleProduct = this.props.products.find(product => product.id === Number(this.props.match.params.id))
-    console.log(this.state, 'stateeteeeeeee')
     return (
       <div>
         {
@@ -80,7 +79,9 @@ class SingleProduct extends Component {
                       />
                     </div>
                     <br />
+                    <div>
                     <button type="submit">Submit Review</button>
+                    </div>
                   </form>
                 </div>
                 <h1>Checkout reviews on the {singleProduct.name}</h1>
@@ -117,6 +118,9 @@ const mapState = ({ products }) => {
 const mapDispatch = dispatch => ({
   fetchData: () => {
     dispatch(fetchProducts())
+  },
+  sendReview: (state) => {
+    // dispatch(addReview(state))
   }
 });
 

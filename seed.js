@@ -95,6 +95,7 @@ const brands = [{
 const products = brandList => [{
     brandId: brandList.Everlane.id,
     categoryId: 1,
+    causeId: 2,
     name: 'The Cashmere Crew',
     imageUrl: 'https://everlane-2.imgix.net/i/edb933ed_2ec4.jpg?dpr=1&w=1200&h=1200&q=65',
     price: 70,
@@ -105,6 +106,7 @@ const products = brandList => [{
 {
     brandId: brandList.Everlane.id,
     categoryId: 1,
+    causeId: 2,
     name: 'The Kick Crop Jean',
     imageUrl: 'https://everlane-2.imgix.net/i/6e3c1dad_9816.jpg?dpr=1&w=1200&h=1200&q=65',
     price: 78,
@@ -114,6 +116,7 @@ const products = brandList => [{
 {
     brandId: brandList.Everlane.id,
     categoryId: 2,
+    causeId: 2,
     name: 'The Chambray Slim Fit Shirt',
     imageUrl: 'https://everlane-2.imgix.net/i/42a55cec_405f.jpg?dpr=1&w=1200&h=1200&q=65',
     price: 58,
@@ -123,6 +126,7 @@ const products = brandList => [{
 {
     brandId: brandList.Everlane.id,
     categoryId: 1,
+    causeId: 2,
     name: 'The Cropped City Anorak',
     imageUrl: 'https://everlane.imgix.net/i/1dbd43b7_6d8a.jpg?dpr=1&w=1200&h=1200&q=65',
     price: 78,
@@ -132,6 +136,7 @@ const products = brandList => [{
 {
     brandId: brandList.Patagonia.id,
     categoryId: 3,
+    causeId: 3,
     name: 'Long-Sleeved Lightweight Fjord Flannel Shirt',
     imageUrl: 'http://www.patagonia.com/dis/dw/image/v2/ABBM_PRD/on/demandware.static/-/Sites-patagonia-master/default/dw9a27c612/images/hi-res/54020_NVNB.jpg?sw=2000&sh=2000&sm=fit&sfrm=png',
     price: 79,
@@ -142,6 +147,7 @@ const products = brandList => [{
 {
     brandId: brandList.Patagonia.id,
     categoryId: 4,
+    causeId: 3,
     name: 'Fleetwith Dress',
     imageUrl: 'http://www.patagonia.com/dis/dw/image/v2/ABBM_PRD/on/demandware.static/-/Sites-patagonia-master/default/dw36cc6527/images/hi-res/58335_BLK_OM1.jpg?sw=2000&sh=2000&sm=fit&sfrm=png',
     price: 75,
@@ -152,6 +158,7 @@ const products = brandList => [{
 {
     brandId: brandList['People Tree'].id,
     categoryId: 5,
+    causeId: 5,
     name: 'Danielle Marigold Print Dress',
     imageUrl: 'http://www.peopletree.co.uk/productimages/women/dresses/danielle-marigold-print-dress-09329d538021.jpg?height=750&width=500&404=default',
     price: 124,
@@ -163,6 +170,7 @@ const products = brandList => [{
 {
     brandId: brandList['Matt & Nat'].id,
     categoryId: 1,
+    causeId: 2,
     name: 'Baxter bag',
     imageUrl: 'http://mattandnat.com/shop/media/catalog/product/cache/11/image/545x/040ec09b1e35df139433887a97daa66f/s/s/ss18-dwell-baxter-ruby-1.jpg',
     price: 145,

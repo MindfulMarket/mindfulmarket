@@ -41,6 +41,7 @@ Reviews.belongsTo(User);
 //Products associations
 Products.belongsTo(Brands);
 Products.belongsTo(Categories);
+Products.belongsTo(Causes);
 // Products.belongsToMany(Causes, {through: 'ProductCauses'});
 // Products.belongsToMany(Categories, { through: 'ProductCategories' });
 Products.hasMany(Reviews, {as: 'Reviews'})

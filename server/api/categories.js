@@ -16,8 +16,8 @@ router.get('/:id', (req, res, next) => {
 })
 
 router.get('/:id/products', (req, res, next) => {
-  Categories.scope('populated').findById(req.params.id)
-    .then(result =>{
+  Categories.findById(req.params.id, {include:{all:true}})
+    .then(result => {
       result.getProducts()
       .then((products)=>{
         res.json(products)

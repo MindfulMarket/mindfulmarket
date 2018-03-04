@@ -9,6 +9,7 @@ const getAllBrands = brands => ({ type: GET_ALL_BRANDS, brands });
 /* ------------       THUNK CREATORS     ------------------ */
 
 export const fetchAllBrands = () => dispatch => {
+    console.log('getting brands')
     axios.get('/api/brands')
         .then(res => dispatch(getAllBrands(res.data)))
         .catch(err => console.error(err));
@@ -18,6 +19,7 @@ export const fetchAllBrands = () => dispatch => {
 export default function reducer(state = [], action) {
     switch (action.type) {
         case GET_ALL_BRANDS:
+        console.log('got brands', action.brands)
             return action.brands;
         // case REMOVE_PRODUCT:
         //     return Object.assign({}, state, {

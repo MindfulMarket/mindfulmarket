@@ -4,6 +4,7 @@ import Filter from '../common/Filter'
 import { connect } from 'react-redux'
 import { fetchAllCategories } from '../../store/categories'
 import { fetchAllBrands } from '../../store/brands'
+import { fetchProducts } from '../../store/products'
 import { addToCart } from '../../store/cart'
 
 /* -----------------    COMPONENT     ------------------ */
@@ -16,9 +17,14 @@ class SingleCategory extends Component {
   }
 
   render() {
-    let singleCategoryView = this.props.categories.find(category => category.id === Number(this.props.match.params.id))
-    console.log(singleCategoryView, 'single view')
-    console.log(this.props, 'current props')
+    let singleCategoryView, categoryProducts;
+
+    if (this.props.categories.length) {
+      singleCategoryView = this.props.categories.find(category => category.id === Number(this.props.match.params.id))
+
+      categoryProducts = this.props.products.filter(product => product.categoryId === singleCategoryView.id)
+    }
+
     return (
       <div>
         {
@@ -31,8 +37,8 @@ class SingleCategory extends Component {
               <p>Description: {singleCategoryView.description}</p>
               <p>Want to get involved? Shop products that believe in this cause too.</p>
               {
-                singleCategoryView.products.map(product =>
-                  <Card key={product.name} category="products" type="product" product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart={this.props.addToCart} />
+                categoryProducts.map(product =>
+                  <Card key={product.name} category="products" type="product" product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} brand={product.brand} addToCart={this.props.addToCart} />
                 )
               }
             </div>
@@ -42,6 +48,7 @@ class SingleCategory extends Component {
   }
 }
 
+// {this.props.brands.find(brand => brand.id === product.brandId)}
 
 /* -----------------    CONTAINER     ------------------ */
 
@@ -52,7 +59,7 @@ const mapState = ({ products, brands, categories }) => {
 const mapDispatch = dispatch => ({
   fetchData: () => {
     dispatch(fetchAllCategories())
-    dispatch(fetchAllBrands())
+    dispatch(fetchProducts())
   },
   addToCart: (product) => dispatch(addToCart(product))
 });

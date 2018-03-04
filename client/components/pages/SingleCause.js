@@ -13,7 +13,10 @@ import AllBrands from './AllBrands'
 class SingleCause extends Component {
   constructor() {
     super();
-    this.showCause = this.showCause.bind(this)
+    this.state = {
+      showCauseBrands: false,
+      showCauseProducts: false
+    }
   }
 
   componentDidMount() {
@@ -23,33 +26,58 @@ class SingleCause extends Component {
 
   render() {
     let singleCause = this.props.causes.find(cause => cause.id === Number(this.props.match.params.id))
+    console.log(this.props, ' cause props')
     return (
       <div>
         {
           !singleCause
-            ? <h1>hi</h1>
+            ? ''
             :
             <div>
-              <h2>{singleCause.name}</h2>
+              <h1>{singleCause.name}</h1>
               <img width="300px" height="auto" src={singleCause.imageUrl} />
-              <p>Description: {singleCause.description}</p>
-              <p>Want to get involved? Check out the brands that believe in this cause too.</p>
-              <button onClick={this.showCause}>Brands</button>
+              <h2>Description: {singleCause.description}</h2>
+              <h3>Want to get involved? Check out the brands that believe in this cause too.</h3>
+              <button onClick={() => { this.setState({ showCauseBrands: !this.state.showCauseBrands }) }}>Brands</button>
+              {
+                this.state.showCauseBrands &&
+                <div>
+                  {
+                    singleCause.brands.map(brand => {
+                      return (
+                        <div key={brand.id}>
+                        <Card key={brand.name} category="brands" type="brand" id={brand.id} brand={brand} name={brand.name} button="explore" imageUrl={brand.imageUrl} />
+                        </div>
+                      )
+                    }
+                    )
+                  }
+                </div>
+              }
+                <h3>Want to get involved? Check out the products that believe in this cause too.</h3>
+              <button onClick={() => { this.setState({ showCauseProducts: !this.state.showCauseProducts }) }}>Products</button>
+              {
+                this.state.showCauseProducts &&
+                <div>
+                {
+                  this.props.products.filter(product => product.causeId === singleCause.id).map(causeProduct => {
+                    return (
+                      <div key={causeProduct.id}>
+                      <Card category="products" type="brand" product={causeProduct} id={causeProduct.id} brand={causeProduct.brand} name={causeProduct.name} price={causeProduct.price} button="Add to cart" imageUrl={causeProduct.imageUrl} addToCart={this.props.addToCart} />
+                    </div>
+                    )
+                  })
+                }
+                </div>
+              }
             </div>
         }
       </div>
     )
   }
+}
 
-  showCause() {
-      return (
-          <div>
-          <h1>HElloooasodofa</h1>
-          </div>
-        );
-      }
 
-    }
 /* -----------------    CONTAINER     ------------------ */
 
 const mapState = ({ products, causes, brands }) => {
@@ -69,24 +97,10 @@ const mapDispatch = dispatch => ({
 
 export default connect(mapState, mapDispatch)(SingleCause);
 
-// <div>
 // {
-//   singleCause.brands.map(brand => {
+//   this.props.products.filter(product => product.brandId === brand.id).map(product => {
 //     return (
-//     <div key={brand.id}>
-//     <Card category="brands" type="brand" id={brand.id} brand={brand} name={brand.name} button="explore" imageUrl={brand.imageUrl} />
-//     {
-//       this.props.products.filter(product => product.brandId === brand.id).map(product => {
-//         return (
-//           <Card key={product.id} category="products" type="product" product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart={this.props.addToCart} />
-//         )
-//       })
-//     }
-//    </div>
-//   )
-//   }
-//   )
+//       <Card key={product.id} category="products" type="product" product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart={this.props.addToCart} />
+//     )
+//   })
 // }
-// </div>
-
-

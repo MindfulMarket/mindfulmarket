@@ -4,6 +4,7 @@ import { fetchProducts } from '../../store/products';
 import { fetchAllBrands } from '../../store/brands';
 import { addToCart } from '../../store/cart';
 import Card from '../common/Card';
+import AllProducts from './AllProducts';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -15,16 +16,22 @@ class SingleBrand extends Component {
   }
 
   render() {
-    let singleBrand = this.props.brands.filter(brand => brand.id === Number(this.props.match.params.id))[0];
+    let singleBrand, singleBrandProducts;
 
-    let singleBrandProducts = this.props.products.filter(product => product.brandId === Number(this.props.match.params.id));
+    if (this.props.brands) {
+      singleBrand = this.props.brands.filter(brand => brand.id === Number(this.props.match.params.id))[0];
+    }
+    if (this.props.products) {
+      singleBrandProducts = this.props.products.filter(product => product.brandId === Number(this.props.match.params.id));
+    }
+
     return (
-      <div>
+      <div className='page'>
         <div>
           <br />
           {
-            (singleBrand === undefined)
-              ? <h1>''</h1>
+            !singleBrand
+              ? ''
               :
               <div>
                 <img width="300px" height="auto" src={singleBrand.imageUrl} />
@@ -34,11 +41,9 @@ class SingleBrand extends Component {
         </div>
         <div>
           {
-            (singleBrandProducts === undefined)
+            !singleBrandProducts
               ? ''
-              : singleBrandProducts.map(product =>
-                <Card key={product.name} category="product" product={product} brand = {product.brand} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart = {this.props.addToCart} />
-              )
+              : <AllProducts filteredProducts={singleBrandProducts} />
           }
         </div>
       </div>

@@ -5,75 +5,95 @@ import { Link } from 'react-router-dom'
 import { logout } from '../store'
 import axios from 'axios'
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+
+const Navbar = (props) => (
+
   <div className="doubleNavbar">
-    <div className="navbar2">
+      { console.log(props)}
+    <div className="topNavbar">
       <p id = "topDeal" >Top Deals</p>
-      <Link id = "logout" onClick={() => {
-        handleClick()
-        axios.put(`/api/users/${this.props.initial.id}`, { shoppingCart: this.props.cart })
-      }} to='/'>Logout</Link>
-      <Link id = "profileLink" to="/profile">Your Account</Link>
+
+            {props.isLoggedIn ? (
+              <div>
+              <Link id = "logout" style={{marginRight:"20px"}}   onClick={() => {
+              props.handleClick()
+              axios.put(`/api/users/${this.props.initial.id}`, { shoppingCart: this.props.cart })
+            }} to='/'>Logout</Link>
+            <Link id = "profileLink" to="/profile">Your Account</Link>
+            <a href='/about' style={{marginRight:"20px"}}>About Mindful Market</a>
+
+            </div>
+              ) : <div>
+              <Link to="/login" style={{marginRight:"20px"}}>Login</Link>
+              <Link to="/signup" style={{marginRight:"20px"}}>Sign Up</Link>
+              <a href='/about' style={{marginRight:"20px"}}>About Mindful Market</a></div>
+            }
+
+
 
     </div>
 
-    <div className="navbar">
+    <div className="bottomNavbar">
       <div className="titlebar">
-        <a href="/" id="title"><p>MINDFUL MARKET</p></a>
-        <p id='snootyCaption'>...shopping, for those who care</p>
+        <a href="/" id="title"><p>THE MINDFUL MARKET</p></a>
+        <p id='snootyCaption'> redefining shopping, for those who care</p>
       </div>
 
       <div className="links-container">
         <nav >
-          {isLoggedIn ? (
-            <div>
-              {/* The navbar will show these links after you log in */}
-
-              <div >
+             {<div className='dropdown'>
                 {/* Links for main page components for navigation, NOT for presentational use*/}
-                <Link to="/products">All Products</Link>                <Link to="/categories">All Categories</Link>
-                <Link to="/causes">All Causes</Link>
-                <Link to="/">Home</Link>
+                <ul className='menu'>
+                 <li className='dropdown2' ><Link to="/causes" style={{color:'black'}}>Causes</Link>
+                   <ul className='features-menu'>
+                   {  props.causes.map(cause => (
+                     <li key={cause.id}><a href={`/causes/${cause.id}`}>{cause.name}</a></li>
 
+                    //  <li><a href='#'>Homelessness</a></li>
+                    //  <li><a href='#'>Fair Wages</a></li>
+                   ))
+                  }
+                   </ul>
+                 </li>
+                 <li className='dropdown3'><Link to="/categories" style={{color:'black'}}>Categories</Link>
+                   <ul className='features-menu2'>
+                {   props.categories.map( category => (
+                  <li key={category.id}><a href={`/categories/${category.id}`}>{category.name}</a></li>
+                ))
+              }
+                   </ul>
+                 </li>
+                <li ><Link to="/products" style={{color:'black'}}>Products</Link></li>
+                <li><Link to="/brands" style={{color:'black'}}>Brands</Link></li>
+                </ul>
+                <Link to="/cart" ><img id="cartImg" style={{height:"55px", width:'45px', marginTop: '-15px'}} src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/green-metallic-orbs-icons-business/082438-green-metallic-orb-icon-business-basket.png" /></Link>
+            </div>}
 
-                <Link to="/cart" ><img id="cartImg" src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/green-metallic-orbs-icons-business/082438-green-metallic-orb-icon-business-basket.png" /></Link>
-              </div>
-            </div>
-          ) : (
-              <div className="navbar">
-                {/* Links for main page components for navigation, NOT for presentational use*/}
-                <Link to="/categories">All Categories</Link>
-                <Link to="/causes">All Causes</Link>
-                <Link to="/">Home</Link>
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
-                <Link to="/cart" ><img id="cartImg" src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/green-metallic-orbs-icons-business/082438-green-metallic-orb-icon-business-basket.png" /></Link>
-              </div>
-            )}
         </nav>
-        </div>
       </div>
       <hr />
+    </div>
   </div>
 )
 
-    // <div className="navbar2">
-    //   <p>Top Deals</p>
-    // </div>
+
 /**
  * CONTAINER
  */
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    cart: state.cart || []
+    cart: state.cart || [],
+    causes: state.causes || [],
+    categories: state.categories || [],
+
+    // categories: state.categories || [],
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     handleClick() {
-
       dispatch(logout())
 
     }

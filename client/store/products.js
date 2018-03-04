@@ -32,7 +32,7 @@ export default function reducer(state = [], action) {
             return  state.filter(product => product.id !== action.product)
 
         case FILTER_PRODUCTS_LOW_HIGH:
-            return Object.assign({},state).sort((product1, product2)=>product1.price-product2.price)
+            return [...state].sort((product1, product2)=>product1.price-product2.price)
         case UPDATE_PRODUCT:
               return state.map(product => {
                     if (product.id === action.product.id) {

@@ -33,7 +33,7 @@ class AllCauses extends Component {
               <div className="allItemsContainer" >
               {
                 this.props.causes.map(cause =>
-                  <Card key={cause.name} category="causes" type="cause" id={cause.id} brand={cause} name={cause.name} button="explore" imageUrl={cause.imageUrl} />
+                  <Card key={cause.name} category="causes" type="cause" id={cause.id} brand={cause} name={cause.name} button="explore" brand = {'hello'} imageUrl={cause.imageUrl} />
                 )
               }
               </div>

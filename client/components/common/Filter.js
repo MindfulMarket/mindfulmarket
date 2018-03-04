@@ -33,7 +33,7 @@ class Filter extends Component {
           <h4> Price </h4>
             <div style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
               <label >
-                <input type="checkbox" value="cheap" onClick={()=>console.log('clickkkked')} style={{marginRight: '10px' }} />
+                <input type="checkbox" value="cheap" onClick={()=>this.props.filterProductsLowHigh()} style={{marginRight: '10px' }} />
                 <span className="checkmark" style={{marginRight: '90px' }} >Under $10</span>
 
                 <input type="checkbox" value="inexpensive" onClick={this.props.checkboxClicked.bind(this)} style={{marginRight: '10px', marginTop: '20px'}} />

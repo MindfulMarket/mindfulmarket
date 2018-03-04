@@ -18,7 +18,7 @@ class AllBrands extends Component {
     console.log('PRROPS IN ALL BRANDS',this.props)
     return (
       <div className="container">
-
+<h1>WASSSSSSSSAP</h1>
         <div className="itemsContainer">
           <div className="featuredContainer">
             <h1> Here is where we show featured Items </h1>

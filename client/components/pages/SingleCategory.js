@@ -26,7 +26,7 @@ class SingleCategory extends Component {
     }
 
     return (
-      <div>
+      <div className='page'>
         {
           !singleCategoryView
             ? <h1>hi</h1>

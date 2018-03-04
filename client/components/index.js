@@ -5,6 +5,7 @@
  */
 export {default as Navbar} from './navbar'
 export {default as Footer} from './footer'
+export {default as Search} from './Search'
 
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'

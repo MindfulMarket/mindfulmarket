@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile,SingleCategory } from './components'
+import { Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile, SingleCategory } from './components'
 
-import {me} from './store'
-import {fetchAndSetCart} from './store/cart' //WHERE
+import { me } from './store'
+import { fetchAndSetCart } from './store/cart' //WHERE
 import axios from 'axios' //wast throwing as error without import......WHY
 
 /**
@@ -13,20 +13,20 @@ import axios from 'axios' //wast throwing as error without import......WHY
  */
 class Routes extends Component {
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.loadInitialData()
 
     console.log('THE USER IS', this.props.initial.shoppingCart)
     console.log('APP STARTED')
-   //this.props.fetchCart(this.props.initialCart)
-    window.addEventListener("beforeunload", () =>{
-    axios.put(`/api/users/${this.props.initial.id}`, {shoppingCart: this.props.cartContents})
-  })
+    //this.props.fetchCart(this.props.initialCart)
+    window.addEventListener("beforeunload", () => {
+      axios.put(`/api/users/${this.props.initial.id}`, { shoppingCart: this.props.cartContents })
+    })
   }
 
 
-  render () {
-    const {isLoggedIn} = this.props
+  render() {
+    const { isLoggedIn } = this.props
     return (
 
       <Switch>
@@ -35,7 +35,7 @@ class Routes extends Component {
         <Route path="/thankyou/:action" component={ThankYou} />
         <Route path="/profile" component={UserProfile} />
 
-        {/*<Route exact path="/" component={UserHome} />*/}
+        <Route exact path="/" component={UserHome} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/about" component={About} />
@@ -55,14 +55,14 @@ class Routes extends Component {
         <Route path="/checkout" component={Checkout} />
 
 
-        <Route  path="/categories/:id" component={SingleCategory} />
+        <Route path="/categories/:id" component={SingleCategory} />
 
         {
           isLoggedIn &&
-            <Switch>
-              {/* Routes placed here are only available after logging in */}
-              <Route path="/home" component={UserHome} />
-            </Switch>
+          <Switch>
+            {/* Routes placed here are only available after logging in */}
+            <Route path="/home" component={UserHome} />
+          </Switch>
         }
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
@@ -86,7 +86,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData () {
+    loadInitialData() {
       dispatch(me())
     },
     //fetchCart: (cart) => dispatch(fetchAndSetCart(cart))

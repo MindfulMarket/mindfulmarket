@@ -33,49 +33,58 @@ class AllProducts extends Component {
   }
 
   render() {
-        let products = this.props.products.filter(product => {
-          let state = this.state;
-          for (let key in state) {
-            if (state.filters === false) {return true;}
-            else if (state[key] === true) {
-              if (product.price > 70 ) return true
-            }
-          } return false
-        })
+    let productsToRender = this.props.products
+    console.log(this.props, 'props of all products')
 
+    if (this.props.filteredProducts) {
+      productsToRender = this.props.filteredProducts
+    }
+
+    const products = productsToRender.filter(product => {
+      let state = this.state;
+      for (let key in state) {
+        if (state.filters === false) { return true; }
+        else if (state[key] === true) {
+          if (product.price > 70) return true
+        }
+      } return false
+    })
 
     return (
-      <div className="container" style={{ marginTop: '3em',flexDirection: 'column' }}>
+      <div className="container" style={{ marginTop: '3em', flexDirection: 'column' }}>
 
-          <div className="container" style={{ flexDirection: 'row' }}>
-            <Filter checkboxClicked={this.checkboxClicked} />
+        <div className="container" style={{ flexDirection: 'row' }}>
+          <Filter checkboxClicked={this.checkboxClicked} />
 
-            <div className="itemsContainer">
+          <div className="itemsContainer">
 
-              <div className="allItemsContainer" >
-                {
-                  products.map(product =>{
-                    console.log('PRODUCT ON CARD',product)
-                   return( <Card key={product.name} category="product" brand = {product.brand} product={product} name={product.name} imageUrl={product.imageUrl} id={product.id} price={product.price} addToCart = {this.props.addToCart} />)}
-                  )
+            <div className="allItemsContainer" >
+              {
+                !products.length
+                  ? <h1>There are no products</h1>
+                  : products.map(product => {
+                    return (
+                      <Card key={product.name} category="product" brand={product.brand} product={product} name={product.name} button="Add to cart" imageUrl={product.imageUrl} id={product.id} price={product.price} reviewsAvg={product.Reviews} reviewsQuantity={product.Reviews.length} addToCart={this.props.addToCart} />
+                    )
+                  })
               }
-              </div>
             </div>
           </div>
+        </div>
       </div>
     )
   }
 }
 
-  /* -----------------    CONTAINER     ------------------ */
+/* -----------------    CONTAINER     ------------------ */
 
-  const mapState = ({ products, product }) => {
-    return { products, product }
-  }
+const mapState = ({ products, product }) => {
+  return { products, product }
+}
 
-  const mapDispatch = dispatch => ({
-    fetchData: () => dispatch(fetchProducts()),
-    addToCart: (product) => dispatch(addToCart(product))
-  });
+const mapDispatch = dispatch => ({
+  fetchData: () => dispatch(fetchProducts()),
+  addToCart: (product) => dispatch(addToCart(product))
+});
 
-  export default connect(mapState, mapDispatch)(AllProducts);
+export default connect(mapState, mapDispatch)(AllProducts);

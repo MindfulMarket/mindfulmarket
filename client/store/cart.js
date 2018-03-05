@@ -41,7 +41,7 @@ const cartReducer = function (state = [], action) {
 //ACTION CREATORS
 export const fetchAndSetCart = (cart) => {
 
-    console.log("cart inside of actionc reatoooooooor REEEEEEESE", cart)
+    //console.log("cart inside of actionc reatoooooooor REEEEEEESE", cart)
     return { type: GET_CART, cart}}
 
 export const addToCart = product => ({ type: ADD_PRODUCT_TO_CART, product })

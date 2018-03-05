@@ -20,7 +20,7 @@ class AllProducts extends Component {
     }
     this.checkboxClicked = this.checkboxClicked.bind(this)
   }
-
+//add componennt did unmount which restores all products on filtered prop
   componentDidMount() {
     this.props.fetchData();
   }
@@ -51,17 +51,17 @@ class AllProducts extends Component {
     })
 
     return (
-      <div className="container page" style={{ marginTop: '3em', flexDirection: 'column' }}>
+      <div className="container page" style={{width:'100vw', marginTop: '3em', flexDirection: 'column' }}>
 
         <div className="container" style={{ flexDirection: 'row' }}>
-          <Filter checkboxClicked={this.checkboxClicked} />
+          <Filter />
 
           <div className="itemsContainer">
 
             <div className="allItemsContainer" >
               {
                 !products.length
-                  ? <h1>There are no products</h1>
+                  ? <h4>There are no products matching your search criteria!</h4>
                   : products.map(product => {
                     return (
                       <Card key={product.name} category="product" brand={product.brand} product={product} name={product.name} button="Add to cart" imageUrl={product.imageUrl} id={product.id} price={product.price} reviewsAvg={product.Reviews} reviewsQuantity={product.Reviews.length} addToCart={this.props.addToCart} />
@@ -78,8 +78,8 @@ class AllProducts extends Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = ({ products, product }) => {
-  return { products, product }
+const mapState = (state) => {
+  return { products: state.products.filteredOrSorted }
 }
 
 const mapDispatch = dispatch => ({

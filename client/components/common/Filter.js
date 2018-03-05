@@ -1,21 +1,51 @@
 import React, { Component } from 'react'
 import { sortProducts, filterProducts } from '../../store/products'
 import { connect } from 'react-redux'
-
+import { search, clearSearch } from '../../store/search'
 // import connect from
 
 class Filter extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = {
+      searchEntry: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    let searchCriteria = this.state.searchEntry;
+    this.props.search({ searchCriteria : searchCriteria })
+    // .then( () => this.props.history.push(`/products`) )
+  }
+
+  handleChange(event) {
+    this.setState({
+      searchEntry: event.target.value
+    })
+  }
+
+  handleClick() {
+    this.props.clearSearch();
   }
 
   render() {
     return (
       <div id="filterBar">
         <div id="filterSearch" >
-          <img id="searchIcon" src="/assets/search.png" />
-          <input id="searchInput" placeholder="Search" />
+        <img id="searchIcon" src="/assets/search.png" />
+
+            <form onSubmit={this.handleSubmit} >
+              <input onChange={this.handleChange} placeholder="Search" />
+              <button>Search </button>
+            </form>
         </div>
+        { this.props.search.length ?
+          <button className="cardBtn" onClick={this.props.handleClick}>Clear Search</button>
+        : ''
+        }
 
         <div className="filterHeaderFlex">
           <h4 className="filterHeader">Price</h4>
@@ -107,7 +137,7 @@ class Filter extends Component {
 }
 const mapState = (state) => {
   return {
-    firstName: state.user.firstName,
+    firstName: state.user.firstName, search: state.search || []
   }
 }
 
@@ -119,8 +149,9 @@ const mapDispatch = (dispatch) => {
     },
     handleFilter: (range) => {
       dispatch(filterProducts(range))
-    }
-
+    },
+    handleClick: () => dispatch(clearSearch()),
+    search: (criteria) => dispatch(search(criteria))
   }
 }
 

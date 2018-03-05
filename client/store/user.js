@@ -8,6 +8,7 @@ import { fetchAndSetCart } from './cart'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const SET_ADMIN = 'SET_ADMIN'
 const GET_ORDERS = 'GET_ORDERS'
 
 /**
@@ -19,6 +20,7 @@ const defaultUser = { orders: [] }
  * ACTION CREATORS
  */
 const getUser = user => ({ type: GET_USER, user })
+const setAdminMode = user => ({ type: SET_ADMIN, user })
 const removeUser = () => ({ type: REMOVE_USER })
 const setUserOrders = (orders) => ({ type: GET_ORDERS, orders })
     /**
@@ -66,6 +68,17 @@ export const logout = () =>
     })
     .catch(err => console.error(err))
 
+
+    export const setAdmin = (user) => dispatch => {
+       if (user.isAdmin) user.adminMode = true
+       dispatch(setAdminMode(user))
+    }
+    
+      
+    
+  
+    
+
 /**
  * REDUCER
  */
@@ -75,6 +88,8 @@ export default function(state = defaultUser, action) {
             return action.user
         case REMOVE_USER:
             return defaultUser
+        case SET_ADMIN:
+            return action.user
         case GET_ORDERS:
             return {...state, orders: action.orders }
         default:

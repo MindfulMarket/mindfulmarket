@@ -28,7 +28,7 @@ router.get('/:id/products', (req, res, next) => {
 
 
 router.post('/', (req, res, next) => {
-  Brands.scope('populated').create(req.body.main)
+  Brands.scope('populated').create(req.body)
     .then((brand) => {
       let promises = []
       if (req.body.product) promises.push(brand.addProduct(req.body.product))
@@ -54,7 +54,6 @@ router.put('/:id', (req, res, next) => {
     let promises = []
     if (req.body.product) promises.push(brand[1][0].addProduct(req.body.product))
     if (req.body.service) promises.push(brand[1][0].addService(req.body.service))
-    if (req.body.brand) promises.push(brand[1][0].addBrand(req.body.brand))
     Promise.all(promises)
       .then(_ => Brands.scope('populated').findById(req.params.id))
       .then(reloadedBrand => {

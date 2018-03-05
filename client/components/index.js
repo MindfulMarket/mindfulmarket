@@ -29,11 +29,14 @@ export {default as SingleService} from './SingleService'
 //Admin
 export {default as AdminHome} from './Admin/AdminHome'
 export {default as AdminProducts} from './Admin/AdminProducts'
+export {default as AdminOrders} from './Admin/AdminOrders'
 export {default as SingleAdminProduct} from './Admin/SingleAdminProduct'
 export {default as AdminCauses} from './Admin/AdminCauses'
 export {default as SingleAdminCause} from './Admin/SingleAdminCause'
 export {default as AdminBrands} from './Admin/AdminBrands'
 export {default as SingleAdminBrand} from './Admin/SingleAdminBrand'
+export {default as AdminCategories} from './Admin/AdminCategories'
+
 
 
 

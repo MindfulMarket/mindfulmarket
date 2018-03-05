@@ -14,7 +14,7 @@ export class AdminBrands extends Component {
 
   deleteItem(e){
     e.preventDefault()
-    if (e.target.brand.value !== ''){ 
+    if (e.target.brand.value !== ''){
       axios.delete(`/api/brands/${e.target.brand.value}`)
       .then(data => console.log(data))
     }
@@ -26,11 +26,11 @@ export class AdminBrands extends Component {
       })
       let brandsSelect = this.props.brands.map(brand => {
         return (<option key={brand.id} value={brand.id}>{brand.name}</option>)
-    }) 
+    })
       brands.sort()
     return (
       <div>
-      <AdminNav />
+      <AdminNav className="page" />
       <h1>brands</h1>
         <ul>
             {
@@ -42,14 +42,14 @@ export class AdminBrands extends Component {
         <form onSubmit={this.deleteItem}>
         <h1>Delete a product</h1>
         <p>Brands:</p>  <select name="brand">{brandsSelect}</select> <br /> <br />
-       
+
         <button type="submit" >Delete</button>
       </form>
         </div>
-        
+
     )
-    
-    
+
+
   }
 }
 

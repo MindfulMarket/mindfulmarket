@@ -49,7 +49,7 @@ export const auth = (firstName, lastName, email, password, method) =>
         dispatch(fetchAndSetCart(res.data.shoppingCart || []))
         dispatch(getOrders(res.data.id))
 
-        history.push('/home')
+        history.push('/')
     }, authError => { // rare example: a good use case for parallel (non-catch) error handler
         dispatch(getUser({ error: authError }))
     })

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-// import AdminNav from './AdminNav'
+import AdminNav from './AdminNav'
 import {Link} from 'react-router-dom'
 import AdminAddBrand from './AdminAddBrand'
 import axios from 'axios'

@@ -39,7 +39,7 @@ class SingleProduct extends Component {
   }
 
   render() {
-    let singleProduct = this.props.products.find(product => product.id === Number(this.props.match.params.id))
+    let singleProduct = this.props.products.all.find(product => product.id === Number(this.props.match.params.id))
 
     return (
       <div className='page'>

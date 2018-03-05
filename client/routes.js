@@ -7,6 +7,8 @@ import { Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SinglePr
 import { me } from './store'
 import { fetchAndSetCart } from './store/cart' //WHERE
 import { fetchProducts } from './store/products'
+import { fetchAllBrands } from './store/brands'
+
 import { fetchAllCauses } from './store/causes';
 import axios from 'axios' //wast throwing as error without import......WHY
 
@@ -33,6 +35,7 @@ class Routes extends Component {
 
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/" component={UserHome} />
 
         <Route exact path="/cart" component={ShoppingCart} />
         <Route path="/thankyou/:action" component={ThankYou} />
@@ -60,15 +63,6 @@ class Routes extends Component {
 
         <Route path="/categories/:id" component={SingleCategory} />
 
-        {
-          isLoggedIn &&
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/" component={UserHome} />
-          </Switch>
-        }
-        {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
       </Switch>
     )
   }
@@ -93,6 +87,7 @@ const mapDispatch = (dispatch) => {
       dispatch(me())
       dispatch(fetchProducts())
       dispatch(fetchAllCauses())
+      dispatch(fetchAllBrands())
 
     }
   }

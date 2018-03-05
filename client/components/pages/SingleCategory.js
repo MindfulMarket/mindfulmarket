@@ -53,7 +53,11 @@ class SingleCategory extends Component {
 /* -----------------    CONTAINER     ------------------ */
 
 const mapState = ({ products, brands, categories }) => {
-  return { products, brands, categories }
+  return {
+    products: products.all,
+    brands,
+    categories
+      }
 }
 
 const mapDispatch = dispatch => ({

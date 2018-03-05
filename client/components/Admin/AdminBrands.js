@@ -30,6 +30,7 @@ export class AdminBrands extends Component {
       brands.sort()
     return (
       <div>
+      <AdminNav className="page" />
       <h1>brands</h1>
       <ul>
       {
@@ -51,8 +52,6 @@ export class AdminBrands extends Component {
 
   }
 }
-
-// <AdminNav className="page" />
 
 const mapState = ({ brands }) => {
   return { brands }

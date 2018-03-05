@@ -43,7 +43,7 @@ class SingleProduct extends Component {
     let singleProduct, productReviews;
 
     if (this.props.products) {
-      singleProduct = this.props.products.find(product => product.id === Number(this.props.match.params.id))
+      singleProduct = this.props.products.all.find(product => product.id === Number(this.props.match.params.id))
     }
     if (this.props.review) {
       productReviews = this.props.review.filter(review => review.productId === Number(this.props.match.params.id))

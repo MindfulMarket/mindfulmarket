@@ -55,7 +55,8 @@ class SingleBrand extends Component {
 
 const mapState = ({ products, brands }) => {
   return {
-    products, brands
+    products: products.all,
+     brands
   }
 }
 

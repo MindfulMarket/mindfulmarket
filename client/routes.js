@@ -7,6 +7,8 @@ import { Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SinglePr
 import { me } from './store'
 import { fetchAndSetCart } from './store/cart' //WHERE
 import { fetchProducts } from './store/products'
+import { fetchAllBrands } from './store/brands'
+
 import { fetchAllCauses } from './store/causes';
 import axios from 'axios' //wast throwing as error without import......WHY
 
@@ -18,12 +20,12 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
 
-    console.log('THE USER IS', this.props.initial.shoppingCart)
-    console.log('APP STARTED')
-    //this.props.fetchCart(this.props.initialCart)
-    window.addEventListener("beforeunload", () => {
-      axios.put(`/api/users/${this.props.initial.id}`, { shoppingCart: this.props.cartContents })
-    })
+    //console.log('THE USER IS', this.props.initial.shoppingCart)
+    //console.log('APP STARTED')
+   //this.props.fetchCart(this.props.initialCart)
+    window.addEventListener("beforeunload", () =>{
+    axios.put(`/api/users/${this.props.initial.id}`, {shoppingCart: this.props.cartContents})
+  })
   }
 
 
@@ -33,11 +35,13 @@ class Routes extends Component {
 
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/" component={UserHome} />
+
         <Route exact path="/cart" component={ShoppingCart} />
         <Route path="/thankyou/:action" component={ThankYou} />
         <Route path="/profile" component={UserProfile} />
 
-        <Route exact path="/" component={UserHome} />
+       {/* <Route exact path="/" component={UserHome} />*/}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/about" component={About} />
@@ -59,15 +63,6 @@ class Routes extends Component {
 
         <Route path="/categories/:id" component={SingleCategory} />
 
-        {
-          isLoggedIn &&
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-          </Switch>
-        }
-        {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
       </Switch>
     )
   }
@@ -92,6 +87,7 @@ const mapDispatch = (dispatch) => {
       dispatch(me())
       dispatch(fetchProducts())
       dispatch(fetchAllCauses())
+      dispatch(fetchAllBrands())
 
     }
   }

@@ -25,10 +25,10 @@ const setUserOrders = (orders) => ({ type: GET_ORDERS, orders })
  * THUNK CREATORS
  */
 export const getOrders = (userId) => dispatch => {
-    console.log('IGOTHIT YOU KNOW', userId)
+   // console.log('IGOTHIT YOU KNOW', userId)
     axios.get(`/api/orders/${userId}`)
         .then((res) => {
-            console.log('HERE WHAT CAME BACK', res.data)
+            //console.log('HERE WHAT CAME BACK', res.data)
             dispatch(setUserOrders(res.data))
         })
 }
@@ -63,6 +63,7 @@ export const logout = () =>
     dispatch =>
         axios.post('/auth/logout')
             .then(_ => {
+                console.log("LOGOUT ROUTE HIT")
                 dispatch(removeUser())
                 dispatch(fetchAndSetCart([])) //clear the frontend cart on logout
                 history.push('/login')

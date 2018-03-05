@@ -27,7 +27,7 @@ describe('product thunk creators', () => {
   })
 
   describe('fetchProducts', () => {
-    it('eventually dispatches the GET ALL PRODUCTS action', () => {
+    xit('eventually dispatches the GET ALL PRODUCTS action', () => {
       const fakeProduct = {
         brand: 'Everlane',
         name: 'The Cropped City Anorak',

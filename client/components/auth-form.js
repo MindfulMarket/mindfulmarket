@@ -10,7 +10,8 @@ const AuthForm = (props) => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className='page'>
+      <h2> Haven't joined the revolution yet? Now is the time to sign up</h2>
       <form onSubmit={handleSubmit} name={name}>
       <div>
         <label htmlFor="firstName"><small>First Name</small></label>
@@ -33,7 +34,7 @@ const AuthForm = (props) => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a href="/auth/google">{displayName} with Google</a>
+      <a href="/auth/google"><img style={{maxHeight: '250px', maxWidth: '250px'}} src="https://hhs.htps.us/UserFiles/Servers/Server_791028/Templates/login-google.png" /></a>
     </div>
   )
 }

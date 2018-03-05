@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile, SingleCategory } from './components'
 
 import { me } from './store'
-import { fetchAndSetCart } from './store/cart' //WHERE
+// import { fetchAndSetCart } from './store/cart' //WHERE
 import { fetchProducts } from './store/products'
 import { fetchAllBrands } from './store/brands'
 
@@ -21,7 +21,7 @@ class Routes extends Component {
     this.props.loadInitialData()
 
    //this.props.fetchCart(this.props.initialCart)
-    window.addEventListener("beforeunload", () =>{
+    window.addEventListener('beforeunload', () => {
     axios.put(`/api/users/${this.props.initial.id}`, {shoppingCart: this.props.cartContents})
   })
   }

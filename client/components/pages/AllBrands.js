@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Card from '../common/Card';
 import { connect } from 'react-redux';
 import { fetchAllBrands } from '../../store/brands';
@@ -19,21 +18,16 @@ class AllBrands extends Component {
     }
 
     return (
-      <div className="page container">
+      <div className="page">
 
         <div className="itemsContainer">
           <div className="featuredContainer">
-            <h1> Here is where we show featured Items </h1>
+            <h1> Check out our curated collection of brands making a difference</h1>
           </div>
 
           <div className="container" style={{ flexDirection: 'row' }}>
-            <div className="filterContainer">
-              <h1> Here is where we filter Items</h1>
-            </div>
 
             <div className="itemsContainer">
-              <h1> Here is where we show all Items </h1>
-
               <div className="allItemsContainer" >
                 {
                   !brandsToRender.length

@@ -10,7 +10,7 @@ import {getOrders} from '../store/user'
  * COMPONENT
  */
 const Checkout = (props) => {
-  const { name, displayName, handleSubmit } = props
+  const { name } = props
 
   return (
     <div className="page" id="checkout-container">
@@ -96,12 +96,12 @@ const mapDispatch = (dispatch) => {
 
     handlePaymentSubmit(evt) {
       evt.preventDefault()
-      let paymentInfo = {
-        firstName: evt.target.firstName.value,
-        lastName: evt.target.lastName.value,
-        email: evt.target.email.value,
-        password: evt.target.password.value
-      }
+      // let paymentInfo = {
+      //   firstName: evt.target.firstName.value,
+      //   lastName: evt.target.lastName.value,
+      //   email: evt.target.email.value,
+      //   password: evt.target.password.value
+      // }
       // dispatch(checkout(paymentInfo))
     },
     getOrders: (id) => dispatch(getOrders(id)),

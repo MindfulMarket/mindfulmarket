@@ -10,11 +10,11 @@ import thunkMiddleware from 'redux-thunk'
 const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
 
-describe('thunk creators', () => {
+describe('product thunk creators', () => {
   let store
   let mockAxios
 
-  const initialState = { user: {} }
+  const initialState = { products: [] }
 
   beforeEach(() => {
     mockAxios = new MockAdapter(axios)

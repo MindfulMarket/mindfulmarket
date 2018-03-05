@@ -13,7 +13,7 @@ const updateProduct = product => ({ type: UPDATE_PRODUCT, product });
 /* ------------       THUNK CREATORS     ------------------ */
 
 export const fetchProducts = () => dispatch => {
-    axios.get('/api/products')
+return     axios.get('/api/products')
         .then(res => dispatch(getProducts(res.data)))
         .catch(err => console.error(err));
 }
@@ -24,19 +24,15 @@ export default function reducer(state = [], action) {
         case GET_ALL_PRODUCTS:
             return action.products
         case REMOVE_PRODUCT:
-            return Object.assign({}, state, {
-                allProducts: state.products.filter(product => product.id !== action.product)
-            });
+            return  state.filter(product => product.id !== action.product)
         case UPDATE_PRODUCT:
-            return Object.assign({}, state, {
-                products: state.products.map(product => {
+              return state.map(product => {
                     if (product.id === action.product.id) {
                         return action.product;
                     } else {
                         return product;
                     }
                 })
-            });
         default:
             return state;
     }

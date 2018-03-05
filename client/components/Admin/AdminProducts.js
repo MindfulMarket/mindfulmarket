@@ -35,7 +35,6 @@ export class AdminProducts extends Component {
   }
 }
 
-
 const mapState = ({ products }) => {
   return { products }
 }

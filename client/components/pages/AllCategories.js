@@ -33,7 +33,7 @@ class AllCategories extends Component {
               <div className="allItemsContainer" >
               {
                 this.props.categories.map(category =>
-                  <Card key={category.name} category="brand" id={category.id} brand={category} name={category.name} imageUrl={category.imageUrl} />
+                  <Card key={category.name} category="categorie" type="category" id={category.id} brand="null" button="explore" name={category.name} imageUrl={category.imageUrl} />
                 )
               }
               </div>

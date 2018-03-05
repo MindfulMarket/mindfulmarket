@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {SingleAdminBrand, AdminBrands,SingleAdminCause, AdminCauses, SingleAdminProduct, AdminProducts, AdminHome, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand } from './components'
 import {me, fetchProducts,fetchAllBrands, fetchAllCauses} from './store'
@@ -10,13 +10,21 @@ import {me, fetchProducts,fetchAllBrands, fetchAllCauses} from './store'
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount () {
+
+  componentDidMount() {
     this.props.loadInitialData()
+
+    console.log('THE USER IS', this.props.initial.shoppingCart)
+    console.log('APP STARTED')
+    //this.props.fetchCart(this.props.initialCart)
+    window.addEventListener("beforeunload", () => {
+      axios.put(`/api/users/${this.props.initial.id}`, { shoppingCart: this.props.cartContents })
+    })
   }
 
-  render () {
-    const {isLoggedIn} = this.props
 
+  render() {
+    const { isLoggedIn } = this.props
     return (
 
       <Switch>
@@ -24,10 +32,13 @@ class Routes extends Component {
         <Route exact path="/cart" component={ShoppingCart} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route exact path="/about" component={About} />
         <Route exact path="/brands" component={AllBrands} />
+        <Route path="/brands/:id" component={SingleBrand} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:id" component={SingleProduct} />
         <Route exact path="/causes" component={AllCauses} />
+        <Route path="/causes/:id" component={SingleCause} />
         <Route exact path="/categories" component={AllCategories} />
         <Route path="/products" component={SingleProduct} />
         <Route path="/brands/:id" component={SingleBrand} />
@@ -39,13 +50,12 @@ class Routes extends Component {
         <Route exact path="/admin/brands" component={AdminBrands} />
         <Route path="/admin/brands/:id" component={SingleAdminBrand} /> 
        
-       
         {
           isLoggedIn &&
-            <Switch>
-              {/* Routes placed here are only available after logging in */}
-              <Route path="/home" component={UserHome} />
-            </Switch>
+          <Switch>
+            {/* Routes placed here are only available after logging in */}
+            <Route path="/home" component={UserHome} />
+          </Switch>
         }
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
@@ -59,6 +69,8 @@ class Routes extends Component {
  */
 const mapState = (state) => {
   return {
+    cartContents: state.cart,
+    initial: state.user || [],
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id
@@ -67,13 +79,19 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData () {
+    loadInitialData: () => {
       dispatch(me())
       dispatch(fetchProducts())
+<<<<<<< HEAD
       dispatch(fetchAllBrands())
       dispatch(fetchAllCauses())
+=======
+      dispatch(fetchAllCauses())
+
+>>>>>>> master
     }
   }
+    //fetchCart: (cart) => dispatch(fetchAndSetCart(cart))
 }
 
 // The `withRouter` wrapper makes sure that updates are not blocked

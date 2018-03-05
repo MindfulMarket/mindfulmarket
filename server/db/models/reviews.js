@@ -22,7 +22,7 @@ const Reviews = db.define('reviews', {
         }
     },
 
-    content: {
+    review: {
         type: Sequelize.TEXT
     }
 });

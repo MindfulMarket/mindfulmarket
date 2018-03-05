@@ -9,6 +9,8 @@ const CHECKOUT = 'CHECKOUT'
 //editing will update the db and retreve the campuses again (no new action needed)
 const cartReducer = function (state = [], action) {
     switch (action.type) {
+        case GET_CART:
+            return action.cart
         case ADD_PRODUCT_TO_CART:
 
             for (let i = 0; i < state.length; i++) {
@@ -37,10 +39,13 @@ const cartReducer = function (state = [], action) {
 };
 
 //ACTION CREATORS
-export const addToCart = product => {
+export const fetchAndSetCart = (cart) => {
 
-    return { type: ADD_PRODUCT_TO_CART, product }
-};
+    console.log("cart inside of actionc reatoooooooor REEEEEEESE", cart)
+    return { type: GET_CART, cart}}
+
+export const addToCart = product => ({ type: ADD_PRODUCT_TO_CART, product })
+
 export const deleteProduct = product => ({ type: DELETE_PRODUCT, product })
 
 export default cartReducer

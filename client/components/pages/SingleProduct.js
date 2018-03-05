@@ -114,7 +114,7 @@ class SingleProduct extends Component {
                       return (
                         <div key={review.id}>
                           <h2>Title: {review.title}</h2>
-                          <h2>Description: {review.content}</h2>
+                          <h2>Description: {review.review}</h2>
                           <h2>Rating: {review.rating}</h2>
                           <br />
                         </div>

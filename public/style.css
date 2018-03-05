@@ -147,3 +147,12 @@ form div {
     height: 35px;
     /* flex-direction: row; */
 }
+
+
+#adminNav{
+    margin-top: 75px;
+    margin: 1px solid black;
+    width: 300px;
+    background-color: red;
+
+}

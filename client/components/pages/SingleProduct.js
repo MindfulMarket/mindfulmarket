@@ -27,6 +27,7 @@ class SingleProduct extends Component {
         <p>Price: ${singleProduct.price}</p>
         </div>
       }
+
       </div>
     )
   }

@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const SET_ADMIN = 'SET_ADMIN'
 
 /**
  * INITIAL STATE
@@ -16,7 +17,9 @@ const defaultUser = {}
  * ACTION CREATORS
  */
 const getUser = user => ({ type: GET_USER, user })
+const setAdminMode = user => ({ type: SET_ADMIN, user })
 const removeUser = () => ({ type: REMOVE_USER })
+
 
 /**
  * THUNK CREATORS
@@ -48,6 +51,17 @@ export const logout = () =>
     })
     .catch(err => console.error(err))
 
+
+    export const setAdmin = (user) => dispatch => {
+       if (user.isAdmin) user.adminMode = true
+       dispatch(setAdminMode(user))
+    }
+    
+      
+    
+  
+    
+
 /**
  * REDUCER
  */
@@ -57,6 +71,8 @@ export default function(state = defaultUser, action) {
             return action.user
         case REMOVE_USER:
             return defaultUser
+        case SET_ADMIN:
+            return action.user
         default:
             return state
     }

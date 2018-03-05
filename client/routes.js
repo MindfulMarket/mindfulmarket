@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand } from './components'
-import {me} from './store'
+import {SingleAdminBrand, AdminBrands,SingleAdminCause, AdminCauses, SingleAdminProduct, AdminProducts, AdminHome, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand } from './components'
+import {me, fetchProducts,fetchAllBrands, fetchAllCauses} from './store'
+
 
 /**
  * COMPONENT
@@ -21,7 +22,6 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/cart" component={ShoppingCart} />
-
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/brands" component={AllBrands} />
@@ -31,7 +31,15 @@ class Routes extends Component {
         <Route exact path="/categories" component={AllCategories} />
         <Route path="/products" component={SingleProduct} />
         <Route path="/brands/:id" component={SingleBrand} />
-
+        <Route exact path="/admin" component={AdminHome} />
+        <Route exact path="/admin/products" component={AdminProducts} />
+        <Route path="/admin/products/:id" component={SingleAdminProduct} /> 
+        <Route exact path="/admin/causes" component={AdminCauses} />
+        <Route path="/admin/causes/:id" component={SingleAdminCause} /> 
+        <Route exact path="/admin/brands" component={AdminBrands} />
+        <Route path="/admin/brands/:id" component={SingleAdminBrand} /> 
+       
+       
         {
           isLoggedIn &&
             <Switch>
@@ -61,6 +69,9 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
+      dispatch(fetchProducts())
+      dispatch(fetchAllBrands())
+      dispatch(fetchAllCauses())
     }
   }
 }

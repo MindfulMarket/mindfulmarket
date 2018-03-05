@@ -15,14 +15,14 @@ export class AdminHome extends Component {
     return (
       <div>
         {
-          this.props.user.isAdmin 
-          ? 
+          this.props.user.isAdmin
+          ?
           <div>
           <AdminNav  id = "adminNav" />
           </div>
           :
           'Not Authorized'
-          
+
 
         }
       </div>

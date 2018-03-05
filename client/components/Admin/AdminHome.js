@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import AdminNav from './AdminNav'
+// import AdminNav from './AdminNav'
 
 
 /* -----------------    COMPONENT     ------------------ */
@@ -18,7 +18,6 @@ export class AdminHome extends Component {
           this.props.user.isAdmin
           ?
           <div>
-          <AdminNav  id = "AdminNav" />
           </div>
           :
           'Not Authorized'
@@ -35,3 +34,5 @@ const mapState = ({ user }) => {
   return { user }
 }
 export default connect(mapState)(AdminHome)
+
+// <AdminNav  id = "AdminNav" />

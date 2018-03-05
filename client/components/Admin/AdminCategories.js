@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import AdminNav from './AdminNav'
+// import AdminNav from './AdminNav'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 
@@ -29,7 +29,6 @@ export class AdminCategories extends Component {
 
     return (
       <div>
-      <AdminNav />
       <h1>AdminCategories</h1>
       <ul>
       {
@@ -37,7 +36,7 @@ export class AdminCategories extends Component {
       }
       </ul>
 
-        </div>
+      </div>
     )
 
 
@@ -48,3 +47,5 @@ const mapState = ({ categories }) => {
   return { categories }
 }
 export default connect(mapState)(AdminCategories)
+
+// <AdminNav />

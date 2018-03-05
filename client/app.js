@@ -6,7 +6,7 @@ import { me } from './store'
 import { fetchProducts } from './store/products'
 import { fetchAllCauses } from './store/causes';
 import { fetchAllCategories } from './store/categories';
-import {fetchAndSetCart} from './store/cart'
+// import {fetchAndSetCart} from './store/cart'
 import {fetchAllBrands} from './store/brands' //WHERE
 //WHERE
 import { Navbar, Footer } from './components'

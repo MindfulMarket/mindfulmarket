@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import AdminNav from './AdminNav'
+// import AdminNav from './AdminNav'
 import {Link} from 'react-router-dom'
 import AdminAddCause from './AdminAddCause'
 
@@ -18,7 +18,6 @@ export class AdminCauses extends Component {
       causes.sort()
     return (
       <div>
-      <AdminNav />
       <h1>Causes</h1>
         <ul>
             {
@@ -29,8 +28,8 @@ export class AdminCauses extends Component {
         <AdminAddCause />
         </div>
     )
-    
-    
+
+
   }
 }
 
@@ -39,3 +38,5 @@ const mapState = ({ causes }) => {
   return { causes }
 }
 export default connect(mapState)(AdminCauses)
+
+// <AdminNav />

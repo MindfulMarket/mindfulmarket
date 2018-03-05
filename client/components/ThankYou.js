@@ -4,9 +4,7 @@ import { fetchAllCauses } from '../store/causes'
 
 /* -----------------    COMPONENT     ------------------ */
 class ThankYou extends Component {
-  constructor(props){
-    super(props)
-  }
+
   render() {
     return (
       <div id = "thanksContainer">

@@ -6,9 +6,6 @@ import { Link } from 'react-router-dom'
 /* -----------------    COMPONENT     ------------------ */
 
 class ShoppingCart extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   // componentDidMount() {
   //   this.props.fetchCart();

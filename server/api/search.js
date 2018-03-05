@@ -1,9 +1,6 @@
 const router = require('express').Router()
 const { Products } = require('../db/models')
 module.exports = router
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
-
 
 router.post('/', (req, res, next) => {
     // console.log('working', req.body)

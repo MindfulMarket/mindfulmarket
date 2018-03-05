@@ -17,7 +17,7 @@ class Filter extends Component {
   handleSubmit(event) {
     event.preventDefault();
     let searchCriteria = this.state.searchEntry;
-    this.props.search({ searchCriteria : searchCriteria })
+    this.props.search({ searchCriteria: searchCriteria })
     // .then( () => this.props.history.push(`/products`) )
   }
 

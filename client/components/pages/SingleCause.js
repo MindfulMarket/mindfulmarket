@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Card from '../common/Card';
 import { connect } from 'react-redux'
 import { fetchAllCauses } from '../../store/causes';
 import { fetchAllBrands } from '../../store/brands';

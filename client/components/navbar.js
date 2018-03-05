@@ -4,25 +4,26 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../store'
 import axios from 'axios'
+import { Search } from './index'
 
 
 const Navbar = (props, { handleClick, isLoggedIn }) => (
 
   <div className="doubleNavbar">
-      { console.log(props)}
     <div className="topNavbar">
       <p id = "topDeal" >Top Deals</p>
 
             {isLoggedIn ? (
-              <Link id = "logout" style={{marginRight:"20px"}}   onClick={() => {
+              <Link
+id = "logout" style={{marginRight: '20px'}}   onClick={() => {
               handleClick()
               axios.put(`/api/users/${this.props.initial.id}`, { shoppingCart: this.props.cart })
-            }} to='/'>Logout</Link>
+            }} to="/">Logout</Link>
               ) : (
-              <div style={{marginRight:"20px" }}>
-                <Link to="/login" style={{marginRight:"20px"}}>Login</Link>
-                <Link to="/signup" style={{marginRight:"20px"}}>Sign Up</Link>
-                <a href='/about' style={{marginRight:"20px"}}>About Mindful Market</a>
+              <div style={{marginRight: '20px' }}>
+                <Link to="/login" style={{marginRight: '20px'}}>Login</Link>
+                <Link to="/signup" style={{marginRight: '20px'}}>Sign Up</Link>
+                <a href="/about" style={{marginRight: '20px'}}>About Mindful Market</a>
               </div>
             )}
 
@@ -31,16 +32,16 @@ const Navbar = (props, { handleClick, isLoggedIn }) => (
     <div className="bottomNavbar">
       <div className="titlebar">
         <a href="/" id="title"><p>THE MINDFUL MARKET</p></a>
-        <p id='snootyCaption'> redefining shopping, for those who care</p>
+        <p id="snootyCaption"> redefining shopping, for those who care</p>
       </div>
 
       <div className="links-container">
         <nav >
-             {<div className='dropdown'>
+             {<div className="dropdown">
                 {/* Links for main page components for navigation, NOT for presentational use*/}
-                <ul className='menu'>
-                 <li className='dropdown2' ><Link to="/causes" style={{color:'black'}}>Causes</Link>
-                   <ul className='features-menu'>
+                <ul className="menu">
+                 <li className="dropdown2" ><Link to="/causes" style={{color: 'black'}}>Causes</Link>
+                   <ul className="features-menu">
                    {  props.causes.map(cause => (
                      <li key={cause.id}><a href={`/causes/${cause.id}`}>{cause.name}</a></li>
 
@@ -50,18 +51,21 @@ const Navbar = (props, { handleClick, isLoggedIn }) => (
                   }
                    </ul>
                  </li>
-                 <li className='dropdown3'><Link to="/categories" style={{color:'black'}}>Categories</Link>
-                   <ul className='features-menu2'>
+                 <li className="dropdown3"><Link to="/categories" style={{color: 'black'}}>Categories</Link>
+                   <ul className="features-menu2">
                 {   props.categories.map( category => (
                   <li key={category.id}><a href={`/categories/${category.id}`}>{category.name}</a></li>
                 ))
               }
                    </ul>
                  </li>
-                <li ><Link to="/products" style={{color:'black'}}>Products</Link></li>
-                <li><Link to="/brands" style={{color:'black'}}>Brands</Link></li>
+                <li ><Link to="/products" style={{color: 'black'}}>Products</Link></li>
+                <li><Link to="/brands" style={{color: 'black'}}>Brands</Link></li>
                 </ul>
-                <Link to="/cart" ><img id="cartImg" style={{height:"55px", width:'45px', marginTop: '-15px'}} src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/green-metallic-orbs-icons-business/082438-green-metallic-orb-icon-business-basket.png" /></Link>
+                <Search />
+
+                <Link to="/cart" ><img id="cartImg" style={{height: '55px', width: '45px', marginTop: '-15px'}} src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/green-metallic-orbs-icons-business/082438-green-metallic-orb-icon-business-basket.png" /></Link>
+                { props.cart.length ? <Link to ="/checkout" style={{color: 'black', marginLeft: '-10px'}}>checkout</Link> : ''}
             </div>}
 
         </nav>

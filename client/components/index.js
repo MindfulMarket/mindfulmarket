@@ -35,7 +35,6 @@ export {default as AdminBrands} from './Admin/AdminBrands'
 export {default as SingleAdminBrand} from './Admin/SingleAdminBrand'
 export {default as AdminCategories} from './Admin/AdminCategories'
 
-
 export {default as SingleCategory} from './pages/SingleCategory'
 
 

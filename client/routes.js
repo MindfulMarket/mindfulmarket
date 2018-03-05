@@ -5,8 +5,9 @@ import PropTypes from 'prop-types'
 import { AdminBrands, SingleAdminBrand, SingleAdminCause, AdminCauses, AdminCategories, SingleAdminCategory, SingleAdminProduct, AdminProducts, AdminOrders, AdminHome, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile, SingleCategory } from './components'
 import {me, fetchProducts, fetchAllBrands, fetchAllCauses, fetchAllCategories} from './store'
 
+// import { fetchAndSetCart } from './store/cart' //WHERE
 
-import { fetchAndSetCart } from './store/cart' //WHERE
+
 
 import axios from 'axios' //wast throwing as error without import......WHY
 

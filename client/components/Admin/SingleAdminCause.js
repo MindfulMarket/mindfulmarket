@@ -16,9 +16,14 @@ class SingleAdminCause extends Component {
         let body = {}
         if (e.target.name.value !== '') body.name = e.target.name.value
         if (e.target.description.value !== '') body.description = e.target.description.value
-        if (e.target.brand.value !== '') body.brand = e.target.brand.value
-        if (e.target.product.value !== '') body.product = e.target.product.value
-        axios.put(`/api/causes/${this.props.id}`, body)
+        if (e.target.addBrand.value !== '') body.addBrand = e.target.addBrand.value
+        if (e.target.removeBrand.value !== '') body.removeBrand = e.target.removeBrand.value
+        if (e.target.addProduct.value !== '') body.addProduct = e.target.addProduct.value
+        if (e.target.removeProduct.value !== '') body.removeProduct = e.target.removeProduct.value
+
+        console.log(body)
+       
+        axios.put(`/api/causes/${this.props.match.params.id}`, body)
            .then(data => console.log(data))
    }
   render() {
@@ -38,12 +43,19 @@ class SingleAdminCause extends Component {
     //set first element to empty string so that editItem dosent auto grab first item
     brands.push(<option key="" value="">None</option>)
 
-    // let services = this.props.services.map(service => {
-    //     return (<option key={service.id} value={service.id}>{service.name}</option>)
-    // }) 
+    let causeBrands = this.props.brands
+    .filter(brand => brand.causeId === Number(this.props.match.params.id))
+    .map(brand => {
+         return (<option key={brand.id} value={brand.id}>{brand.name}</option>)
+     }) 
+     causeBrands.unshift(<option value=''>-</option>)
 
-    //set first element to empty string so that editItem dosent auto grab first item
-    // services.push(<option key="" value="">None</option>)
+     let causeProducts = this.props.products
+     .filter(product => product.causeId === Number(this.props.match.params.id))
+     .map(product => {
+          return (<option key={product.id} value={product.id}>{product.name}</option>)
+      }) 
+      causeProducts.unshift(<option value=''>-</option>)
 
 
     return (
@@ -65,8 +77,10 @@ class SingleAdminCause extends Component {
       <form onSubmit={this.editItem}>
        <p>Edit Name:</p> <input name="name" id="name" type="text" /> <br /> <br />
        <p>Edit Description:</p> <textarea name="description" cols="35" rows="5" /> <br /> <br />
-       <p>Add/remove Brand:</p>  <select name="brand">{brands}</select> <br /> <br />
-       <p>Add/remove Product:</p>  <select name="product">{products}</select> <br /> <br />
+       <p>Remove Product:</p>  <select name="removeProduct">{causeProducts}</select> <br /> <br />
+       <p>Add Product:</p>  <select name="addProduct">{products}</select> <br /> <br />
+       <p>Remove Brand:</p>  <select name="removeBrand">{causeBrands}</select> <br /> <br />
+       <p>Add Brand:</p>  <select name="addBrand">{brands}</select> <br /> <br />
 
       
        <button type="submit" >Change</button>

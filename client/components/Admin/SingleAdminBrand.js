@@ -36,15 +36,18 @@ class SingleAdminBrand extends Component {
    .map(product => {
         return (<option key={product.id} value={product.id}>{product.name}</option>)
     }) 
+    brandProducts.unshift(<option value=''>-</option>)
 
 
     let allProducts = this.props.products.map(product => {
       return (<option key={product.id} value={product.id}>{product.name}</option>)
     }) 
+    allProducts.unshift(<option value=''>-</option>)
 
     let causes = this.props.causes.map(cause => {
       return (<option key={cause.id} value={cause.id}>{cause.name}</option>)
-    }) 
+    })     
+    causes.unshift(<option value=''>-</option>)
 
 
 
@@ -66,10 +69,11 @@ class SingleAdminBrand extends Component {
     <hr />
       <form onSubmit={this.editItem}>
        <p>Edit Name:</p> <input name="name" id="name" type="text"/> <br /> <br />
-       <p>Edit Cause:</p>  <select name="cause">{causes}</select> <br /> <br />
        <p>Edit Description:</p> <textarea name="description" cols="35" rows="5" /> <br /> <br />
        <p>Remove Product:</p>  <select name="removeProduct">{brandProducts}</select> <br /> <br />
        <p>Add Product:</p>  <select name="addProduct">{allProducts}</select> <br /> <br />
+     
+   
 
        <button type="submit" >Change</button>
       </form>

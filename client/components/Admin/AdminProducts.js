@@ -27,7 +27,7 @@ export class AdminProducts extends Component {
       })
       let productsSelect = this.props.products.map(product => {
         return (<option key={product.id} value={product.id}>{product.name}</option>)
-    }) 
+      }) 
       products.sort()
     return (
       <div>

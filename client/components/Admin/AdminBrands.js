@@ -40,7 +40,7 @@ export class AdminBrands extends Component {
         <AdminAddBrand />
         <hr />
         <form onSubmit={this.deleteItem}>
-        <h1>Delete a product</h1>
+        <h1>Delete a Brand</h1>
         <p>Brands:</p>  <select name="brand">{brandsSelect}</select> <br /> <br />
        
         <button type="submit" >Delete</button>

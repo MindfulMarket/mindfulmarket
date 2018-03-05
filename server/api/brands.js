@@ -44,7 +44,7 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-  Brands.update(req.body.main, { 
+  Brands.update(req.body, { 
     where: { 
       id: req.params.id 
     },
@@ -52,8 +52,8 @@ router.put('/:id', (req, res, next) => {
   })
 .then((brand) => {
     let promises = []
-    if (req.body.product) promises.push(brand[1][0].addProduct(req.body.product))
-    if (req.body.service) promises.push(brand[1][0].addService(req.body.service))
+    if (req.body.addProduct) promises.push(brand[1][0].addProduct(req.body.addProduct))
+    if (req.body.removeProduct) promises.push(brand[1][0].removeProduct(req.body.removeProduct))
     Promise.all(promises)
       .then(_ => Brands.scope('populated').findById(req.params.id))
       .then(reloadedBrand => {

@@ -59,11 +59,3 @@ const mapDispatch = (dispatch) => {
 
 export default withRouter(connect(mapState, mapDispatch)(App));
 
-<<<<<<< HEAD
-
-const mapState = ({ user }) => {
-  return { user }
-}
-export default connect(mapState)(App)
-=======
->>>>>>> master

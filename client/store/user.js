@@ -8,11 +8,8 @@ import { fetchAndSetCart } from './cart'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
-<<<<<<< HEAD
 const SET_ADMIN = 'SET_ADMIN'
-=======
 const GET_ORDERS = 'GET_ORDERS'
->>>>>>> master
 
 /**
  * INITIAL STATE
@@ -94,13 +91,10 @@ export default function (state = defaultUser, action) {
             return action.user
         case REMOVE_USER:
             return defaultUser
-<<<<<<< HEAD
         case SET_ADMIN:
             return action.user
-=======
         case GET_ORDERS:
             return { ...state, orders: action.orders }
->>>>>>> master
         default:
             return state
     }

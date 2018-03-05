@@ -21,7 +21,6 @@ export {default as SingleBrand} from './pages/SingleBrand'
 export {default as SingleCause} from './pages/SingleCause'
 export {default as SingleProduct} from './pages/SingleProduct'
 export {default as SingleService} from './SingleService'
-<<<<<<< HEAD
 
 
 //Admin
@@ -35,9 +34,7 @@ export {default as SingleAdminBrand} from './Admin/SingleAdminBrand'
 
 
 
-=======
 export {default as SingleCategory} from './pages/SingleCategory'
 
 
 export {default as Card} from './common/Card'
->>>>>>> master

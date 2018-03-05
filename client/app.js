@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   render () {
-    return(
+    return (
     <div id = "appDiv">
       <Navbar component={this.props} />
       <Routes />

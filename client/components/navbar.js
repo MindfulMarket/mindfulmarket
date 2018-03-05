@@ -16,20 +16,20 @@ const Navbar = (props) => (
 
       {props.isLoggedIn ? (
         <div>
-          <Link id="logout" style={{ marginRight: "20px" }} onClick={() => {
+          <Link
+id="logout" style={{ marginRight: '20px' }} onClick={() => {
             props.handleClick()
             axios.put(`/api/users/${this.props.initial.id}`, { shoppingCart: this.props.cart })
-          }} to='/'>Logout</Link>
+          }} to="/">Logout</Link>
           <Link id="profileLink" to="/profile">Your Account</Link>
-          <a href='/about' style={{ marginRight: "20px" }}>About Mindful Market</a>
+          <a href="/about" style={{ marginRight: '20px' }}>About Mindful Market</a>
 
         </div>
       ) : <div>
-          <Link to="/login" style={{ marginRight: "20px" }}>Login</Link>
-          <Link to="/signup" style={{ marginRight: "20px" }}>Sign Up</Link>
-          <a href='/about' style={{ marginRight: "20px" }}>About Mindful Market</a></div>
+          <Link to="/login" style={{ marginRight: '20px' }}>Login</Link>
+          <Link to="/signup" style={{ marginRight: '20px' }}>Sign Up</Link>
+          <a href="/about" style={{ marginRight: '20px' }}>About Mindful Market</a></div>
       }
-
 
 
     </div>
@@ -37,28 +37,30 @@ const Navbar = (props) => (
     <div className="bottomNavbar">
       <div className="titlebar">
         <a href="/" id="title"><p>MINDFUL MARKET</p></a>
-        <p id='snootyCaption'> redefining shopping, for those who care</p>
+        <p id="snootyCaption"> redefining shopping, for those who care</p>
       </div>
 
       <div className="links-container">
         <nav >
           {
 
-            <div className='dropdown'>
+            <div className="dropdown">
               {/* Links for main page components for navigation, NOT for presentational use*/}
-              <ul className='menu'>
+              <ul className="menu">
 
 
-
-                <li className='dropdown2 mainNavLink' ><Link activeStyle={{ boxShadow: '0 0 .4em 0.1em rgb(18, 108, 119)' }} activeClassName="active" to="/causes" style={{
+                <li className="dropdown2 mainNavLink" ><Link
+activeStyle={{ boxShadow: '0 0 .4em 0.1em rgb(18, 108, 119)' }} activeClassName="active" to="/causes" style={{
                   color: 'rgb(18, 108, 119)'
                 }}>Causes</Link>
-                  <ul className='features-menu' style={{
+                  <ul
+className="features-menu" style={{
                     color: 'rgb(255 , 255, 255)'
                   }}>
                     {props.causes.map(cause => (
                       <li
-                        className='navDropLabel' key={cause.id}><a style={{
+                        className="navDropLabel" key={cause.id}><a
+style={{
                           color: 'rgb(255,255,255)'
                         }} href={`/causes/${cause.id}`}>{cause.name}</a></li>
 
@@ -70,15 +72,17 @@ const Navbar = (props) => (
                 </li>
 
 
-
-                <li className='dropdown3 mainNavLink'><Link to="/categories" style={{ color: 'rgb(18, 108, 119)' }}>Categories</Link>
-                  <ul className='features-menu2' style={{
+                <li className="dropdown3 mainNavLink"><Link to="/categories" style={{ color: 'rgb(18, 108, 119)' }}>Categories</Link>
+                  <ul
+className="features-menu2" style={{
                     color: 'rgb(255 , 255, 255)'
                   }}>
                     {props.categories.map(category => (
-                      <li style={{
+                      <li
+style={{
                         color: 'rgb(255,255,255)'
-                      }} className='navDropLabel' key={category.id}><a style={{
+                      }} className="navDropLabel" key={category.id}><a
+style={{
                         color: 'rgb(255 , 255, 255)'
                       }} href={`/categories/${category.id}`}>{category.name}</a></li>
                     ))
@@ -87,14 +91,16 @@ const Navbar = (props) => (
                 </li>
 
 
-                <li className='dropdown4 mainNavLink'><Link to="/brands" style={{ color: 'rgb(18, 108, 119)' }}>Brands</Link>
-                  <ul className='features-menu3'>
+                <li className="dropdown4 mainNavLink"><Link to="/brands" style={{ color: 'rgb(18, 108, 119)' }}>Brands</Link>
+                  <ul className="features-menu3">
                     {
                       props.brands.map(brand => {
                         console.log('THHEGGBABBABABBA,', brand)
-                        return (<li style={{
+                        return (<li
+style={{
                           color: 'rgb(255,255,255)'
-                        }} className='navDropLabel' key={brand.id}><a style={{
+                        }} className="navDropLabel" key={brand.id}><a
+style={{
                           color: 'rgb(255 , 255, 255)'
                         }} href={`/brands/${brand.id}`}>{brand.name}</a></li>)
                       }
@@ -106,7 +112,7 @@ const Navbar = (props) => (
               </ul>
               <Link to="/products" >PROD TEMP</Link>
               <Search />
-              <Link to="/cart" ><img id="cartImg" style={{ height: "55px", width: '45px', marginTop: '-15px' }} src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/green-metallic-orbs-icons-business/082438-green-metallic-orb-icon-business-basket.png" /></Link>
+              <Link to="/cart" ><img id="cartImg" style={{ height: '55px', width: '45px', marginTop: '-15px' }} src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/green-metallic-orbs-icons-business/082438-green-metallic-orb-icon-business-basket.png" /></Link>
             </div>}
 
         </nav>

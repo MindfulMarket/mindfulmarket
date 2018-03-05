@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { search } from '../store/search'
 
 
-
 class Search extends Component {
 
   constructor() {
@@ -39,7 +38,6 @@ class Search extends Component {
      )
     }
   }
-
 
 
 /**

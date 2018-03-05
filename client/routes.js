@@ -20,8 +20,6 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
 
-    //console.log('THE USER IS', this.props.initial.shoppingCart)
-    //console.log('APP STARTED')
    //this.props.fetchCart(this.props.initialCart)
     window.addEventListener("beforeunload", () =>{
     axios.put(`/api/users/${this.props.initial.id}`, {shoppingCart: this.props.cartContents})
@@ -30,7 +28,6 @@ class Routes extends Component {
 
 
   render() {
-    const { isLoggedIn } = this.props
     return (
 
       <Switch>

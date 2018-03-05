@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { searchEverything } from '../store/search'
+import { search } from '../store/search'
+import { withRouter } from 'react-router-dom';
 
 
 
@@ -19,7 +20,8 @@ class Search extends Component {
   handleSubmit(event) {
     event.preventDefault();
     let searchCriteria = this.state.searchEntry;
-    this.props.searchEverything({searchCriteria})
+    this.props.search({ searchCriteria : searchCriteria })
+    .then( () => this.props.history.push(`/products`) )
   }
 
   handleChange(event) {
@@ -56,11 +58,11 @@ const mapState = state => {
 }
 
 
-const mapDispatch = dispatch => ({
-  searchEverything: (criteria) => dispatch(searchEverything(criteria))
+const mapDispatch = (dispatch, ownProps) => ({
+  search: (criteria) => dispatch(search(criteria))
 });
 
-export default connect(mapState, mapDispatch)(Search)
+export default withRouter(connect(mapState, mapDispatch)(Search))
 
 /**
  * PROP TYPES

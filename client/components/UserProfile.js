@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import {getOrders} from '../store/user'
+import { fetchAllBrands } from '../store/brands'
 /* -----------------    COMPONENT     ------------------ */
 let orders = [];
 
@@ -15,7 +16,6 @@ class UserProfile extends Component {
   }
 
   render() {
-    //console.log('PROPS INSIDE ALL PROFILE',this.props)
     return (
       <div className="profile-container">
       {
@@ -25,15 +25,15 @@ class UserProfile extends Component {
           <div>
             <h1 id = "userName">{this.props.user.firstName}</h1>
         {
-           this.props.user.orders.map((order)=>{
-          return(
-            <div className = 'orderDiv'>
-            {order.productsOrdered.map((product)=><div>{product.product.name}</div>)}
+           this.props.user.orders.map((order) => {
+          return (
+            <div key={order.id} className = "orderDiv">
+            {order.productsOrdered.map((product) => <div key={product.id}>{product.product.name}</div>)}
             </div>
           )
       })}
     </div>
-  ):
+  ) :
   (<h1>You are not currently logged in!</h1>)
 
   }
@@ -44,8 +44,8 @@ class UserProfile extends Component {
 }
 
 
-const mapState = ({ products, product, brands ,user}) => {
-  return { products, product, brands , user,
+const mapState = ({ products, product, brands, user}) => {
+  return { products, product, brands, user,
     isLoggedIn: !!user.id,
 
   }

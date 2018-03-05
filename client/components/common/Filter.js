@@ -12,19 +12,19 @@ class Filter extends Component {
   render() {
     return (
       <div id="filterBar">
-        <div id='filterSearch' >
-          <img id='searchIcon' src='/assets/search.png' />
-          <input id='searchInput' placeholder="Search" />
+        <div id="filterSearch" >
+          <img id="searchIcon" src="/assets/search.png" />
+          <input id="searchInput" placeholder="Search" />
         </div>
 
-        <div className='filterHeaderFlex'>
-          <h4 className='filterHeader'>Price</h4>
-          <i class="fas fa-dollar-sign"></i>
+        <div className="filterHeaderFlex">
+          <h4 className="filterHeader">Price</h4>
+          <i className="fas fa-dollar-sign" />
 
         </div>
 
-        <div className='filterLabelDDFlex'>
-        <h4 className='filterLabel'>sort</h4>
+        <div className="filterLabelDDFlex">
+        <h4 className="filterLabel">sort</h4>
           <select className="filterBarSelectDropdown" onChange={(ev) => this.props.handleSort(ev.target.value)}>
             <option selected="selected">none</option>
             <option value="lowHigh">low to high</option>
@@ -32,8 +32,8 @@ class Filter extends Component {
           </select>
         </div>
 
-        <div className='filterLabelDDFlex'>
-        <h4 className='filterLabel'>filter</h4>
+        <div className="filterLabelDDFlex">
+        <h4 className="filterLabel">filter</h4>
           <select className="filterBarSelectDropdown" defaultValue="none" onChange={(ev) => this.props.handleFilter(ev.target.value)}>
             <option selected="selected">none</option>
             <option value="underTen">Under $10</option>
@@ -47,13 +47,13 @@ class Filter extends Component {
         </div>
 
 
-        <div className='filterHeaderFlex'>
-          <h4 className='filterHeader'>Rating</h4>
-          <img className = "filterStarLogo" src = '/assets/star.png'/>
+        <div className="filterHeaderFlex">
+          <h4 className="filterHeader">Rating</h4>
+          <img className = "filterStarLogo" src = "/assets/star.png" />
         </div>
 
-        <div className='filterLabelDDFlex'>
-        <h4 className='filterLabel'>sort</h4>
+        <div className="filterLabelDDFlex">
+        <h4 className="filterLabel">sort</h4>
 
           <select className="filterBarSelectDropdown"  onChange={(ev) => this.props.handleSort(ev.target.value)}>
             <option selected="selected">none</option>
@@ -62,8 +62,8 @@ class Filter extends Component {
           </select>
         </div>
 
-        <div className='filterLabelDDFlex'>
-          <h4 className='filterLabel'>filter</h4>
+        <div className="filterLabelDDFlex">
+          <h4 className="filterLabel">filter</h4>
           <select className="filterBarSelectDropdown" onChange={(ev) => this.props.handleFilter(ev.target.value)}>
             <option selected="selected">none</option>
             <option value="one">0 - 1 Stars</option>
@@ -74,13 +74,13 @@ class Filter extends Component {
           </select>
         </div>
 
-        <div className='filterHeaderFlex'>
-        <h4 className='filterHeader'>Reviews</h4>
-        <i class="far fa-comments" ></i>
+        <div className="filterHeaderFlex">
+        <h4 className="filterHeader">Reviews</h4>
+        <i className="far fa-comments"  />
         </div>
 
-      <div className='filterLabelDDFlex'>
-      <h4 className='filterLabel'>sort</h4>
+      <div className="filterLabelDDFlex">
+      <h4 className="filterLabel">sort</h4>
 
         <select className="filterBarSelectDropdown" onChange={(ev) => this.props.handleSort(ev.target.value)}>
           <option selected="selected">none</option>
@@ -89,8 +89,8 @@ class Filter extends Component {
         </select>
       </div>
 
-      <div className='filterLabelDDFlex'>
-        <h4 className='filterLabel'>filter</h4>
+      <div className="filterLabelDDFlex">
+        <h4 className="filterLabel">filter</h4>
         <select className="filterBarSelectDropdown" onChange={(ev) => this.props.handleFilter(ev.target.value)}>
           <option selected="selected">none</option>
           <option value="one">0 - 1 Stars</option>

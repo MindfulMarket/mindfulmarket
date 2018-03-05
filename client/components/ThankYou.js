@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchAllCauses } from '../store/causes'
 
 /* -----------------    COMPONENT     ------------------ */
 class ThankYou extends Component {
@@ -8,15 +9,15 @@ class ThankYou extends Component {
   }
   render() {
     return (
-      <div id = 'thanksContainer'>
-      <h1>Thank you for {this.props.match.params.action === "ordered" ? "your order":"signing up"} {this.props.userName}!</h1>
+      <div id = "thanksContainer">
+      <h1>Thank you for {this.props.match.params.action === 'ordered' ? 'your order' : 'signing up'} {this.props.userName}!</h1>
       </div>
     )
   }
 }
 
 const mapState = ({ user}) => {
-  return { userName:user.firstName }
+  return { userName: user.firstName }
 }
 
 const mapDispatch = dispatch => ({

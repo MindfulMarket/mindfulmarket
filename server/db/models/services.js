@@ -17,7 +17,7 @@ const Services = db.define('services', {
     description: {
         type: Sequelize.TEXT,
     },
-},{
+}, {
     scopes: {
       populated: () => ({
         include: [{all: true}]

@@ -40,7 +40,7 @@ class SingleCause extends Component {
 
 
     return (
-      <div className='page'>
+      <div className="page">
         {
           !singleCause
             ? ''

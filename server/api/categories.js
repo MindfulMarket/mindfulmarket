@@ -16,10 +16,10 @@ router.get('/:id', (req, res, next) => {
 })
 
 router.get('/:id/products', (req, res, next) => {
-  Categories.findById(req.params.id, {include:{all:true}})
+  Categories.findById(req.params.id, {include: {all: true}})
     .then(result => {
       result.getProducts()
-      .then((products)=>{
+      .then((products) => {
         res.json(products)
       })
     })

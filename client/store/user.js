@@ -58,12 +58,11 @@ export const auth = (firstName, lastName, email, password, method) =>
             })
 
 
-
 export const logout = () =>
     dispatch =>
         axios.post('/auth/logout')
             .then(_ => {
-                console.log("LOGOUT ROUTE HIT")
+                console.log('LOGOUT ROUTE HIT')
                 dispatch(removeUser())
                 dispatch(fetchAndSetCart([])) //clear the frontend cart on logout
                 history.push('/login')

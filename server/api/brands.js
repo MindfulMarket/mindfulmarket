@@ -17,9 +17,9 @@ router.get('/:id', (req, res, next) => {
 
 router.get('/:id/products', (req, res, next) => {
   Brands.scope('populated').findById(req.params.id)
-    .then(result =>{
+    .then(result => {
       result.getProducts()
-      .then((products)=>{
+      .then((products) => {
         res.json(products)
       })
     })

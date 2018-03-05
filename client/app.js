@@ -7,8 +7,12 @@ import { me } from './store'
 import { fetchProducts } from './store/products'
 import { fetchAllCauses } from './store/causes';
 import { fetchAllCategories } from './store/categories';
-import {fetchAndSetCart} from './store/cart' //WHERE
+import {fetchAndSetCart} from './store/cart'
+import {fetchAllBrands} from './store/brands' //WHERE
+//WHERE
 import { Navbar } from './components'
+import { Footer } from './components'
+
 import Routes from './routes'
 
 
@@ -23,9 +27,10 @@ class App extends Component {
 
   render () {
     return(
-    <div>
+    <div id = "appDiv">
       <Navbar component={this.props} />
       <Routes />
+      <Footer component={this.props} />
     </div>
   )
 }
@@ -51,6 +56,8 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchProducts())
       dispatch(fetchAllCauses())
       dispatch(fetchAllCategories())
+      dispatch(fetchAllBrands())
+
 
     }
   }

@@ -98,7 +98,7 @@ const products = brandList => [{
     causeId: 2,
     name: 'The Cashmere Crew',
     imageUrl: 'https://everlane-2.imgix.net/i/edb933ed_2ec4.jpg?dpr=1&w=1200&h=1200&q=65',
-    price: 70,
+    price: 70.98,
     // id: 1,
     description: 'Sometimes we love a design so much that we overproduce it. We’re getting better at predicting demand, but to move overstock on selected items, we’re letting you choose what you pay. Enjoy.'
     // productURL: https://www.everlane.com/products/mens-cashmere-crew3-blackcharcoalstripe
@@ -109,7 +109,7 @@ const products = brandList => [{
     causeId: 2,
     name: 'The Kick Crop Jean',
     imageUrl: 'https://everlane-2.imgix.net/i/6e3c1dad_9816.jpg?dpr=1&w=1200&h=1200&q=65',
-    price: 78,
+    price: 78.98,
     description: 'Your most leg-lengthening jean. Our Kick Crop features a subtle kick-flare at the ankle and is made of our premium 11 oz Japanese denim with a touch of stretch. Plus, we added a stay stitch so the raw hem stays put through repeated washes. Magic jeans? We think so',
     // productURL: https://www.everlane.com/products/womens-kick-crop-jean-black?collection=womens-newest-arrivals
 },
@@ -119,7 +119,7 @@ const products = brandList => [{
     causeId: 2,
     name: 'The Chambray Slim Fit Shirt',
     imageUrl: 'https://everlane-2.imgix.net/i/42a55cec_405f.jpg?dpr=1&w=1200&h=1200&q=65',
-    price: 58,
+    price: 58.98,
     description: 'Our slim fit shirt in clean, casual chambray. This light and comfortable cotton is classic and seasonless, so you can wear it all year—just layer appropriately.'
     // productURL: https://www.everlane.com/products/mens-slim-fit-chambray-blacksulfur?collection=mens-newest-arrivals
 },
@@ -129,7 +129,7 @@ const products = brandList => [{
     causeId: 2,
     name: 'The Cropped City Anorak',
     imageUrl: 'https://everlane.imgix.net/i/1dbd43b7_6d8a.jpg?dpr=1&w=1200&h=1200&q=65',
-    price: 78,
+    price: 78.98,
     description: 'Your perfect transitional layer. This lightweight, cropped take on the anorak has a relaxed shape for easy layering, plus an extendable hood visor, snap closure, and covered pockets. We also treated it with a water-resistant finish for sleek coverage—rain or shine.'
     // productURL: https://www.everlane.com/products/womens-cropped-city-anorak-fadedsage?collection=womens-newest-arrivals
 },
@@ -139,7 +139,7 @@ const products = brandList => [{
     causeId: 3,
     name: 'Long-Sleeved Lightweight Fjord Flannel Shirt',
     imageUrl: 'http://www.patagonia.com/dis/dw/image/v2/ABBM_PRD/on/demandware.static/-/Sites-patagonia-master/default/dw9a27c612/images/hi-res/54020_NVNB.jpg?sw=2000&sh=2000&sm=fit&sfrm=png',
-    price: 79,
+    price: 79.95,
     // brandId: 6,
     description: 'A lightweight version of our classic Long-Sleeved Fjord Flannel, this trusty organic cotton midweight flannel keeps you looking presentable whether you’re meeting the higher-ups or just hitting après at the GLC.'
     // productURL: http://www.patagonia.com/product/mens-long-sleeved-lightweight-fjord-flannel-shirt/54020.html?dwvar_54020_color=ROOC&cgid=mens-new#start=1
@@ -150,7 +150,7 @@ const products = brandList => [{
     causeId: 3,
     name: 'Fleetwith Dress',
     imageUrl: 'http://www.patagonia.com/dis/dw/image/v2/ABBM_PRD/on/demandware.static/-/Sites-patagonia-master/default/dw36cc6527/images/hi-res/58335_BLK_OM1.jpg?sw=2000&sh=2000&sm=fit&sfrm=png',
-    price: 75,
+    price: 75.99,
     // brandId: 6,
     description: 'The Fleetwith Dress was built for hiking, traveling and general getting out and about. Made from a 91% recycled polyester/9% spandex blend that’s quick-drying and resists wrinkling.'
     // productURL: http://www.patagonia.com/product/womens-fleetwith-dress/58335.html?dwvar_58335_color=PST&cgid=womens-dresses-skirts#start=1
@@ -161,7 +161,7 @@ const products = brandList => [{
     causeId: 5,
     name: 'Danielle Marigold Print Dress',
     imageUrl: 'http://www.peopletree.co.uk/productimages/women/dresses/danielle-marigold-print-dress-09329d538021.jpg?height=750&width=500&404=default',
-    price: 124,
+    price: 124.95,
     // brandId: 1,
     description: 'Where would your wardrobe be without an effortlessly stylish fit and flare dress that\'s ready for whatever you\'ve got on the agenda? It\'s cleverly tailored to create a defined waist, with a touch of stretch for figure-hugging lines. It\'s no wonder this is an all-time People Tree favourite.'
     //productURL: http://www.peopletree.co.uk/women/danielle-marigold-print-dress?ref=U3RvY2stR3JvdXAtMQ%3d%3d
@@ -173,7 +173,7 @@ const products = brandList => [{
     causeId: 2,
     name: 'Baxter bag',
     imageUrl: 'http://mattandnat.com/shop/media/catalog/product/cache/11/image/545x/040ec09b1e35df139433887a97daa66f/s/s/ss18-dwell-baxter-ruby-1.jpg',
-    price: 145,
+    price: 145.95,
     // brandId: 5,
     description: 'DWELL COLLECTION Tote that can be worn crossbody with removable and adjustable strap. Secured magnetic snap closure and back slit pocket.'
     // productURL: http://mattandnat.com/shop/collections/dwell/baxter-ink
@@ -288,27 +288,27 @@ const categories = [{
 const causes = [
 
     {
-        name: 'Stop homelessness',
+        name: 'Homelessness',
         imageUrl: 'http://1.bp.blogspot.com/-TWQiW5yyW_Q/T0eOQ5Y32UI/AAAAAAAAE6E/MnSrOFAPg5c/s1600/No+Homeless.jpg',
         description: 'Help imporve situation of homeless people around the world'
     },
     {
-        name: 'Stop deforestation',
+        name: 'Deforestation',
         imageUrl: 'https://st.depositphotos.com/2965773/4205/v/950/depositphotos_42058953-stock-illustration-stop-deforestation.jpg',
         description: 'Help imporve situation of trees around the world'
     },
     {
-        name: 'Use less water',
+        name: 'Water Conservation',
         imageUrl: 'http://www.oceansidechamber.com/uploads/4/4/5/3/44535401/9878833_orig.jpg',
         description: 'Help imporve situation of water around the world'
     },
     {
-        name: 'Stop animal cruelty',
+        name: 'Animal cruelty',
         imageUrl: 'http://www.lovethispic.com/uploaded_images/64834-Stop-Animal-Cruelty.jpg',
         description: 'Bear rugs are out'
     },
     {
-        name: 'Stop chemical pollution',
+        name: 'Pollution',
         imageUrl: 'https://images.fineartamerica.com/images-medium-large/stop-pollution-gualtiero-boffi.jpg',
         description: 'that river smells weird'
     }

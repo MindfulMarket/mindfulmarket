@@ -44,7 +44,7 @@ const Card = (props) => {
                     <div className="starFlex">
                       {
                         props.product.avgRating !== 'no reviews' ?
-                          starCalc(props.product.avgRating).map((star) => <img className="star" src={star} />)
+                          starCalc(props.product.avgRating).map((star) => <img className="star" key={star.id} src={star} />)
                           :
                           <div style = {{fontSize: '10pt'}}>No reviews</div>
                       }
@@ -63,12 +63,21 @@ const Card = (props) => {
           </div>
         </div>
       </div>
+      { props.button &&
       <div className="cardPriceBtnDiv">
         {props.price &&  // we may do a props.price? :
           <h4 className="cardPrice">$ {props.price}</h4>
         }
+        {
+        props.button === 'Add to cart' ?
         <button className="cardBtn" onClick={() => props.addToCart(props.product)}>{props.button}</button>
+        :
+        <a href={`/${props.category}s/${props.id}`}>
+        <button className="cardBtn">{props.button}</button></a>
+
+        }
       </div>
+      }
     </div>
   )
 }

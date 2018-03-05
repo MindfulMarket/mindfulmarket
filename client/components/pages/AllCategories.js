@@ -5,9 +5,6 @@ import { fetchAllCategories } from '../../store/categories';
 /* -----------------    COMPONENT     ------------------ */
 
 class AllCategories extends Component {
-  constructor() {
-    super();
-  }
 
   componentDidMount() {
    this.props.fetchCategoryData();
@@ -15,25 +12,22 @@ class AllCategories extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="page container">
 
         <div className="itemsContainer">
           <div className="featuredContainer">
-            <h1> Here is where we show featured Items </h1>
+            <h1> Whatever it is that you are looking for, there is a socially responsible product. Find it below: </h1>
           </div>
 
           <div className="container" style={{ flexDirection: 'row' }}>
-            <div className="filterContainer">
-            <h1> Here is where we filter Items</h1>
-            </div>
 
             <div className="itemsContainer">
-              <h1> TBD Categories</h1>
+
 
               <div className="allItemsContainer" >
               {
                 this.props.categories.map(category =>
-                  <Card key={category.name} category="categorie" type="category" id={category.id} brand="null" button="explore" name={category.name} imageUrl={category.imageUrl} />
+                  <Card key={category.id} category="categorie" type="category" id={category.id} brand="null" button="explore" name={category.name} imageUrl={category.imageUrl} />
                 )
               }
               </div>

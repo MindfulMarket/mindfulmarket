@@ -4,7 +4,6 @@ import { search } from '../store/search'
 import { withRouter } from 'react-router-dom';
 
 
-
 class Search extends Component {
 
   constructor() {
@@ -20,7 +19,7 @@ class Search extends Component {
   handleSubmit(event) {
     event.preventDefault();
     let searchCriteria = this.state.searchEntry;
-    this.props.search({ searchCriteria : searchCriteria })
+    this.props.search({ searchCriteria: searchCriteria })
     .then( () => this.props.history.push(`/products`) )
   }
 
@@ -42,7 +41,6 @@ class Search extends Component {
   }
 
 
-
 /**
  * CONTAINER
  */
@@ -58,7 +56,7 @@ const mapState = state => {
 }
 
 
-const mapDispatch = (dispatch, ownProps) => ({
+const mapDispatch = (dispatch) => ({
   search: (criteria) => dispatch(search(criteria))
 });
 

@@ -57,7 +57,6 @@ export const auth = (firstName, lastName, email, password, method) =>
     })
 
 
-
 export const logout = () =>
     dispatch =>
     axios.post('/auth/logout')

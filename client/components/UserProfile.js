@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import {getOrders} from '../store/user'
 import { fetchAllBrands } from '../store/brands'
@@ -7,13 +6,11 @@ import { fetchAllBrands } from '../store/brands'
 let orders = [];
 
 class UserProfile extends Component {
-  constructor(props) {
-    super(props);
 
-  }
-  componentDidMount() {
-    //this.props.getUserOrders(this.props.user.id)
-  }
+
+  // componentDidMount() {
+  //   //this.props.getUserOrders(this.props.user.id)
+  // }
 
   render() {
     return (

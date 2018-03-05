@@ -50,7 +50,7 @@ class AllProducts extends Component {
     })
 
     return (
-      <div className="container page" style={{width:'100vw', marginTop: '3em', flexDirection: 'column' }}>
+      <div className="page">
 
         <div className="container" style={{ flexDirection: 'row' }}>
           <Filter />

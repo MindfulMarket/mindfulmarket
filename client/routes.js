@@ -8,8 +8,6 @@ import {me, fetchProducts,fetchAllBrands, fetchAllCauses, fetchAllCategories} fr
 
 import { fetchAndSetCart } from './store/cart' //WHERE
 
-
-
 import axios from 'axios' //wast throwing as error without import......WHY
 
 /**
@@ -23,7 +21,7 @@ class Routes extends Component {
     //console.log('THE USER IS', this.props.initial.shoppingCart)
     //console.log('APP STARTED')
    //this.props.fetchCart(this.props.initialCart)
-    window.addEventListener("beforeunload", () =>{
+    window.addEventListener('beforeunload', () => {
     axios.put(`/api/users/${this.props.initial.id}`, {shoppingCart: this.props.cartContents})
   })
   }

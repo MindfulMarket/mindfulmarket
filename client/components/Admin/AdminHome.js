@@ -14,6 +14,7 @@ export class AdminHome extends Component {
 
     return (
       <div>
+      <AdminNav  id = "AdminNav" />
         {
           this.props.user.isAdmin
           ?
@@ -34,5 +35,3 @@ const mapState = ({ user }) => {
   return { user }
 }
 export default connect(mapState)(AdminHome)
-
-// <AdminNav  id = "AdminNav" />

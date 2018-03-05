@@ -35,7 +35,9 @@ export class AdminProducts extends Component {
     products.sort()
     return (
       <div>
-        {this.props.user.isAdmin
+      <AdminNav />
+        {
+          this.props.user.isAdmin
           ?
           <div>
             <h1>Products</h1>
@@ -69,4 +71,3 @@ const mapState = ({ products }) => {
 }
 export default connect(mapState)(AdminProducts)
 
-// <AdminNav />

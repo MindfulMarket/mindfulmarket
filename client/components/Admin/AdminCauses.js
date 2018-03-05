@@ -18,6 +18,7 @@ export class AdminCauses extends Component {
       causes.sort()
     return (
       <div>
+      <AdminNav />
       <h1>Causes</h1>
         <ul>
             {
@@ -38,5 +39,3 @@ const mapState = ({ causes }) => {
   return { causes }
 }
 export default connect(mapState)(AdminCauses)
-
-// <AdminNav />

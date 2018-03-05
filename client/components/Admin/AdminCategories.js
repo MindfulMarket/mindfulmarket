@@ -29,6 +29,7 @@ export class AdminCategories extends Component {
 
     return (
       <div>
+      <AdminNav />
       <h1>AdminCategories</h1>
       <ul>
       {
@@ -47,5 +48,3 @@ const mapState = ({ categories }) => {
   return { categories }
 }
 export default connect(mapState)(AdminCategories)
-
-// <AdminNav />

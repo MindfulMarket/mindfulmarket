@@ -17,6 +17,7 @@ export class AdminOrders extends Component {
 
     return (
       <div>
+      <AdminNav />
       <h1>Orders</h1>
 
         </div>
@@ -30,5 +31,3 @@ const mapState = ({ orders }) => {
   return { orders: ''}
 }
 export default connect(mapState)(AdminOrders)
-
-// <AdminNav />

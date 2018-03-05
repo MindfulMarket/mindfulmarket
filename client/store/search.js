@@ -10,12 +10,10 @@ const searchEverything = search => ({ type: SEARCH_ALL, search });
 /* ------------       THUNK CREATORS     ------------------ */
 
 export const search = (criteria) => dispatch => {
-    console.log(criteria)
     axios.post('/api/search', criteria)
         .then(res => dispatch(searchEverything(res.data)))
         .then(foundCriteria => {
             console.log(foundCriteria)
-
         })
         .catch(err => console.error(err));
 }

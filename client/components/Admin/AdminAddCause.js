@@ -28,7 +28,7 @@ export default class AdminAddCause extends Component {
       <div>
           <h1>Add cause</h1>
       <form onSubmit={this.addItem}>
-        <p>Name:</p> <input name="name" id="name" type="text"/> <br /> <br />
+        <p>Name:</p> <input name="name" id="name" type="text" /> <br /> <br />
         <p>Description:</p> <textarea name="description" cols="35" rows="5" /> <br /> <br />
         <button type="submit" >Add</button>
       </form>

@@ -9,7 +9,6 @@ class SingleAdminProduct extends Component {
         super(props)
         this.editItem = this.editItem.bind(this)
     }
-
  
 
     editItem(e){
@@ -39,19 +38,19 @@ class SingleAdminProduct extends Component {
         return (<option key={brand.id} value={brand.id}>{brand.name}</option>)
    }) 
    brands.unshift(<option value="remove">Remove Brand</option>)
-   brands.unshift(<option value=''>-</option>)
+   brands.unshift(<option value="">-</option>)
 
    let causes = this.props.causes.map(cause => {
       return (<option key={cause.id} value={cause.id}>{cause.name}</option>)
     }) 
     causes.unshift(<option value="remove">Remove Cause</option>)
-    causes.unshift(<option value=''>-</option>)
+    causes.unshift(<option value="">-</option>)
 
     let categories = this.props.categories.map(category => {
       return (<option key={category.id} value={category.id}>{category.name}</option>)
     }) 
     categories.unshift(<option value="remove">Remove Category</option>)
-    categories.unshift(<option value=''>-</option>)
+    categories.unshift(<option value="">-</option>)
 
 
     return (
@@ -71,8 +70,8 @@ class SingleAdminProduct extends Component {
 
     <hr />
       <form onSubmit={this.editItem}>
-       <p>Edit Name:</p> <input name="name" id="name" type="text"/> <br /> <br />
-       <p>Edit Image:</p> <input name="image" id="name" type="text"/> <br /> <br />
+       <p>Edit Name:</p> <input name="name" id="name" type="text" /> <br /> <br />
+       <p>Edit Image:</p> <input name="image" id="name" type="text" /> <br /> <br />
        <p>Edit Brand:</p>  <select name="brand">{brands}</select> <br /> <br />
        <p>Edit Cause:</p>  <select name="cause">{causes}</select> <br /> <br />
        <p>Edit Category:</p>  <select name="category">{categories}</select> <br /> <br />

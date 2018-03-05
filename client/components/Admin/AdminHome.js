@@ -18,7 +18,7 @@ export class AdminHome extends Component {
           this.props.user.isAdmin
           ?
           <div>
-          <AdminNav  id = "adminNav" />
+          <AdminNav  id = "AdminNav" />
           </div>
           :
           'Not Authorized'

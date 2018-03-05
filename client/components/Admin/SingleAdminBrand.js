@@ -9,7 +9,6 @@ class SingleAdminBrand extends Component {
         super(props)
         this.editItem = this.editItem.bind(this)
     }
-
  
 
     editItem(e){
@@ -28,7 +27,6 @@ class SingleAdminBrand extends Component {
 
    
    let singleBrand = this.props.brands.filter(brand => brand.id === Number(this.props.match.params.id))[0]
-  
    
 
    let brandProducts = this.props.products
@@ -45,7 +43,6 @@ class SingleAdminBrand extends Component {
     let causes = this.props.causes.map(cause => {
       return (<option key={cause.id} value={cause.id}>{cause.name}</option>)
     }) 
-
 
 
     return (
@@ -65,7 +62,7 @@ class SingleAdminBrand extends Component {
 
     <hr />
       <form onSubmit={this.editItem}>
-       <p>Edit Name:</p> <input name="name" id="name" type="text"/> <br /> <br />
+       <p>Edit Name:</p> <input name="name" id="name" type="text" /> <br /> <br />
        <p>Edit Cause:</p>  <select name="cause">{causes}</select> <br /> <br />
        <p>Edit Description:</p> <textarea name="description" cols="35" rows="5" /> <br /> <br />
        <p>Remove Product:</p>  <select name="removeProduct">{brandProducts}</select> <br /> <br />

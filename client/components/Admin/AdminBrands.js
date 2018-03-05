@@ -21,7 +21,7 @@ export class AdminBrands extends Component {
   }
   render() {
     console.log(this.props)
-      let brands = this.props.brands.map(brand =>{
+      let brands = this.props.brands.map(brand => {
          return ( <li key={brand.id}><Link to={`/admin/brands/${brand.id}`}>{brand.name}</Link></li>)
       })
       let brandsSelect = this.props.brands.map(brand => {

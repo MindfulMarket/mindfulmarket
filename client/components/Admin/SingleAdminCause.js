@@ -9,7 +9,6 @@ class SingleAdminCause extends Component {
         super(props)
         this.editItem = this.editItem.bind(this)
     }
-
  
 
     editItem(e){
@@ -47,7 +46,6 @@ class SingleAdminCause extends Component {
     // services.push(<option key="" value="">None</option>)
 
 
-
     return (
 
       <div>
@@ -65,7 +63,7 @@ class SingleAdminCause extends Component {
 
     <hr />
       <form onSubmit={this.editItem}>
-       <p>Edit Name:</p> <input name="name" id="name" type="text"/> <br /> <br />
+       <p>Edit Name:</p> <input name="name" id="name" type="text" /> <br /> <br />
        <p>Edit Description:</p> <textarea name="description" cols="35" rows="5" /> <br /> <br />
        <p>Add/remove Brand:</p>  <select name="brand">{brands}</select> <br /> <br />
        <p>Add/remove Product:</p>  <select name="product">{products}</select> <br /> <br />

@@ -12,7 +12,7 @@ export class AdminCauses extends Component {
   }
   render() {
     console.log(this.props)
-      let causes = this.props.causes.map(cause =>{
+      let causes = this.props.causes.map(cause => {
          return ( <li key={cause.id}><Link to={`/admin/causes/${cause.id}`}>{cause.name}</Link></li>)
       })
       causes.sort()

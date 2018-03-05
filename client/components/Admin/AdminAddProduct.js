@@ -32,21 +32,19 @@ class AdminAddProduct extends Component {
        return (<option key={brand.id} value={brand.id}>{brand.name}</option>)
     }) 
     brands.unshift(<option value="remove">Remove Brand</option>)
-    brands.unshift(<option value=''>-</option>)
+    brands.unshift(<option value="">-</option>)
 
     let causes = this.props.causes.map(cause => {
       return (<option key={cause.id} value={cause.id}>{cause.name}</option>)
     }) 
     causes.unshift(<option value="remove">Remove Cause</option>)
-    causes.unshift(<option value=''>-</option>)
+    causes.unshift(<option value="">-</option>)
 
     let categories = this.props.categories.map(category => {
       return (<option key={category.id} value={category.id}>{category.name}</option>)
     }) 
     categories.unshift(<option value="remove">Remove Category</option>)
-    categories.unshift(<option value=''>-</option>)
-
-
+    categories.unshift(<option value="">-</option>)
 
 
     return (
@@ -55,13 +53,13 @@ class AdminAddProduct extends Component {
           <h1>Add Product</h1>
           <hr />
       <form onSubmit={this.addItem}>
-        <p>Name:</p> <input name="name" id="name" type="text"/> <br /> <br />
+        <p>Name:</p> <input name="name" id="name" type="text" /> <br /> <br />
         <p>Description:</p> <textarea name="description" cols="35" rows="5" /> <br /> <br />
         <p>Brand:</p>  <select name="brand">{brands}</select> <br /> <br />
         <p>Cause:</p>  <select name="cause">{causes}</select> <br /> <br />
         <p>Category:</p>  <select name="category">{categories}</select> <br /> <br />
         <p>Price:</p>  <input name="price" id="price" /> <br /> <br />
-        <p>Edit Image:</p> <input name="image" id="image" type="text"/> <br /> <br />
+        <p>Edit Image:</p> <input name="image" id="image" type="text" /> <br /> <br />
         <button type="submit" >Add</button>
       </form>
       </div>

@@ -73,10 +73,6 @@ export const logout = () =>
        dispatch(setAdminMode(user))
     }
     
-      
-    
-  
-    
 
 /**
  * REDUCER

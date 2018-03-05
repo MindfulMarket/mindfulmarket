@@ -66,6 +66,7 @@ class Routes extends Component {
 
         <Route exact path="/admin/brands" component={AdminBrands} />
         <Route path="/admin/brands/:id" component={SingleAdminBrand} />
+        <Route path="/checkout" component={Checkout} />
 
         {
           isLoggedIn &&
@@ -76,7 +77,6 @@ class Routes extends Component {
         }
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
-        <Route path="/checkout" component={Checkout} />
 
 
         <Route path="/categories/:id" component={SingleCategory} />

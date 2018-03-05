@@ -56,7 +56,7 @@ Products.hasMany(Reviews, {as: 'Reviews'})
 // Causes.belongsToMany(Services, { through: 'ServiceCauses' });
 // Causes.belongsToMany(Brands, { through: 'BrandCauses' });
 Causes.hasMany(Brands)
-// Causes.hasMany(Brands)
+Causes.hasMany(Products)
 
 //Categories associations
 // Categories.belongsToMany(Products, { through: 'ProductCategories' });

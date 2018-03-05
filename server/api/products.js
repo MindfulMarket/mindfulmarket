@@ -27,36 +27,23 @@ router.get('/:id/reviews', (req, res, next) => {
 
 
 router.post('/', (req, res, next) => {
-  Products.scope('populated').create(req.body.main)
+  Products.scope('populated').create(req.body)
     .then((product) => {
-      let promises = []
-      if (req.body.cause) promises.push(product.addCause(req.body.cause))
-      if (req.body.category) promises.push(product.addCategory(req.body.category))
-      Promise.all(promises)
-      .then(_ => product.reload())
-      .then(reloadedProduct => {
-        res.json(reloadedProduct)
-      })
+      res.json(product)
     })
     .catch(next)
 })
 
 router.put('/:id', (req, res, next) => {
+  console.log('hit')
   Products.update(req.body, { 
     where: { 
       id: req.params.id 
     },
     returning: true
   })
-.then((product) => {
-    let promises = []
-    if (req.body.cause) promises.push(product[1][0].addCause(req.body.cause))
-    if (req.body.category) promises.push(product[1][0].addCategory(req.body.category))
-    Promise.all(promises)
-      .then(_ => Products.scope('populated').findById(req.params.id))
-      .then(reloadedProduct => {
-        res.json(reloadedProduct)
-      })   
+  .then((product) => {
+    res.json(product[0][1])   
   })
   .catch(next)
   })

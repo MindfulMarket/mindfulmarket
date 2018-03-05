@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { fetchProducts } from '../../store/products';
 import { postReview, fetchReview } from '../../store/review';
+import { addToCart } from '../../store/cart'
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -39,18 +40,30 @@ class SingleProduct extends Component {
   }
 
   render() {
-    let singleProduct = this.props.products.find(product => product.id === Number(this.props.match.params.id))
+    let singleProduct, productReviews;
+
+    if (this.props.products) {
+      singleProduct = this.props.products.find(product => product.id === Number(this.props.match.params.id))
+    }
+    if (this.props.review) {
+      productReviews = this.props.review.filter(review => review.productId === Number(this.props.match.params.id))
+      console.log(productReviews, 'product reviews')
+    }
 
     return (
-      <div className='page'>
+      <div className="page">
         {
           singleProduct
             ?
             <div>
               <h2>{singleProduct.name}</h2>
+              <a href={`/brands/${singleProduct.brand.id}`}>
+                <h3>by {singleProduct.brand.name}</h3>
+              </a>
               <img width="300px" height="auto" src={singleProduct.imageUrl} />
               <p>Description: {singleProduct.description}</p>
               <p>Price: ${singleProduct.price}</p>
+              <button type="button" className="cardBtn" onClick={() => this.props.addToCart(singleProduct)}>Add to cart</button>
               <div>
                 <div>
                   <h1>Submit your review</h1>
@@ -95,13 +108,13 @@ class SingleProduct extends Component {
                 </div>
                 <h1>Checkout reviews on the {singleProduct.name}</h1>
                 {
-                  !singleProduct
+                  !productReviews
                     ? ''
-                    : singleProduct.Reviews.map(review => {
+                    : productReviews.map(review => {
                       return (
                         <div key={review.id}>
                           <h2>Title: {review.title}</h2>
-                          <h2>Description: {review.content}</h2>
+                          <h2>Description: {review.review}</h2>
                           <h2>Rating: {review.rating}</h2>
                           <br />
                         </div>
@@ -120,9 +133,9 @@ class SingleProduct extends Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = ({ products, reviews }) => {
+const mapState = ({ products, review }) => {
   return {
-    products, reviews
+    products, review
   }
 }
 
@@ -133,7 +146,8 @@ const mapDispatch = dispatch => ({
   },
   sendReview: (state) => {
     dispatch(postReview(state))
-  }
+  },
+  addToCart: (product) => dispatch(addToCart(product))
 });
 
 export default connect(mapState, mapDispatch)(SingleProduct);

@@ -19,7 +19,7 @@ class SingleAdminCause extends Component {
         if (e.target.description.value !== '') body.description = e.target.description.value
         if (e.target.brand.value !== '') body.brand = e.target.brand.value
         if (e.target.product.value !== '') body.product = e.target.product.value
-        axios.put(`/api/causes/${this.props.match.params.id}`, body)
+        axios.put(`/api/causes/${this.props.id}`, body)
            .then(data => console.log(data))
    }
   render() {
@@ -85,7 +85,7 @@ const mapState = ({ causes, brands, products, services }) => {
   return {
     causes,
     brands,
-    products,
+    products: products.all
   }
 }
 

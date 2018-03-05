@@ -22,3 +22,4 @@ export * from './user';
 export * from './products';
 export * from './brands';
 export * from './causes';
+export * from './categories';

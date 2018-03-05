@@ -2,19 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {About, SingleCause, SingleAdminBrand, AdminBrands,SingleAdminCause, AdminCauses, SingleAdminProduct, AdminProducts, AdminHome, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand } from './components'
-import {me, fetchProducts,fetchAllBrands, fetchAllCauses} from './store'
+import {AdminBrands,SingleAdminBrand, SingleAdminCause, AdminCauses, SingleAdminProduct, AdminProducts, AdminHome, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile, SingleCategory } from './components'
+import {me, fetchProducts,fetchAllBrands, fetchAllCauses, fetchAllCategories} from './store'
 
-<<<<<<< HEAD
-=======
-import { me } from './store'
+
 import { fetchAndSetCart } from './store/cart' //WHERE
-import { fetchProducts } from './store/products'
-import { fetchAllBrands } from './store/brands'
 
-import { fetchAllCauses } from './store/causes';
+
+
 import axios from 'axios' //wast throwing as error without import......WHY
->>>>>>> master
 
 /**
  * COMPONENT
@@ -42,13 +38,9 @@ class Routes extends Component {
         <Route exact path="/" component={UserHome} />
 
         <Route exact path="/cart" component={ShoppingCart} />
-<<<<<<< HEAD
-=======
         <Route path="/thankyou/:action" component={ThankYou} />
         <Route path="/profile" component={UserProfile} />
-
        {/* <Route exact path="/" component={UserHome} />*/}
->>>>>>> master
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/about" component={About} />
@@ -61,7 +53,6 @@ class Routes extends Component {
         <Route exact path="/categories" component={AllCategories} />
         <Route path="/products" component={SingleProduct} />
         <Route path="/brands/:id" component={SingleBrand} />
-<<<<<<< HEAD
         <Route exact path="/admin" component={AdminHome} />
         <Route exact path="/admin/products" component={AdminProducts} />
         <Route path="/admin/products/:id" component={SingleAdminProduct} /> 
@@ -79,13 +70,11 @@ class Routes extends Component {
         }
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
-=======
         <Route path="/checkout" component={Checkout} />
 
 
         <Route path="/categories/:id" component={SingleCategory} />
 
->>>>>>> master
       </Switch>
     )
   }
@@ -111,11 +100,7 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchProducts())
       dispatch(fetchAllBrands())
       dispatch(fetchAllCauses())
-<<<<<<< HEAD
-=======
-      dispatch(fetchAllBrands())
-
->>>>>>> master
+      dispatch(fetchAllCategories())
     }
   }
     //fetchCart: (cart) => dispatch(fetchAndSetCart(cart))

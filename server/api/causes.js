@@ -44,7 +44,7 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-  Causes.update(req.body.main, { 
+  Causes.update(req.body, { 
     where: { 
       id: req.params.id 
     },
@@ -52,9 +52,33 @@ router.put('/:id', (req, res, next) => {
   })
 .then((cause) => {
     let promises = []
-    if (req.body.product) promises.push(cause[1][0].addProduct(req.body.product))
-    if (req.body.service) promises.push(cause[1][0].addService(req.body.service))
-    if (req.body.brand) promises.push(cause[1][0].addBrand(req.body.brand))
+    if (req.body.product){
+      cause[1][0].getProducts()
+        .then((products) => { 
+          products.filter(product => product.dataValues.id === Number(req.body.product)).length ? 
+          promises.push(cause[1][0].setProducts(products.filter(product => product.dataValues.id !== Number(req.body.product))))
+          :
+          promises.push(cause[1][0].addProduct(req.body.product))
+        })
+    }
+    if (req.body.service){
+      cause[1][0].getServices()
+      .then((services) => { 
+        services.filter(product => product.dataValues.id === Number(req.body.service)).length ? 
+        promises.push(cause[1][0].setServices(services.filter(service => service.dataValues.id !== Number(req.body.service))))
+        :
+        promises.push(cause[1][0].addService(req.body.service))
+      })
+    } 
+    if (req.body.brand){
+      cause[1][0].getBrands()
+      .then((brands) => { 
+        brands.filter(product => product.dataValues.id === Number(req.body.brand)).length ? 
+        promises.push(cause[1][0].setBrands(brands.filter(brand => brand.dataValues.id !== Number(req.body.brand))))
+        :
+        promises.push(cause[1][0].addBrand(req.body.brand))
+      })
+    }
     Promise.all(promises)
       .then(_ => Causes.scope('populated').findById(req.params.id))
       .then(reloadedCause => {

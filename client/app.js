@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
@@ -10,23 +9,19 @@ import { fetchAllCategories } from './store/categories';
 import {fetchAndSetCart} from './store/cart'
 import {fetchAllBrands} from './store/brands' //WHERE
 //WHERE
-import { Navbar } from './components'
-import { Footer } from './components'
+import { Navbar, Footer } from './components'
 
 import Routes from './routes'
 
 
 class App extends Component {
-  constructor(props){
-    super(props)
-  }
 
   componentDidMount() {
     this.props.loadInitialData()
   }
 
   render () {
-    return(
+    return (
     <div id = "appDiv">
       <Navbar component={this.props} />
       <Routes />
@@ -57,8 +52,7 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchAllCauses())
       dispatch(fetchAllCategories())
       dispatch(fetchAllBrands())
-
-
+      // dispatch(fetchAndSetCart())
     }
   }
     //fetchCart: (cart) => dispatch(fetchAndSetCart(cart))

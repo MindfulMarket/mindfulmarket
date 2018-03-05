@@ -356,7 +356,6 @@ async function seed() {
     console.log(`seeded ${Object.keys(allBrands).length} brands`)
 
 
-
     const allProducts = byName(await Promise.all(
         products(allBrands).map(product => Products.create(product)),
     ))
@@ -367,7 +366,6 @@ async function seed() {
         reviews(allProducts).map(review => Reviews.create(review)),
     ))
     console.log(`seeded ${Object.keys(allReviews).length} reviews`)
-
 
 
     console.log(`seeded successfully`)

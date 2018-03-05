@@ -5,9 +5,6 @@ import { fetchAllCauses } from '../../store/causes';
 /* -----------------    COMPONENT     ------------------ */
 
 class AllCauses extends Component {
-  constructor() {
-    super();
-  }
 
   componentDidMount() {
    this.props.fetchCauseData();
@@ -15,20 +12,17 @@ class AllCauses extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="page container">
 
         <div className="itemsContainer">
-          <div className="featuredContainer">
-            <h1> Here is where we show featured Causes </h1>
-          </div>
 
           <div className="container" style={{ flexDirection: 'row' }}>
-            <div className="filterContainer">
-            <h1> Here is where we filter Causes</h1>
-            </div>
 
-            <div className="itemsContainer">
-              <h1> Here is where we show all Causes </h1>
+
+            <div className="filterContainer">
+              <h1> Know what cause inspires you? Click and see how you can help below.
+              <br />
+              Haven't found a social issue you stand behind. Explore. </h1>
 
               <div className="allItemsContainer" >
               {

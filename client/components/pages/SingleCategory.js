@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import Card from '../common/Card';
-import Filter from '../common/Filter'
 import { connect } from 'react-redux'
 import { fetchAllCategories } from '../../store/categories'
-import { fetchAllBrands } from '../../store/brands'
 import { fetchProducts } from '../../store/products'
 import { addToCart } from '../../store/cart'
 
@@ -26,7 +24,7 @@ class SingleCategory extends Component {
     }
 
     return (
-      <div>
+      <div className="page">
         {
           !singleCategoryView
             ? <h1>hi</h1>
@@ -36,11 +34,15 @@ class SingleCategory extends Component {
               <img width="300px" height="auto" src={singleCategoryView.imageUrl} />
               <p>Description: {singleCategoryView.description}</p>
               <p>Want to get involved? Shop products that believe in this cause too.</p>
-              {
+
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                {
                 categoryProducts.map(product =>
                   <Card key={product.name} category="product" brand={product.brand} product={product} name={product.name} button="Add to cart" imageUrl={product.imageUrl} reviewsQuantity={product.Reviews.length} id={product.id} price={product.price} addToCart={this.props.addToCart} />
                 )
               }
+                </div>
+
             </div>
         }
       </div>

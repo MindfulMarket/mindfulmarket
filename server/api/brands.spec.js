@@ -8,7 +8,6 @@
 // const {Products} = require('../db/models')
 
 
-
 // describe('brand routes', () => {
 //         beforeEach(() => {
 //             return db.sync({ force: true })

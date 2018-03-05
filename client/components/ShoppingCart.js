@@ -6,9 +6,6 @@ import { Link } from 'react-router-dom'
 /* -----------------    COMPONENT     ------------------ */
 
 class ShoppingCart extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   // componentDidMount() {
   //   this.props.fetchCart();
@@ -28,7 +25,7 @@ class ShoppingCart extends Component {
                 <div className="cartItem" key={product.product.id}>
                   <div >
                     <Link className="cartItem" to={`/products/${product.product.id}`} >
-                      <img className='cartThumbnail' src={product.product.imageUrl} />
+                      <img className="cartThumbnail" src={product.product.imageUrl} />
                     </Link>
                   </div>
                   <div className="cartDetails">
@@ -41,7 +38,7 @@ class ShoppingCart extends Component {
               }
           </ul>
         </div>
-        <button onClick = {()=>this.props.history.push('/checkout')}>Checkout</button>
+        <button onClick = {() => this.props.history.push('/checkout')}>Checkout</button>
       </div>
     )
   }

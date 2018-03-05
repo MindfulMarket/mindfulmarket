@@ -5,8 +5,7 @@ import PropTypes from 'prop-types'
 import {AdminBrands,SingleAdminBrand, SingleAdminCause, AdminCauses, SingleAdminProduct, AdminProducts, AdminHome, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile, SingleCategory } from './components'
 import {me, fetchProducts,fetchAllBrands, fetchAllCauses, fetchAllCategories} from './store'
 
-
-import { fetchAndSetCart } from './store/cart' //WHERE
+// import { fetchAndSetCart } from './store/cart' //WHERE
 
 
 
@@ -20,17 +19,14 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
 
-    //console.log('THE USER IS', this.props.initial.shoppingCart)
-    //console.log('APP STARTED')
    //this.props.fetchCart(this.props.initialCart)
-    window.addEventListener("beforeunload", () =>{
+    window.addEventListener('beforeunload', () => {
     axios.put(`/api/users/${this.props.initial.id}`, {shoppingCart: this.props.cartContents})
   })
   }
 
 
   render() {
-    const { isLoggedIn } = this.props
     return (
 
       <Switch>
@@ -61,13 +57,7 @@ class Routes extends Component {
         <Route exact path="/admin/brands" component={AdminBrands} />
         <Route path="/admin/brands/:id" component={SingleAdminBrand} /> 
        
-        {
-          isLoggedIn &&
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-          </Switch>
-        }
+       
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
         <Route path="/checkout" component={Checkout} />

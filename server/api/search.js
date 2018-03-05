@@ -3,22 +3,21 @@ const { Products } = require('../db/models')
 module.exports = router
 
 router.post('/', (req, res, next) => {
-    console.log('line 21', req.body)
+    // console.log('working', req.body)
     let nameParts = req.body.searchCriteria.split(' ')
-    console.log(nameParts)
-    let resultArray = [];
-    nameParts.forEach(word =>
-        Products.scope('populated').findAll({
-            where: {
-                name: word
-            }
-        })
-        .then((result) => {
-            console.log(result)
-            resultArray.push(result) // return res.json(result)
-        })
-        .then(() => console.log(resultArray))
-
-        .catch(next)
-    )
+    nameParts.forEach(word => {
+        console.log('line 11', word);
+        return Products.scope('populated').findAll({
+                where: {
+                    name: {
+                        $iLike: `%${word}%`
+                    }
+                }
+            })
+            .then((result) => {
+                console.log(result)
+                res.send(result) // return res.json(result)
+            })
+            .catch(next)
+    })
 })

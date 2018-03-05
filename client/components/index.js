@@ -17,13 +17,12 @@ export {default as AllBrands} from './pages/AllBrands'
 export {default as AllCauses} from './pages/AllCauses'
 export {default as AllProducts} from './pages/AllProducts'
 export {default as AllCategories} from './pages/AllCategories'
-export {default as AllServices} from './AllServices'
 export {default as ShoppingCart} from './ShoppingCart'
 export {default as Checkout} from './Checkout'
 export {default as SingleBrand} from './pages/SingleBrand'
 export {default as SingleCause} from './pages/SingleCause'
 export {default as SingleProduct} from './pages/SingleProduct'
-export {default as SingleService} from './SingleService'
+
 
 
 //Admin

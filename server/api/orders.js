@@ -3,10 +3,9 @@ const {Orders} = require('../db/models')
 module.exports = router
 
 
-
   router.get('/:id', (req, res, next) => {
     if (req.params.id !== 'undefined') {
-    Orders.findAll({where:{userId:req.params.id}})
+    Orders.findAll({where: {userId: req.params.id}})
       .then(result => res.json(result))
       .catch(next)
     } else {

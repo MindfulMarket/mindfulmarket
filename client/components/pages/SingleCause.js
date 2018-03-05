@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Card from '../common/Card';
 import { connect } from 'react-redux'
 import { fetchAllCauses } from '../../store/causes';
 import { fetchAllBrands } from '../../store/brands';
@@ -40,7 +39,7 @@ class SingleCause extends Component {
 
 
     return (
-      <div className='page'>
+      <div className="page">
         {
           !singleCause
             ? ''

@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { fetchProducts } from '../../store/products';
 import { fetchAllBrands } from '../../store/brands';
 import { addToCart } from '../../store/cart';
-import Card from '../common/Card';
 import AllProducts from './AllProducts';
 
 /* -----------------    COMPONENT     ------------------ */
@@ -26,7 +25,7 @@ class SingleBrand extends Component {
     }
 
     return (
-      <div className='page'>
+      <div className="page">
         <div>
           <br />
           {

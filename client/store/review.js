@@ -22,19 +22,19 @@ const getProductReviews = reviews => ({
 /* ------------       THUNK CREATORS     ------------------ */
 
 export const fetchProductReviews = (id) => dispatch => {
-  axios.get(`/api/reviews/${id}`)
+  return axios.get(`/api/reviews/${id}`)
     .then(res => dispatch(getProductReviews(res.data)))
     .catch(err => console.error(err))
 }
 
 export const fetchReview = () => dispatch => {
-  axios.get('/api/reviews')
+  return axios.get('/api/reviews')
     .then(res => dispatch(getReviews(res.data)))
     .catch(err => console.error(err))
 }
 
 export const postReview = (review) => dispatch => {
-  axios.post('/api/reviews', review)
+  return axios.post('/api/reviews', review)
     .then(res => dispatch(addReview(res.data)))
 }
 

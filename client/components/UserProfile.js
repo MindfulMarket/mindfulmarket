@@ -1,21 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-<<<<<<< HEAD
-import {getOrders} from '../store/user'
+
 import { fetchAllBrands } from '../store/brands'
 import AddPayment from './AddPayment'
-=======
 import { updateMe, getOrders, getUser } from '../store/user'
->>>>>>> 93f627e8d43c7eaffb4aa560a746447f513df1b5
 /* -----------------    COMPONENT     ------------------ */
 let counter = 0;
 class UserProfile extends Component {
-  constructor(props){
-    super(props)
-
-
-  }
-
   constructor() {
     super();
     this.state = {

@@ -11,6 +11,6 @@ class CardSection extends React.Component {
       </label>
     );
   }
-};
+}
 
 export default CardSection;

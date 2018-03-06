@@ -27,17 +27,14 @@ class Routes extends Component {
 
       <Switch>
         <Route exact path="/" component={UserHome} />
-<<<<<<< HEAD
 ``        <Route path="/categories/:id" component={SingleCategory} />
         <Route path="/checkout" component={Checkout} />``
         <Route exact path="/cart" component={ShoppingCart} />
         <Route path="/payment/:action" component={Payment} />
         <Route path="/profile" component={UserProfile} />
        {/* <Route exact path="/" component={UserHome} />*/}
-=======
 
         { /* AUTH / PROFILE ROUTES */ }
->>>>>>> 93f627e8d43c7eaffb4aa560a746447f513df1b5
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/profile" component={UserProfile} />
@@ -52,9 +49,7 @@ class Routes extends Component {
         <Route exact path="/brands" component={AllBrands} />
         <Route path="/brands/:id" component={SingleBrand} />
 
-<<<<<<< HEAD
         {/* Admin stuff */}
-=======
         <Route exact path="/categories" component={AllCategories} />
         <Route  path="/categories/:id" component={SingleCategory} />
 
@@ -67,7 +62,6 @@ class Routes extends Component {
         <Route exact path="/about" component={About} />
 
         { /* ADMIN ROUTES */ }
->>>>>>> 93f627e8d43c7eaffb4aa560a746447f513df1b5
         <Route exact path="/admin" component={AdminHome} />
         <Route exact path="/admin/orders" component={AdminOrders} />
         <Route exact path="/admin/products" component={AdminProducts} />
@@ -77,20 +71,9 @@ class Routes extends Component {
         <Route exact path="/admin/categories" component={AdminCategories} />
         <Route path="/admin/categories/:id" component={SingleAdminCategory} />
         <Route exact path="/admin/brands" component={AdminBrands} />
-<<<<<<< HEAD
-        <Route path="/admin/brands/:id" component={SingleAdminBrand} /> 
-       
-       
-        {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
-        <Route path="/checkout" component={Checkout} />
-
-
-=======
         <Route path="/admin/brands/:id" component={SingleAdminBrand} />
         <Route exact path="/admin/users" component={AdminUsers} />
         <Route exact path="/admin/users/:id" component={SingleAdminUser} />
->>>>>>> 93f627e8d43c7eaffb4aa560a746447f513df1b5
 
       </Switch>
     )

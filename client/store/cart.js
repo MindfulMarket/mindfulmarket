@@ -7,7 +7,7 @@ const UPDATE_QUANT = 'UPDATE_QUANT'
 const CHECKOUT = 'CHECKOUT'
 
 //editing will update the db and retreve the campuses again (no new action needed)
-const cartReducer = function(state = [], action) {
+const cartReducer = function (state = [], action) {
     switch (action.type) {
         case GET_CART:
             return action.cart
@@ -18,7 +18,7 @@ const cartReducer = function(state = [], action) {
                     return state.map((prod) => {
                         if (prod.product.id === action.product.id) {
                             prod.count++
-                                return prod
+                            return prod
                         }
                         return prod
                     })
@@ -29,18 +29,40 @@ const cartReducer = function(state = [], action) {
 
 
         case DELETE_PRODUCT:
-            return state.filter((prod) => prod.id !== action.product.id)
-                /* will be used to complete cartReducer*/
-                // case UPDATE_QUANT:
-                //   return { ...state, allCampuses: [...state.allCampuses, action.campus] }
+            return state.filter((prod) => {
+                console.log('ON STATE', prod.product.id, 'INCOMING ', action.product.product.id)
+                return prod.product.id !== action.product.product.id})
+        case UPDATE_QUANT:
+            return state.map((prod) => {
+                if (prod.product.id === action.product.id) {
+                    console.log('MATCH FOUND')
+                    prod.count = action.newQuant;
+                    return prod
+                }
+                return prod
+            })
+        /* will be used to complete cartReducer*/
+        // case UPDATE_QUANT:
+        //   return { ...state, allCampuses: [...state.allCampuses, action.campus] }
         default:
             return state
     }
 };
+export const loadAndUpdateLocalStorage = (incomingCart) => {
+    console.log('HIIIT',incomingCart)
+    let cart = JSON.parse(window.localStorage.getItem('mindfulCart'))
+    if (incomingCart) window.localStorage.setItem('mindfulCart', JSON.stringify(incomingCart))
+    return JSON.parse(window.localStorage.getItem('mindfulCart')) //synchronicity ftw
+}
 
 //ACTION CREATORS
-export const fetchAndSetCart = (cart) => {
+export const updateBackendCart = (cart, userId) => {
+    axios.put(`/api/users/${userId}`, { shoppingCart: cart })
+}
 
+export const updateQuant = (product,newQuant) => ({type: UPDATE_QUANT, product, newQuant})
+
+export const fetchAndSetCart = (cart) => {
     return { type: GET_CART, cart }
 }
 

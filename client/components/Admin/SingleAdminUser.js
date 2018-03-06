@@ -1,184 +1,175 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import AdminNav from './AdminNav'
-import { Link } from 'react-router-dom'
-import { postProduct, deleteProductThunk } from '../../store';
-
+import { Link } from 'react-router-dom';
+import { editProductThunk, deleteProductThunk } from '../../store';
 
 /* -----------------    COMPONENT     ------------------ */
-export class AdminProducts extends Component {
+
+class SingleAdminUser extends Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      imageUrl: '',
-      price: 0,
-      description: '',
-      brandId: 0,
-      categoryId: 0,
-      causeId: 0
-    }
-    this.handleChange = this.handleChange.bind(this)
+    super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
   }
 
-  handleChange(evt) {
-    this.setState({ [evt.target.name]: evt.target.value })
-  }
-
   handleSubmit(event) {
     event.preventDefault();
-    this.props.addProduct(this.state);
-    this.setState({
-      name: '',
-      imageUrl: '',
-      price: 0,
-      description: '',
-      brandId: 0,
-      categoryId: 0,
-      causeId: 0
-    })
+    const id = Number(this.props.match.params.id)
+    const productEdited = {};
+    for (let field of event.target) {
+      if (field.value) productEdited[field.name] = field.value
+    }
+    console.log(productEdited, 'product', id, 'id')
+    this.props.editProduct(productEdited, id)
   }
 
-  handleDelete(id) {
+  handleDelete(event) {
     event.preventDefault();
-    this.props.deleteProduct(id)
+    this.props.deleteUser(Number(this.props.match.params.id))
+    this.props.history.push('/admin/users')
   }
 
   render() {
-    let products;
+    let user;
 
-    if (this.props.products) {
-      products = this.props.products.map(product => {
-        return (
-          <li key={product.id}>
-            <Link to={`/admin/products/${product.id}`}>{product.name} <button>Edit</button>
-            </Link>
-            <button onClick={() => this.handleDelete(product.id)}>delete</button>
-          </li>
-        )
-      })
+    if (this.props.user) {
+      user = this.props.user;
     }
     return (
-      <div className="page">
-        {
-          !this.props.user.isAdmin
-            ? <h1>Not Authorized</h1>
-            :
-            <div>
-              <AdminNav />
-              <h1>Products</h1>
-              <ul style={{ fontSize: '22px', marginBottom: '10px' }}>
-                {
-                  !products
-                    ? ''
-                    : products
-                }
-              </ul>
-              <hr />
-              <div>
-                <h1>Add Product</h1>
-                <form className="page" onSubmit={this.handleSubmit}>
-                  <label>Name: </label>
-                  <input
-                    name="name"
-                    type="text"
-                    value={this.state.name}
-                    onChange={this.handleChange}
-                    required
-                  />
-                  <br />
-                  <label>Image Url: </label>
-                  <input
-                    name="imageUrl"
-                    value={this.state.imageUrl}
-                    type="text"
-                    onChange={this.handleChange}
-                    required
-                  />
-                  <br />
-                  <label>Price: </label>
-                  <input
-                    name="price"
-                    value={this.state.price}
-                    type="number"
-                    onChange={this.handleChange}
-                    required
-                  />
-                  <br />
-                  <label>Description: </label>
-                  <textarea
-                    name="description"
-                    value={this.state.description}
-                    cols="35"
-                    rows="5"
-                    onChange={this.handleChange}
-                    required
-                  />
-                  <br />
-                  <label>Cause: </label>
-                  <select name="causeId" onChange={this.handleChange}>
-                    <option defaultValue="Choose one">Choose one</option>
-                    {
-                      !this.props.causes
-                        ? ''
-                        : this.props.causes.map(cause => {
-                          return (
-                            <option key={cause.id} value={cause.id}>{cause.name}</option>
-                          )
-                        })
+      <div>
+        {!user
+          ? ''
+          :
+          <div>
+            {
+              !user.isAdmin
+                ? <h1>Not Authorized</h1>
+                :
+                <div>
+                  <div className="page">
+                    <Link to={'/admin/users'}><h1>Return to Users</h1></Link>
+                    <h1>Edit: {user.firstName} {user.lastName} </h1>
+                    <ul>
+                      <li>User Name: {user.name}</li>
+
+
+                    </ul>
+                  </div>
+                  <form className="page" onSubmit={this.handleSubmit}>
+                    <label>Name: </label>
+                    <input
+                      name="name"
+                      type="text"
+                      defaultValue={user.firstName}
+                      required
+                    />
+                    <br />
+                    <label>Image Url: </label>
+                    <input
+                      name="imageUrl"
+                      defaultValue={user.imageUrl}
+                      type="text"
+                      required
+                    />
+                    <br />
+                    <label>Price: </label>
+                    <input
+                      name="price"
+                      defaultValue={user.price}
+                      type="number"
+                      required
+                    />
+                    <br />
+                    <label>Description: </label>
+                    <textarea
+                      name="description"
+                      defaultValue={user.description}
+                      cols="35"
+                      rows="5"
+                      required
+                    />
+                    <br />
+                    <label>Cause: </label>
+                    <select name="causeId">
+                      {!productCause
+                        ? <option>Choose one</option>
+                        : <option value={productCause.id}>{productCause.name}</option>
+                      }
+                      {
+                        !this.props.causes
+                          ? ''
+                          : this.props.causes.map(cause => {
+                            return (
+                              <option key={cause.id} value={cause.id}>{cause.name}</option>
+                            )
+                          })
+                      }
+                    </select>
+                    <br />
+                    <label>Brand: </label>
+                    <select name="brandId">
+                      {!productBrand
+                        ? <option>Choose one</option>
+                        : <option value={productBrand.id}>{productBrand.name}</option>
+                      }
+                      {
+                        !this.props.brands
+                          ? ''
+                          : this.props.brands.map(brand => {
+                            return (
+                              <option key={brand.id} value={brand.id}>{brand.name}</option>
+                            )
+                          })
+                      }
+                    </select>
+                    <br />
+                    <label>Category: </label>
+                    <select name="categoryId">
+                    {!productCategory
+                      ? <option>Choose one</option>
+                      : <option value={productCategory.id}>{productCategory.name}</option>
                     }
-                  </select>
-                  <br />
-                  <label>Brand: </label>
-                  <select name="brandId" onChange={this.handleChange}>
-                    <option defaultValue="Choose one">Choose one</option>
-                    {
-                      !this.props.brands
-                        ? ''
-                        : this.props.brands.map(brand => {
-                          return (
-                            <option key={brand.id} value={brand.id}>{brand.name}</option>
-                          )
-                        })
-                    }
-                  </select>
-                  <br />
-                  <label>Category: </label>
-                  <select name="categoryId" onChange={this.handleChange}>
-                    <option defaultValue="Choose one">Choose one</option>
-                    {
-                      !this.props.categories
-                        ? ''
-                        : this.props.categories.map(category => {
-                          return (
-                            <option key={category.id} value={category.id}>{category.name}</option>
-                          )
-                        })
-                    }
-                  </select>
-                  <br />
-                  <br />
-                  <button type="submit" >Add</button>
-                </form>
-              </div>
-            </div>
+                      {
+                        !this.props.categories
+                          ? ''
+                          : this.props.categories.map(category => {
+                            return (
+                              <option key={category.id} value={category.id}>{category.name}</option>
+                            )
+                          })
+                      }
+                    </select>
+                    <br />
+                    <br />
+                    <button type="submit" >Edit {user.name}</button>
+                  </form>
+                  <div className="page">
+                    <h3>{`Need to delete the ${user.name} product`}</h3>
+                    <button
+                      onClick={this.handleDelete}
+                    >Delete {user.name}</button>
+                  </div>
+                </div>
+            }
+          </div>
+
         }
       </div>
+
     )
   }
 }
 
+/* -----------------    CONTAINER     ------------------ */
+
 const mapDispatch = dispatch => {
   return {
-    addProduct: newProduct => dispatch(postProduct(newProduct)),
-    deleteProduct: id => dispatch(deleteProductThunk(id))
+    editProduct: (changedProduct, id) => dispatch(editProductThunk(changedProduct, id)),
+    deleteProduct: (id) => dispatch(deleteProductThunk(id))
   }
+};
+const mapState = ({ brands, products, causes, user, categories }, ownProps) => {
+  return { product: products.all.find(product => user.id === Number(ownProps.match.params.id)), causes, user, brands, categories }
 }
 
-const mapState = ({ products, user, causes, brands, categories }) => {
-  return { products: products.all, user, causes, brands, categories }
-}
-export default connect(mapState, mapDispatch)(AdminProducts)
-
+export default connect(mapState, mapDispatch)(SingleAdminUser);

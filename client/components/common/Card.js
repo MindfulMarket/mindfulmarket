@@ -1,60 +1,67 @@
-import React from 'react'
+import React ,{Component}from 'react'
+import { connect } from 'react-redux'
 
+let counter = 0;
 
-const Card = (props) => {
-
-  function starCalc(avgRating) {
-    let starFrac = null;
-    if (typeof avgRating !== 'number' || avgRating.toString().length === 1) { //whole number
-      if (avgRating >= 0.7) starFrac = 'threeQuarters.png'
-      else if (avgRating >= 0.4) starFrac = 'halfStar.png'
-      else starFrac = 'quarterStar.png'
-    }
-    let stars = []
-    for (let k = 0; k < avgRating; k++) {
-      stars.push('/assets/fullStar.png')
-    }
-    if (starFrac !== null) {
-      stars.push(`/assets/${starFrac}`)
-    }
-    return stars
+class Card extends Component {
+  constructor(props){
+    super(props)
+    this.startCalc = this.starCalc.bind(this)
   }
 
-  return (
-    <div className="card" >
+  starCalc(avgRating) {
+    let starFrac = null;
+        if (typeof avgRating !== 'number' || avgRating.toString().length === 1) { //whole number
+          if (avgRating >= 0.7) starFrac = 'threeQuarters.png'
+          else if (avgRating >= 0.4) starFrac = 'halfStar.png'
+          else starFrac = 'quarterStar.png'
+        }
+        let stars = []
+        for (let k = 0; k < avgRating; k++) {
+          stars.push('/assets/fullStar.png')
+        }
+        if (starFrac !== null) {
+          stars.push(`/assets/${starFrac}`)
+        }
+        return stars
+      }
+//the props.type class on div below allows custom style of cards for category/brand/product
+  render () {
+    return  (
+        <div className={`card ${this.props.type}`} >
       <div className="cardContents" align = "center">
-        <a  href={`/${props.category}s/${props.id}`} >
-          <img   src={props.imageUrl} className="cardImg" />
+        <a  href={`/${this.props.category}s/${this.props.id}`} >
+          <img   src={this.props.imageUrl} className="cardImg" />
         </a>
         <div className="cardName" >
-          <a href={`/${props.category}s/${props.id}`}>{props.name}</a>
+          <a href={`/${this.props.category}s/${this.props.id}`}>{this.props.name}</a>
           <div>
             <div>
               {
-                (props.category === 'brand' || props.category === 'categorie' || props.category === 'home' || props.category === 'cause')
+                (this.props.category === 'brand' || this.props.category === 'categorie' || this.props.category === 'home' || this.props.category === 'cause')
                   ? <div />
-                  : <div className="cardBrand"> <a href={`/brands/${props.brand.id}`} >by {props.brand.name}</a></div>
+                  : <div className="cardBrand"> <a href={`/brands/${this.props.brand.id}`} >by {this.props.brand.name}</a></div>
               }
             </div>
             {
-              props.category !== 'product'
+              this.props.category !== 'product'
                 ? <div />
                 : (
                   <div className = "starsDiv" align ="center">
                     <div className="starFlex">
                       {
-                        props.product.avgRating !== 'no reviews' ?
-                          starCalc(props.product.avgRating).map((star) => <img className="star" key={star.id} src={star} />)
+                        this.props.product.avgRating !== 'no reviews' ?
+                          this.starCalc(this.props.product.avgRating).map((star) => <img className="star" key={counter++} src={star} />)
                           :
                           <div style = {{fontSize: '10pt'}}>No reviews</div>
                       }
                     </div>
                     {
-                      props.reviewsQuantity === 0
+                      this.props.reviewsQuantity === 0
                         ? <div />
-                        : (props.reviewsQuantity === 1
+                        : (this.props.reviewsQuantity === 1
                           ? <a className="numReviews">1 Review</a>
-                          : <a className="numReviews">{props.reviewsQuantity} Reviews</a>
+                          : <a className="numReviews">{this.props.reviewsQuantity} Reviews</a>
                         )
                     }
                   </div>
@@ -63,24 +70,36 @@ const Card = (props) => {
           </div>
         </div>
       </div>
-      { props.button &&
+      { this.props.button &&
       <div className="cardPriceBtnDiv">
-        {props.price &&  // we may do a props.price? :
-          <h4 className="cardPrice">$ {props.price}</h4>
+        {this.props.price &&  // we may do a this.props.price? :
+          <h4 className="cardPrice">$ {this.props.price}</h4>
         }
         {
-        props.button === 'Add to cart' ?
-        <button className="cardBtn" onClick={() => props.addToCart(props.product)}>{props.button}</button>
+        this.props.button === 'Add to cart' ?
+        <button className="cardBtn" onClick={() => {
+          //console.log(l)
+          this.props.addToCart(this.props.product)
+          .then(()=> this.props.updateLocalCart(this.props.testCart))
+
+          this.props.updateBackend(this.props.testCart, this.props.userId)
+        }}>{this.props.button}</button>
         :
-        <a href={`/${props.category}s/${props.id}`}>
-        <button className="cardBtn">{props.button}</button></a>
+        <a href={`/${this.props.category}s/${this.props.id}`}>
+        <button className="cardBtn">{this.props.button}</button></a>
 
         }
       </div>
       }
     </div>
   )
+
+  }
 }
 
+const mapState = (state) => {
+  return { products: state.products.filteredOrSorted, search: state.search, testCart: state.cart, userId: state.user.id}
+}
 
-export default Card;
+export default connect(mapState)(Card);
+

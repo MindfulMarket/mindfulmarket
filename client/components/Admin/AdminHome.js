@@ -22,7 +22,7 @@ export class AdminHome extends Component {
               <AdminNav id="AdminNav" />
             </div>
             :
-            'Not Authorized'
+            <h1>You Are NOT Authorized</h1>
         }
       </div>
     )

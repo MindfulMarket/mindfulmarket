@@ -53,7 +53,7 @@ export class AdminProducts extends Component {
       products = this.props.products.map(product => {
         return (
           <li key={product.id}>
-            <Link to={`/admin/products/${product.id}`}>{product.name} <button>Edit</button>
+            <Link to={`/admin/products/${product.id}`} style={{color: 'black'}}>{product.name} <button>Edit</button>
             </Link>
             <button onClick={() => this.handleDelete(product.id)}>delete</button>
           </li>

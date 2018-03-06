@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { search } from '../store/search'
 import { withRouter } from 'react-router-dom';
 
-
 class Search extends Component {
 
   constructor() {
@@ -31,9 +30,9 @@ class Search extends Component {
 
    render() {
      return (
-          <form onSubmit={this.handleSubmit} >
-            <input onChange={this.handleChange} placeholder="Search" />
-            <button>Search </button>
+          <form id = 'mainSearchForm' onSubmit={this.handleSubmit} >
+            <input id= 'mainSearchInput' onChange={this.handleChange} placeholder="Search" />
+            <input type="image" name="submit" src="/assets/search.png" border="0" id = 'searchIcon' alt="Submit" />
           </form>
 
      )
@@ -50,8 +49,6 @@ const mapState = state => {
     cart: state.cart || [],
     causes: state.causes || [],
     categories: state.categories || [],
-
-    // categories: state.categories || [],
   }
 }
 
@@ -62,10 +59,3 @@ const mapDispatch = (dispatch) => ({
 
 export default withRouter(connect(mapState, mapDispatch)(Search))
 
-/**
- * PROP TYPES
- */
-// Navbar.propTypes = {
-//   handleClick: PropTypes.func.isRequired,
-//   isLoggedIn: PropTypes.bool.isRequired
-// }

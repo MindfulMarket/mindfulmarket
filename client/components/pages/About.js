@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 
-const About = (props) => {
+const About = () => {
   return (
     <div className="page">
-      <h1>Welcome to The Mindful Market</h1>
+      <h1>Welcome to Mindful Market</h1>
       <h3>We are 4 friends who met while learning to program. Then we decided we want to use our newly developed skills to help create a better world.
       <br />
       <br />

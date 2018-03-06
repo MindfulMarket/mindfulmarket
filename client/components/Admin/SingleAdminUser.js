@@ -35,7 +35,6 @@ class SingleAdminUser extends Component {
     if (this.props.user) {
       user = this.props.user;
     }
-
     return (
       <div>
         {!user

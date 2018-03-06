@@ -92,7 +92,6 @@ class SingleAdminOrder extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    editOrder: (changedOrder, id) => dispatch(editOrderThunk(changedOrder, id)),
     deleteOrder: (id) => dispatch(deleteOrderThunk(id))
   }
 };

@@ -14,7 +14,7 @@ export class AdminNav extends Component {
 
     return (
         <div>
-            <ul style={{fontSize:'22px', marginBottom:'10px'}} >
+            <ul style={{fontSize: '22px', marginBottom: '10px'}} >
             <li><Link to="/admin/products">Products</Link></li>
             <li><Link to="/admin/brands">Brands</Link></li>
             <li><Link to="/admin/causes">Causes</Link></li>

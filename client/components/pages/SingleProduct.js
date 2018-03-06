@@ -47,7 +47,6 @@ class SingleProduct extends Component {
     }
     if (this.props.review) {
       productReviews = this.props.review.filter(review => review.productId === Number(this.props.match.params.id))
-      console.log(productReviews, 'product reviews')
     }
 
     return (

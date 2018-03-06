@@ -60,7 +60,6 @@ export class AdminProducts extends Component {
         )
       })
     }
-    console.log(this.state, 'state of component')
     return (
       <div className="page">
         {

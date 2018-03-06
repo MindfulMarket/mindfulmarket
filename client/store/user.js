@@ -37,6 +37,7 @@ export const getOrders = (userId) => dispatch => {
 export const me = () => dispatch => {
     return axios.get('/auth/me')
         .then(res => {
+
             dispatch(getUser(res.data || defaultUser))
             dispatch(fetchAndSetCart(res.data.shoppingCart || []))
             dispatch(getOrders(res.data.id))
@@ -47,7 +48,11 @@ export const me = () => dispatch => {
 export const updateMe = (user) => dispatch => {
     console.log(user)
     return axios.put(`api/users/${user.id}`, user)
-        .then(user => dispatch(updateUser(user.data)))
+        .then(user => {
+            dispatch(updateUser(user.data))
+            dispatch(fetchAndSetCart(user.data.shoppingCart || []))
+            dispatch(getOrders(user.data.id))
+        })
         .catch(err => console.error(err))
 }
 
@@ -84,7 +89,7 @@ export default function(state = defaultUser, action) {
             return action.user
         case UPDATE_USER:
             console.log(state, action)
-            return action.user;
+            return {...state, user: action.orders };
         case REMOVE_USER:
             return defaultUser
         case GET_ORDERS:

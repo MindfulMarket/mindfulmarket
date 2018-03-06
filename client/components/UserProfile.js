@@ -8,17 +8,15 @@ class UserProfile extends Component {
   constructor() {
     super();
     this.state = {
-        frstName: '',
-        lastName: '',
-        email: '',
-        password: ''
+      showEdit: false,
+      showOrderHistory: false
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     this.props.getUser()
-    .then( ()=> this.props.getOrderHistory(this.props.user.id));
+    // .then( ()=> this.props.getOrderHistory(this.props.user.id));
   }
 
   handleSubmit (evt) {
@@ -28,8 +26,9 @@ class UserProfile extends Component {
       let lastName = evt.target.lastName.value || this.props.user.lastName;
       let email = evt.target.email.value || this.props.user.email;
       let password = evt.target.password.value || this.props.user.password;
+      let shippingAddress = evt.target.shippingAddress.value || this.props.user.shippingAddress;
       // console.log({id, firstName, lastName, email, password})
-      this.props.updateMe({id, firstName, lastName, email, password})
+      this.props.updateMe({id, firstName, lastName, email, password, shippingAddress})
       .then(() => this.props.history.push(`/profile`))
     }
 
@@ -44,61 +43,74 @@ class UserProfile extends Component {
 
   render() {
     return (
-      <div className="page">
+      <div className="page" >
       {
         !this.props.isLoggedIn ?
         (<h1>You are not logged in!</h1>)
           :
         (
-          <div>
-            <div><h1 id = "userName">{this.props.user.firstName} {this.props.user.lastName}</h1></div>
+          <div style={{textAlign:'center', display:'flex', flexDirection: 'column', justifyContent:'spaceBetween'}}>
+            <div ><h1 id = "userName">{this.props.user.firstName} {this.props.user.lastName}</h1></div>
             <div className='profile'>
+
+
               <div className="editProfile" >
-                <h2> Edit Profile </h2>
-                <form onSubmit={this.handleSubmit} style={{display:'flex', flexDirection:'column'}} name={name}>
-                    <div>
-                      <label htmlFor="firstName" style={{fontSize:'18px'}}>First Name</label>
-                      <input name="firstName" placeholder={this.props.user.firstName} type="text" style={{width: '400px', height: '30px'}} />
-                    </div>
-                    <div>
-                      <label htmlFor="lastName" style={{fontSize:'18px'}}>Last Name</label>
-                      <input name="lastName" placeholder={this.props.user.lastName} type="text" style={{width: '400px', height: '30px'}}  />
-                    </div>
+              <button onClick={() => { this.setState({ showEdit: !this.state.showEdit }) }}>EditProfile</button>
+              { this.state.showEdit &&
+                <div>
+                  <h2> Edit Profile </h2>
+                  <form onSubmit={this.handleSubmit} style={{display:'flex', flexDirection:'column'}} name={name}>
                       <div>
-                        <label htmlFor="email" style={{fontSize:'18px'}}>Email</label>
-                        <input name="email" placeholder={this.props.user.email} type="text" style={{width: '400px', height: '30px'}} />
+                        <label htmlFor="firstName" style={{fontSize:'18px'}}>First Name</label>
+                        <input name="firstName" placeholder={this.props.user.firstName} type="text" style={{width: '400px', height: '30px'}} />
                       </div>
                       <div>
-                        <label htmlFor="password" style={{fontSize:'18px'}}>Password</label>
-                        <input name="password" type="password" style={{width: '400px', height: '30px'}}  />
+                        <label htmlFor="lastName" style={{fontSize:'18px'}}>Last Name</label>
+                        <input name="lastName" placeholder={this.props.user.lastName} type="text" style={{width: '400px', height: '30px'}}  />
                       </div>
-                      <div>
-                        <button type="submit">Submit</button>
-                      </div>
-                  </form>
-              </div>
-              <div className="orders" >
-                <h1> Order History </h1>
-                {
-                  this.props.user.orders && this.props.user.orders.user.length && this.props.user.orders.user.map((order) => (
-                    <div key={order.id} className="orderCard">
-
-                        <h2> Order #{order.id} {order.createdAt.slice(5,7)+'/'+order.createdAt.slice(8,10)+'/'+order.createdAt.slice(0,)} </h2>
-                        {order.productsOrdered.map((orderDetail) => (
-                        <div key={counter++}>
-                          <p style={{fontSize:'18px', marginRight:'10px'}}>Product: {orderDetail.product.name}          Quantity: {orderDetail.count} </p>
+                        <div>
+                          <label htmlFor="email" style={{fontSize:'18px'}}>Email</label>
+                          <input name="email" placeholder={this.props.user.email} type="text" style={{width: '400px', height: '30px'}} />
                         </div>
-                      ))}
-                      <h3> Total Price ${order.totalPrice} </h3>
-
-                    </div>
-                ))
+                        <div>
+                          <label htmlFor="password" style={{fontSize:'18px'}}>Password</label>
+                          <input name="password" type="password" style={{width: '400px', height: '30px'}}  />
+                        </div>
+                        <div>
+                          <label htmlFor="shippingAddress" style={{fontSize:'18px'}}>Shipping Address</label>
+                          <input name="shippingAddress" type="text" style={{width: '400px', height: '30px'}}  />
+                        </div>
+                        <div>
+                          <button type="submit">Submit</button>
+                        </div>
+                    </form>
+                  </div>
                 }
               </div>
-            </div>
-          </div>
-          )
+              <div className="orders" >
+                <button onClick={() => { this.setState({ showOrderHistory: !this.state.showOrderHistory }) }}>Order History</button>
+                { this.state.showOrderHistory &&
+                <div>
+                  <h1> Order History </h1>
+                    { this.props.user.orders && this.props.user.orders.user.length && this.props.user.orders.user.map((order) => (
+                      <div key={order.id} className="orderCard">
 
+                          <h2> Order #{order.id} Date: {order.createdAt.slice(5,7)+'/'+order.createdAt.slice(8,10)+'/'+order.createdAt.slice(0,4)} </h2>
+                          {order.productsOrdered.map((orderDetail) => (
+                          <div key={counter++}>
+                            <p style={{fontSize:'18px', marginRight:'10px'}}>Product:   {orderDetail.product.name} <br />Price:    {orderDetail.product.price}  <br/> Quantity:    {orderDetail.count}<br /> </p>
+                          </div>
+                        ))}
+                        <h3> Total Price ${order.totalPrice} </h3>
+
+                      </div>
+                  ))}
+                </div>
+                }
+              </div>
+          </div>
+        </div>
+          )
         }
       </div>
 

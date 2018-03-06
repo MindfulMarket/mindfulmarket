@@ -32,6 +32,7 @@ const AuthForm = (props) => {
         <div>
           <button type="submit">{displayName}</button>
         </div>
+        
         {error && error.response && <div> {error.response.data} </div>}
       </form>
       <a href="/auth/google"><img style={{maxHeight: '250px', maxWidth: '250px'}} src="https://hhs.htps.us/UserFiles/Servers/Server_791028/Templates/login-google.png" /></a>
@@ -71,6 +72,7 @@ const mapDispatch = (dispatch) => {
       const lastName = evt.target.lastName.value
       const email = evt.target.email.value
       const password = evt.target.password.value
+      const payment = evt.target.payment
       dispatch(auth(firstName, lastName, email, password, formName))
     }
   }

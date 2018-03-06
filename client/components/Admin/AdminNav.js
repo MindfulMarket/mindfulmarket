@@ -20,7 +20,7 @@ export class AdminNav extends Component {
             <li><Link to="/admin/causes">Causes</Link></li>
             <li><Link to="/admin/categories">Categories</Link></li>
             <li><Link to="/admin/orders">Order</Link></li>
-            <li><Link to="/admin/users">User</Link></li>
+            <li><Link to="/admin/users">Usergit status]</Link></li>
             </ul>
         </div>
     )

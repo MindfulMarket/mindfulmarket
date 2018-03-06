@@ -18,7 +18,8 @@ router.put('/:id', (req, res, next) => {
         User.update(req.body, {
                 where: {
                     id: req.params.id
-                }
+                },
+                returning: true
             })
             .then((result) => res.json(result))
             .catch(next)

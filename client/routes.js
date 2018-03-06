@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {AdminBrands,SingleAdminBrand, SingleAdminCause, AdminCauses, SingleAdminProduct, AdminProducts, AdminHome, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile, SingleCategory } from './components'
+import {Payment,AdminBrands,SingleAdminBrand, SingleAdminCause, AdminCauses, SingleAdminProduct, AdminProducts, AdminHome, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout,  About, UserProfile, SingleCategory } from './components'
 import {me, fetchProducts,fetchAllBrands, fetchAllCauses, fetchAllCategories} from './store'
 
 // import { fetchAndSetCart } from './store/cart' //WHERE
@@ -32,9 +32,10 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={UserHome} />
-
+``        <Route path="/categories/:id" component={SingleCategory} />
+        <Route path="/checkout" component={Checkout} />``
         <Route exact path="/cart" component={ShoppingCart} />
-        <Route path="/thankyou/:action" component={ThankYou} />
+        <Route path="/payment/:action" component={Payment} />
         <Route path="/profile" component={UserProfile} />
        {/* <Route exact path="/" component={UserHome} />*/}
         <Route path="/login" component={Login} />
@@ -49,6 +50,8 @@ class Routes extends Component {
         <Route exact path="/categories" component={AllCategories} />
         <Route path="/products" component={SingleProduct} />
         <Route path="/brands/:id" component={SingleBrand} />
+
+        {/* Admin stuff */}
         <Route exact path="/admin" component={AdminHome} />
         <Route exact path="/admin/products" component={AdminProducts} />
         <Route path="/admin/products/:id" component={SingleAdminProduct} /> 
@@ -63,7 +66,6 @@ class Routes extends Component {
         <Route path="/checkout" component={Checkout} />
 
 
-        <Route path="/categories/:id" component={SingleCategory} />
 
       </Switch>
     )

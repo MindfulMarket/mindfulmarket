@@ -10,6 +10,7 @@ const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const SET_ADMIN = 'SET_ADMIN'
 const GET_ORDERS = 'GET_ORDERS'
+const SAVE_TOTAL = 'SAVE_TOTAL'
 
 /**
  * INITIAL STATE
@@ -19,6 +20,8 @@ const defaultUser = { orders: [] }
 /**
  * ACTION CREATORS
  */
+export const sendPrice=(price)=>({type:SAVE_TOTAL,price})
+
 const getUser = user => ({ type: GET_USER, user })
 const setAdminMode = user => ({ type: SET_ADMIN, user })
 const removeUser = () => ({ type: REMOVE_USER })
@@ -83,6 +86,8 @@ export const logout = () =>
  */
 export default function(state = defaultUser, action) {
     switch (action.type) {
+        case SAVE_TOTAL:
+            return {...state, orderPriceTotal:action.price}
         case GET_USER:
             return action.user
         case REMOVE_USER:

@@ -1,28 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAllCauses } from '../store/causes'
+import AddPayment from './AddPayment'
 
 /* -----------------    COMPONENT     ------------------ */
-class ThankYou extends Component {
+class Payment extends Component {
 
   render() {
+    console.log(this.props.totalOrderPrice)
+  
+
     return (
       <div id = "thanksContainer">
-      <h1>Thank you for {this.props.match.params.action === 'ordered' ? 'your order' : 'signing up'} {this.props.userName}!</h1>
+        <AddPayment orderTotalPrice ={this.props.totalOrderPrice} user={this.props.userName} />
       </div>
     )
   }
 }
 
-const mapState = ({ user}) => {
-  return { userName: user.firstName }
+const mapState = ({ user,order}) => {
+  return {
+     userName: user.firstName ,
+     order,
+     totalOrderPrice: user.orderPriceTotal
+     
+    }
 }
 
 const mapDispatch = dispatch => ({
   fetchCauseData: () => dispatch(fetchAllCauses())
 });
 
-export default connect(mapState, mapDispatch)(ThankYou);
+export default connect(mapState, mapDispatch)(Payment);
 
   /* -----------------    CONTAINER     ------------------ */
 

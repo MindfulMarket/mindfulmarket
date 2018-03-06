@@ -566,3 +566,9 @@ li {
         font-size: 1rem;
     }
 }
+
+.__PrivateStripeElement{
+    width: 500px;
+    background-color: white;
+    border-radius: 10px;
+}

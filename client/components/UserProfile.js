@@ -2,15 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {getOrders} from '../store/user'
 import { fetchAllBrands } from '../store/brands'
+import AddPayment from './AddPayment'
 /* -----------------    COMPONENT     ------------------ */
 let orders = [];
 
 class UserProfile extends Component {
+  constructor(props){
+    super(props)
+
+
+  }
 
 
   // componentDidMount() {
   //   //this.props.getUserOrders(this.props.user.id)
   // }
+
 
   render() {
     return (
@@ -29,6 +36,8 @@ class UserProfile extends Component {
             </div>
           )
       })}
+      <h3>Add Payment</h3>
+      <AddPayment user={this.props.user}/>
     </div>
   ) :
   (<h1>You are not currently logged in!</h1>)

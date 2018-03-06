@@ -2,8 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import {getOrders} from '../store/user'
- import { fetchAndSetCart } from '../store/cart'
+ import { fetchAndSetCart} from '../store/cart'
+ import { sendPrice} from '../store/user'
+
  import { Link } from 'react-router-dom'
+
+ import AddPayment from './AddPayment'
+
 
 
 /**
@@ -19,18 +24,25 @@ const Checkout = (props) => {
       <form
 onSubmit={(evt) => {
             evt.preventDefault()
-            axios.put(`/api/users/${props.userId}`, {shoppingCart: []})
-            props.emptyCart()
+
             let totalPrice = props.order.reduce((total, productObj) => {
               return total + (productObj.product.price * productObj.count)
-              }, 0)
+              }, 0).toFixed(2)
+
+              props.sendPrice(totalPrice)
+              
+     
+    
+        
+            axios.put(`/api/users/${props.userId}`, {shoppingCart: []})
+            props.emptyCart()
             const order = { productsOrdered: props.order, totalPrice, userId: props.userId }
 
               axios.post('/api/orders', order)
               .then(() => props.getOrders(props.userId))
               //clear the frontend cart on logout
 
-            props.history.push('/thankyou/ordered')
+            props.history.push('/payment/ordered')
 
         }} name={name}>
         <div>
@@ -49,14 +61,16 @@ onSubmit={(evt) => {
         </div>
         <br />
         <div>
-          <button type="submit">SUBMIT ORDER</button>
+      
+          
+             <button type="submit">SUBMIT ORDER</button>
+          
         </div>
       </form>
      </div>
       <div>
       <div className="cartContainer">
             {
-
               props.cartContents.map(
                 product => (
                 <div className="cartItem" key={product.product.id}>
@@ -86,7 +100,8 @@ const mapState = (state) => {
     lastName: state.user.lastName,
     order: state.cart,
     userId: state.user.id,
-    cartContents: state.cart
+    cartContents: state.cart,
+    user: state.user
 
   }
 }
@@ -105,7 +120,8 @@ const mapDispatch = (dispatch) => {
       // dispatch(checkout(paymentInfo))
     },
     getOrders: (id) => dispatch(getOrders(id)),
-    emptyCart: () => dispatch(fetchAndSetCart([]))
+    emptyCart: () => dispatch(fetchAndSetCart([])),
+    sendPrice:(priceTotal) => dispatch(sendPrice(priceTotal))
 
   }
 }

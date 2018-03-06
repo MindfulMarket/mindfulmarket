@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { AdminBrands, SingleAdminBrand, SingleAdminCause, AdminCauses, AdminCategories, SingleAdminCategory, SingleAdminProduct, AdminProducts, AdminOrders, AdminHome, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile, SingleCategory } from './components'
-import {me, fetchProducts, fetchAllBrands, fetchAllCauses, fetchAllCategories} from './store'
+import { AdminBrands, SingleAdminBrand, SingleAdminCause, AdminCauses, AdminCategories, SingleAdminCategory, SingleAdminProduct, AdminProducts, AdminOrders, AdminHome, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile, SingleCategory, SingleAdminOrder } from './components'
+import {me, fetchProducts, fetchAllBrands, fetchAllCauses, fetchAllCategories, fetchAllOrders} from './store'
 
 // import { fetchAndSetCart } from './store/cart' //WHERE
 
@@ -53,6 +53,7 @@ class Routes extends Component {
 
         <Route exact path="/admin" component={AdminHome} />
         <Route exact path="/admin/orders" component={AdminOrders} />
+        <Route exact path="/admin/orders/:id" component={SingleAdminOrder} />
 
         <Route exact path="/admin/products" component={AdminProducts} />
         <Route path="/admin/products/:id" component={SingleAdminProduct} />
@@ -106,6 +107,7 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchAllBrands())
       dispatch(fetchAllCauses())
       dispatch(fetchAllCategories())
+      dispatch(fetchAllOrders())
     }
   }
     //fetchCart: (cart) => dispatch(fetchAndSetCart(cart))

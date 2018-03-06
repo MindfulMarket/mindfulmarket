@@ -10,8 +10,9 @@ import causes from './causes';
 import categories from './categories';
 import review from './review';
 import search from './search';
+import orders from './orders'
 
-const reducer = combineReducers({ user, products, cart, brands, causes, categories, review, search })
+const reducer = combineReducers({ user, products, cart, brands, causes, categories, review, search, orders })
 const middleware = composeWithDevTools(applyMiddleware(
     thunkMiddleware,
     createLogger({ collapsed: true })
@@ -24,4 +25,5 @@ export * from './products';
 export * from './brands';
 export * from './causes';
 export * from './categories';
+export * from './orders';
 

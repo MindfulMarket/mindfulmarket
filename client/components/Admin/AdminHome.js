@@ -18,7 +18,7 @@ export class AdminHome extends Component {
           this.props.user.isAdmin
             ?
             <div>
-              <h1>Welcome All powerful {`${this.props.user.firstName}!`}</h1>
+              <h1>Welcome Admin {`${this.props.user.firstName}!`}</h1>
               <AdminNav id="AdminNav" />
             </div>
             :

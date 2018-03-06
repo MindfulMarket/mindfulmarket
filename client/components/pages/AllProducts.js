@@ -33,8 +33,7 @@ class AllProducts extends Component {
   }
 
   render() {
-    let productsToRender = this.props.products
-    console.log(this.props, 'props of all products')
+    let productsToRender = this.props.search.length ? this.props.search : this.props.products
 
     if (this.props.filteredProducts) {
       productsToRender = this.props.filteredProducts
@@ -79,15 +78,9 @@ class AllProducts extends Component {
 /* -----------------    CONTAINER     ------------------ */
 
 const mapState = (state) => {
-  return { products: state.products.filteredOrSorted, search: state.search, cart:state.cart , userId:state.user.id}
+  return { products: state.products.filteredOrSorted, search: state.search, cart:state.cart, userId:state.user.id}
 }
-// export const updateState = (key, value)=> dispatch=>{
-//     dispatch({
-//           type:'UPDATE_STATE',
-//           key, value
-//         })
-//     return Promise.resolve()
-//     }
+
 const mapDispatch = dispatch => ({
   fetchData: () => dispatch(fetchProducts()),
   addToCart: (product) => {

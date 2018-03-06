@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom'
 const Checkout = (props) => {
   const { name } = props
 
-  let totalPrice = this.props.cartContents.reduce((total, productObj) => {
+  let totalPrice = props.cartContents.reduce((total, productObj) => {
     return total + (productObj.product.price * productObj.count)
   }, 0).toFixed(2)
 

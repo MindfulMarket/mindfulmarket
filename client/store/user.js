@@ -1,6 +1,6 @@
 import axios from 'axios'
 import history from '../history'
-import { fetchAndSetCart } from './cart'
+import { fetchAndSetCart, loadAndUpdateLocalStorage, addToCart } from './cart'
 
 
 /**
@@ -25,11 +25,9 @@ const setAdminMode = user => ({ type: SET_ADMIN, user })
 const removeUser = () => ({ type: REMOVE_USER })
 const updateUser = (user) => ({ type: UPDATE_USER, user })
 const setUserOrders = (orders) => ({ type: GET_ORDERS, orders })
-
-
-/**
- * THUNK CREATORS
- */
+    /**
+     * THUNK CREATORS
+     */
 export const getOrders = (userId) => dispatch => {
     return axios.get(`/api/orders/${userId}`)
         .then((res) => res.data)
@@ -39,12 +37,37 @@ export const getOrders = (userId) => dispatch => {
 export const me = () => dispatch => {
     return axios.get('/auth/me')
         .then(res => {
+            let localCart = loadAndUpdateLocalStorage()
+            dispatch(getUser(res.data || defaultUser))
+            dispatch(fetchAndSetCart(res.data.shoppingCart || localCart))
+            if (res.data.id !== undefined) {
+                dispatch(getOrders(res.data.id))
+                if (localCart.length) {
+                    let result = window.confirm("There is already a cart! Click 'OK' to merge or 'cancel' to continue without merging.")
+                    if (result) {
+                        console.log('THE EXISTING CART = ', localCart)
+                        localCart.forEach((productObj) => {
+                            if (productObj.count > 1) {
+                                for (let k = 0; k < productObj.count; k++) {
+                                    dispatch(addToCart(productObj.product))
+                                }
+                            } else {
+                                dispatch(addToCart(productObj.product))
+                            }
+                        })
+                        dispatch(loadAndUpdateLocalStorage([])) //cart on local state deleted when merge approved or denied
 
+                    }
+                }
+                dispatch(loadAndUpdateLocalStorage([])) //cart on local state deleted when merge approved or denied
+            }
+        })
+        .catch(err => console.error(err))
+        .then(() => {
             dispatch(getUser(res.data || defaultUser))
             dispatch(fetchAndSetCart(res.data.shoppingCart || []))
             dispatch(getOrders(res.data.id))
         })
-        .catch(err => console.error(err))
 }
 
 export const updateMe = (user) => dispatch => {
@@ -64,7 +87,7 @@ export const auth = (firstName, lastName, email, password, method) =>
     .then(res => {
         dispatch(getUser(res.data))
         dispatch(fetchAndSetCart(res.data.shoppingCart || []))
-        dispatch(getOrders(res.data.id))
+        if (res.data.id !== undefined) dispatch(getOrders(res.data.id))
 
         history.push('/')
     }, authError => { // rare example: a good use case for parallel (non-catch) error handler
@@ -73,20 +96,26 @@ export const auth = (firstName, lastName, email, password, method) =>
 
 
 export const logout = () =>
-    dispatch =>
-    axios.post('/auth/logout')
-    .then(_ => {
-        dispatch(removeUser())
-        dispatch(fetchAndSetCart([])) //clear the frontend cart on logout
-        history.push('/login')
-    })
-    .catch(err => console.error(err))
+    dispatch => {
+        loadAndUpdateLocalStorage([])
+        axios.post('/auth/logout')
+            .then(_ => {
+                dispatch(removeUser())
+                dispatch(fetchAndSetCart([])) //clear the frontend cart on logout
+                history.push('/login')
+            })
+            .catch(err => console.error(err))
+    }
 
 
 export const setAdmin = (user) => dispatch => {
     if (user.isAdmin) user.adminMode = true
     dispatch(setAdminMode(user))
 }
+
+
+
+
 
 
 /**

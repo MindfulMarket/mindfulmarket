@@ -258,12 +258,12 @@ const categories = [{
     imageUrl: 'http://www.woodard247.com/images/blog/Office-Cleaning-Supplies-Checklist/officelceaningsupplies-1.jpg'
 },
 {
-    name: 'Men\'s Clothing and Accessories',
+    name: 'Men\'s Clothing',
     description: 'Use these things to clean stuff',
     imageUrl: 'https://imagesvc.timeincapp.com/v3/mm/image?url=http%3A%2F%2Fcdn-img.instyle.com%2Fsites%2Fdefault%2Ffiles%2Fstyles%2F684xflex%2Fpublic%2Fimages%2F2017%2F12%2Fgettyimages-539573922.jpg%3Fitok%3Dao0lroMk&w=700&q=85'
 },
 {
-    name: 'Women\'s Clothing and Accessories',
+    name: 'Women\'s Clothing',
     description: 'Wear em',
     imageUrl: 'https://www.burlingtoncoatfactory.com/Repository/CategoryC/2018/Feb/020718_Womens_hero1.png'
 },

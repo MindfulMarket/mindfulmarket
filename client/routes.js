@@ -27,8 +27,16 @@ class Routes extends Component {
 
       <Switch>
         <Route exact path="/" component={UserHome} />
+<<<<<<< HEAD
 
         { /* AUTH / PROFILE ROUTES */ }
+=======
+        <Route exact path="/cart" component={ShoppingCart} />
+        <Route path="/thankyou/:action" component={ThankYou} />
+        <Route path="/profile" component={UserProfile} />
+        <Route path="/checkout" component={Checkout} />
+        <Route path="/categories/:id" component={SingleCategory} />
+>>>>>>> master
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/profile" component={UserProfile} />
@@ -39,8 +47,15 @@ class Routes extends Component {
 
         <Route exact path="/causes" component={AllCauses} />
         <Route path="/causes/:id" component={SingleCause} />
+<<<<<<< HEAD
 
         <Route exact path="/brands" component={AllBrands} />
+=======
+        <Route path="/categories/:id" component={SingleCategory} />
+
+        <Route exact path="/categories" component={AllCategories} />
+        <Route path="/products" component={SingleProduct} />
+>>>>>>> master
         <Route path="/brands/:id" component={SingleBrand} />
 
         <Route exact path="/categories" component={AllCategories} />
@@ -65,8 +80,14 @@ class Routes extends Component {
         <Route path="/admin/categories/:id" component={SingleAdminCategory} />
         <Route exact path="/admin/brands" component={AdminBrands} />
         <Route path="/admin/brands/:id" component={SingleAdminBrand} />
+<<<<<<< HEAD
         <Route exact path="/admin/users" component={AdminUsers} />
         <Route exact path="/admin/users/:id" component={SingleAdminUser} />
+=======
+        <Route path="/checkout" component={Checkout} />
+
+
+>>>>>>> master
 
       </Switch>
     )
@@ -94,7 +115,10 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchAllBrands())
       dispatch(fetchAllCauses())
       dispatch(fetchAllCategories())
+<<<<<<< HEAD
       dispatch(getAllUsers())
+=======
+>>>>>>> master
 
     }
   }

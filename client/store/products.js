@@ -27,6 +27,19 @@ const STARS_FILTER_2 = 'STARS_FILTER_2'
 const STARS_FILTER_3 = 'STARS_FILTER_3'
 const STARS_FILTER_4 = 'STARS_FILTER_4'
 const STARS_FILTER_5 = 'STARS_FILTER_5'
+
+const REVIEWS_FILTER_10 = 'REVIEWS_FILTER_10'
+const REVIEWS_FILTER_100 = 'REVIEWS_FILTER_100'
+const REVIEWS_FILTER_500 = 'REVIEWS_FILTER_500'
+const REVIEWS_FILTER_1000 = 'REVIEWS_FILTER_1000'
+
+
+const CLEAR_FILTERS = 'CLEAR_FILTERS'
+
+/* ------------       ACTION CREATOR     ------------------ */
+
+
+export const clearFilters = () => ({ type: CLEAR_FILTERS })
 /* ------------       ACTION CREATOR     ------------------ */
 
 const getProducts = products => ({
@@ -55,9 +68,9 @@ export const sortProducts = (how) => {
             return { type: SORT_PRODUCTS_BY_RATING_LOW_HIGH }
         case 'ratingHighLow':
             return { type: SORT_PRODUCTS_BY_RATING_HIGH_LOW }
-        case 'reviewCountLowHigh':
+        case 'reviewsLowHigh':
             return { type: SORT_PRODUCTS_BY_NUM_REVIEWS_LOW_HIGH }
-        case 'reviewCountHighLow':
+        case 'reviewsHighLow':
             return { type: SORT_PRODUCTS_BY_NUM_REVIEWS_HIGH_LOW }
         default:
 
@@ -90,6 +103,14 @@ export const filterProducts = (range) => {
             return { type: STARS_FILTER_4 }
         case 'fourPlus':
             return { type: STARS_FILTER_5 }
+        case 'tenPlus':
+            return { type: REVIEWS_FILTER_10 }
+        case 'hundredPlus':
+            return { type: REVIEWS_FILTER_100 }
+        case 'fiveHundredPlus':
+            return { type: REVIEWS_FILTER_500 }
+        case 'thousandPlus':
+            return { type: REVIEWS_FILTER_1000 }
         default:
 
     }
@@ -156,6 +177,8 @@ export default function reducer(state = { all: [], filteredOrSorted: [] }, actio
                     }
                 })
             }
+        case CLEAR_FILTERS:
+            return { ...state, filteredOrSorted: state.all.slice(0) }
         case SORT_PRODUCTS_LOW_HIGH:
             return { ...state, filteredOrSorted: state.filteredOrSorted.slice(0).sort((product1, product2) => product1.price - product2.price) }
         case SORT_PRODUCTS_HIGH_LOW:
@@ -187,11 +210,19 @@ export default function reducer(state = { all: [], filteredOrSorted: [] }, actio
         case STARS_FILTER_2:
             return { ...state, filteredOrSorted: state.all.slice(0).filter((product) => product.avgRating <= 2 && product.avgRating >= 1) }
         case STARS_FILTER_3:
-            return { ...state, filteredOrSorted: state.all.slice(0).filter((product) => product.avgRating <= 3) }
+            return { ...state, filteredOrSorted: state.all.slice(0).filter((product) => product.avgRating <= 2.9 && product.avgRating >= 2) }
         case STARS_FILTER_4:
             return { ...state, filteredOrSorted: state.all.slice(0).filter((product) => product.avgRating < 4 && product.avgRating >= 3) }
         case STARS_FILTER_5:
             return { ...state, filteredOrSorted: state.all.slice(0).filter((product) => product.avgRating >= 4) }
+        case REVIEWS_FILTER_10:
+            return { ...state, filteredOrSorted: state.all.slice(0).filter((product) => product.reviews.length > 10) }
+        case REVIEWS_FILTER_100:
+            return { ...state, filteredOrSorted: state.all.slice(0).filter((product) => product.reviews.length >= 100) }
+        case REVIEWS_FILTER_500:
+            return { ...state, filteredOrSorted: state.all.slice(0).filter((product) => product.reviews.length >= 500) }
+        case REVIEWS_FILTER_1000:
+            return { ...state, filteredOrSorted: state.all.slice(0).filter((product) => product.reviews.length >= 1000) }
         default:
             return state;
     }

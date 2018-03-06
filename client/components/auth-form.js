@@ -72,22 +72,6 @@ const AuthForm = (props) => {
             }
         }
 
-<<<<<<< HEAD
-const mapDispatch = (dispatch) => {
-  return {
-    handleSubmit (evt) {
-      evt.preventDefault()
-      const formName = evt.target.name
-      const firstName = evt.target.firstName.value
-      const lastName = evt.target.lastName.value
-      const email = evt.target.email.value
-      const password = evt.target.password.value
-      const payment = evt.target.payment
-      dispatch(auth(firstName, lastName, email, password, formName))
-    }
-  }
-}
-=======
         const mapDispatch = (dispatch) => {
             return {
                 handleSubmit(evt) {
@@ -101,7 +85,6 @@ const mapDispatch = (dispatch) => {
                 }
             }
         }
->>>>>>> 93f627e8d43c7eaffb4aa560a746447f513df1b5
 
         export const Login = connect(mapLogin, mapDispatch)(AuthForm)
         export const Signup = connect(mapSignup, mapDispatch)(AuthForm)

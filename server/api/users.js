@@ -15,20 +15,6 @@ router.get('/', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-<<<<<<< HEAD
-    if (req.params.id !== 'undefined') {
-        User.update(req.body, {
-                where: {
-                    id: req.params.id
-                },
-                returning: true
-            })
-            .then((result) => res.json(result))
-            .catch(next)
-    } else {
-        res.sendStatus(230)
-    }
-=======
     console.log('HIT', req.body)
     User.scope('populated').update(req.body, {
             where: {
@@ -51,5 +37,4 @@ router.post('/', (req, res, next) => {
             return res.json(user)
         })
         .catch(next)
->>>>>>> 93f627e8d43c7eaffb4aa560a746447f513df1b5
 })

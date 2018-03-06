@@ -10,11 +10,8 @@ const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const SET_ADMIN = 'SET_ADMIN'
 const GET_ORDERS = 'GET_ORDERS'
-<<<<<<< HEAD
 const SAVE_TOTAL = 'SAVE_TOTAL'
-=======
 const UPDATE_USER = 'UPDATE_USER'
->>>>>>> 93f627e8d43c7eaffb4aa560a746447f513df1b5
 
 /**
  * INITIAL STATE

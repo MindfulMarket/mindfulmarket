@@ -52,27 +52,9 @@ class UserProfile extends Component {
         (<h1>You are not logged in!</h1>)
           :
         (
-<<<<<<< HEAD
-          <div>
-            <h1 id = "userName">{this.props.user.firstName}</h1>
-        {
-           this.props.user.orders.map((order) => {
-          return (
-            <div key={order.id} className = "orderDiv">
-            {order.productsOrdered.map((product) => <div key={product.id}>{product.product.name}</div>)}
-            </div>
-          )
-      })}
-      <h3>Add Payment</h3>
-      <AddPayment user={this.props.user}/>
-    </div>
-  ) :
-  (<h1>You are not currently logged in!</h1>)
-=======
           <div style={{textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'spaceBetween'}}>
             <div ><h1 id = "userName">{this.props.user.firstName} {this.props.user.lastName}</h1></div>
             <div className="profile">
->>>>>>> 93f627e8d43c7eaffb4aa560a746447f513df1b5
 
 
               <div className="editProfile">

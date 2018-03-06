@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
 const nodemailer = require('nodemailer');
-const stripe = require('stripe')('sk_test_c8mpq0z99gzQwgQEofYXHT3Q')
+const stripe = require('stripe')(process.env.STRIPE_KEY)
 module.exports = app
 
 /**
@@ -73,7 +73,6 @@ const createApp = () => {
     })
     app.post('/payment', (req,res) =>{
         let token = req.body.token
-        console.log(req.user)
        
         stripe.charges.create({
         amount: parseInt(req.body.amount + "00"),
@@ -91,7 +90,7 @@ app.post('/confirmation', (req, res) => {
         service: 'gmail',
         auth: {
             user: 'mindfullmarket6@gmail.com',
-            pass: 'mindfull123'
+            pass: process.env.EMAIL_PASSWARD
         }
     });
 

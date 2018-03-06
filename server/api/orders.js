@@ -34,13 +34,16 @@ module.exports = router
         .then(_ => Orders.scope('populated').findById(req.params.id))
         .catch(next)
     })
-    
+
 
   router.delete('/:id', (req, res, next) => {
     Orders.destroy({
       where: {
         id: req.params.id
       },
+    })
+    .then(deleted => {
+      res.status(204).json(deleted)
     })
     .catch(next)
   })

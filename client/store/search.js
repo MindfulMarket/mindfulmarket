@@ -14,7 +14,6 @@ export const search = (criteria) => dispatch => {
     return axios.post('/api/search', criteria)
         .then(res => res.data)
         .then(foundCriteria => {
-            console.log(foundCriteria)
             dispatch(searchEverything(foundCriteria))
         })
         .catch(err => console.error(err));

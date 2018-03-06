@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { sortProducts, filterProducts } from '../../store/products'
+import { sortProducts, filterProducts, clearFilters} from '../../store/products'
 import { connect } from 'react-redux'
 import { search, clearSearch } from '../../store/search'
 // import connect from
@@ -35,15 +35,14 @@ class Filter extends Component {
     return (
       <div id="filterBar">
         <div id="filterSearch" >
-        <img id="searchIcon" src="/assets/search.png" />
 
-            <form onSubmit={this.handleSubmit} >
-              <input onChange={this.handleChange} placeholder="Search" />
-              <button>Search </button>
-            </form>
+            <form id = 'searchBarForm' onSubmit={this.handleSubmit} >
+              <input id = 'searchInput' onChange={this.handleChange} placeholder=" Search" />
+              <input type="image" name="submit" src="/assets/search.png" border="0" id = 'searchIcon' alt="Submit" />
+              </form>
         </div>
         { this.props.search.length ?
-          <button className="cardBtn" onClick={this.props.handleClick}>Clear Search</button>
+          <button className="cardBtn" id ='clearSearchBtn' onClick={this.props.handleClick}>Clear Search</button>
         : ''
         }
 
@@ -87,8 +86,8 @@ class Filter extends Component {
 
           <select className="filterBarSelectDropdown"  onChange={(ev) => this.props.handleSort(ev.target.value)}>
             <option selected="selected">none</option>
-            <option value="lowHighStar">low to high</option>
-            <option value="highLowStar">high to low</option>
+            <option value="ratingLowHigh">low to high</option>
+            <option value="ratingHighLow">high to low</option>
           </select>
         </div>
 
@@ -114,8 +113,8 @@ class Filter extends Component {
 
         <select className="filterBarSelectDropdown" onChange={(ev) => this.props.handleSort(ev.target.value)}>
           <option selected="selected">none</option>
-          <option value="lowHighStar">low to high</option>
-          <option value="highLowStar">high to low</option>
+          <option value='reviewsLowHigh'>low to high</option>
+          <option value='reviewsHighLow'>high to low</option>
         </select>
       </div>
 
@@ -123,11 +122,10 @@ class Filter extends Component {
         <h4 className="filterLabel">filter</h4>
         <select className="filterBarSelectDropdown" onChange={(ev) => this.props.handleFilter(ev.target.value)}>
           <option selected="selected">none</option>
-          <option value="one">0 - 1 Stars</option>
-          <option value="two">1 - 2 Stars</option>
-          <option value="three">2 - 3 Stars</option>
-          <option value="four">3 - 4 Stars</option>
-          <option value="fourPlus">4 Stars +</option>
+          <option value="tenPlus">10+ reviews</option>
+          <option value="hundredPlus">100+ reviews</option>
+          <option value="fiveHundredPlus">500+ reviews</option>
+          <option value="thousandPlus">1000+ reviews</option>
         </select>
       </div>
 
@@ -150,8 +148,13 @@ const mapDispatch = (dispatch) => {
     handleFilter: (range) => {
       dispatch(filterProducts(range))
     },
-    handleClick: () => dispatch(clearSearch()),
+    handleClick: () => {
+      dispatch( clearSearch())
+      dispatch(clearFilters())
+    },
+
     search: (criteria) => dispatch(search(criteria))
+
   }
 }
 

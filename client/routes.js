@@ -31,13 +31,12 @@ class Routes extends Component {
     return (
 
       <Switch>
-        {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={UserHome} />
-
         <Route exact path="/cart" component={ShoppingCart} />
         <Route path="/thankyou/:action" component={ThankYou} />
         <Route path="/profile" component={UserProfile} />
-       {/* <Route exact path="/" component={UserHome} />*/}
+        <Route path="/checkout" component={Checkout} />
+        <Route path="/categories/:id" component={SingleCategory} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/about" component={About} />
@@ -47,6 +46,8 @@ class Routes extends Component {
         <Route exact path="/products/:id" component={SingleProduct} />
         <Route exact path="/causes" component={AllCauses} />
         <Route path="/causes/:id" component={SingleCause} />
+        <Route path="/categories/:id" component={SingleCategory} />
+
         <Route exact path="/categories" component={AllCategories} />
         <Route path="/products" component={SingleProduct} />
         <Route path="/brands/:id" component={SingleBrand} />
@@ -67,18 +68,7 @@ class Routes extends Component {
         <Route path="/admin/brands/:id" component={SingleAdminBrand} />
         <Route path="/checkout" component={Checkout} />
 
-        {
-          isLoggedIn &&
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-          </Switch>
-        }
-        {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
 
-
-        <Route path="/categories/:id" component={SingleCategory} />
 
       </Switch>
     )
@@ -106,6 +96,7 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchAllBrands())
       dispatch(fetchAllCauses())
       dispatch(fetchAllCategories())
+
     }
   }
     //fetchCart: (cart) => dispatch(fetchAndSetCart(cart))

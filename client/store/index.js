@@ -11,7 +11,6 @@ import categories from './categories';
 import review from './review';
 import search from './search';
 
-
 const reducer = combineReducers({ user, products, cart, brands, causes, categories, review, search })
 const middleware = composeWithDevTools(applyMiddleware(
     thunkMiddleware,
@@ -25,3 +24,4 @@ export * from './products';
 export * from './brands';
 export * from './causes';
 export * from './categories';
+

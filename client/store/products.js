@@ -3,6 +3,7 @@ import axios from 'axios';
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
+const POST_NEW_PRODUCT = 'POST_NEW_PRODUCT';
 
 const SORT_PRODUCTS_LOW_HIGH = 'SORT_PRODUCTS_LOW_HIGH' //by price
 const SORT_PRODUCTS_HIGH_LOW = 'SORT_PRODUCTS_HIGH_LOW' //by price
@@ -37,10 +38,26 @@ const CLEAR_FILTERS = 'CLEAR_FILTERS'
 
 /* ------------       ACTION CREATOR     ------------------ */
 
-const getProducts = products => ({ type: GET_ALL_PRODUCTS, products });
-const removeProduct = id => ({ type: REMOVE_PRODUCT, id });
-const updateProduct = product => ({ type: UPDATE_PRODUCT, product });
+
 export const clearFilters = () => ({ type: CLEAR_FILTERS })
+/* ------------       ACTION CREATOR     ------------------ */
+
+const getProducts = products => ({
+    type: GET_ALL_PRODUCTS, products
+});
+
+const removeProduct = id => ({
+    type: REMOVE_PRODUCT, id
+});
+
+const updateProduct = product => ({
+    type: UPDATE_PRODUCT, product
+});
+
+const postNewProduct = product => ({
+    type: POST_NEW_PRODUCT, product
+})
+
 export const sortProducts = (how) => {
     switch (how) {
         case 'lowHigh':
@@ -119,14 +136,36 @@ export const fetchProducts = () => dispatch => {
         })
         .catch(err => console.error(err));
 }
+export const postProduct = newProduct => dispatch => {
+    axios.post('/api/products', newProduct)
+        .then(res => { return res.data })
+        .then(addedProduct => dispatch(postNewProduct(addedProduct)))
+        .catch(err => console.error(err));
+}
+
+export const editProductThunk = (editedProduct, id) => dispatch => {
+    axios.put(`/api/products/${id}`, editedProduct)
+        .then(res => { return res.data })
+        .then(changedProduct => dispatch(updateProduct(changedProduct)))
+        .catch(err => console.error(err));
+}
+
+export const deleteProductThunk = (id) => dispatch => {
+    axios.delete(`/api/Products/${id}`)
+        .then(res => { return res.data })
+        .then(deleted => dispatch(removeProduct(id)))
+        .catch(err => console.error(err));
+}
 
 export default function reducer(state = { all: [], filteredOrSorted: [] }, action) {
     switch (action.type) {
         case GET_ALL_PRODUCTS:
             return { all: action.products, filteredOrSorted: action.products }
         case REMOVE_PRODUCT:
-            let mod = state.filter(product => product.id !== action.product)
+            let mod = state.all.filter(product => product.id !== action.id)
             return { ...state, all: mod }
+        case POST_NEW_PRODUCT:
+            return {all: [...state.all, action.product], filteredOrSorted: [...state.all, action.product]}
         case UPDATE_PRODUCT:
             return {
                 ...state,

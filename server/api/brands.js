@@ -44,9 +44,9 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-  Brands.update(req.body, { 
-    where: { 
-      id: req.params.id 
+  Brands.update(req.body, {
+    where: {
+      id: req.params.id
     },
     returning: true
   })
@@ -58,16 +58,19 @@ router.put('/:id', (req, res, next) => {
       .then(_ => Brands.scope('populated').findById(req.params.id))
       .then(reloadedBrand => {
         res.json(reloadedBrand)
-      })   
+      })
   })
   .catch(next)
   })
 
 router.delete('/:id', (req, res, next) => {
-  Brands.destroy({ 
-    where: { 
-      id: req.params.id 
+  Brands.destroy({
+    where: {
+      id: req.params.id
     },
+  })
+  .then(deleted => {
+    res.status(204).json(deleted)
   })
   .catch(next)
 })

@@ -1,6 +1,6 @@
 import React from 'react'
 
-
+let counter = 0;
 const Card = (props) => {
 
   function starCalc(avgRating) {
@@ -44,7 +44,7 @@ const Card = (props) => {
                     <div className="starFlex">
                       {
                         props.product.avgRating !== 'no reviews' ?
-                          starCalc(props.product.avgRating).map((star) => <img className="star" key={star.id} src={star} />)
+                          starCalc(props.product.avgRating).map((star) => <img className="star" key={counter++} src={star} />)
                           :
                           <div style = {{fontSize: '10pt'}}>No reviews</div>
                       }
@@ -74,7 +74,6 @@ const Card = (props) => {
         :
         <a href={`/${props.category}s/${props.id}`}>
         <button className="cardBtn">{props.button}</button></a>
-
         }
       </div>
       }

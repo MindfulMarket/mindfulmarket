@@ -19,12 +19,13 @@ export const UserHome = (props) => {
         <Card style={{ flex: 1 }} name="Helping Homelessness" imageUrl="https://madride.net/wp-content/uploads/2016/11/1673225-inline-750-homeless3-480x270.jpg" button={null} brand={{}} category="home" />
         <Card style={{ flex: 1 }} name="Top Shirts That Help The Environment" imageUrl="https://jetimages.jetcdn.net/md5/540b1ee11353bf3a8d1676882528079e.500" button={null} brand={{}} category="home" />
       </div>
-      <div>
-        Here we Display
-      </div>
     </div>
   )
 }
+
+// <div className="page">
+//         <p> This is the story about 4 guys who wanted to make a difference </p>
+//       </div>
 
 /**
  * CONTAINER

@@ -9,81 +9,97 @@ import { addToCart } from '../../store/cart'
 
 
 class AllProducts extends Component {
-  constructor() {
-    super();
-    this.state = {
-      filters: false,
-      cheap: false,
-      inexpensive: false,
-      midrange: false,
-      expensive: false
-    }
-    this.checkboxClicked = this.checkboxClicked.bind(this)
-  }
-//add componennt did unmount which restores all products on filtered prop
-  componentDidMount() {
-    this.props.fetchData();
-  }
-
-  checkboxClicked(event) {
-    this.setState({
-      filters: true,
-      [event.target.value]: true
-    })
-  }
-
-  render() {
-    let productsToRender = this.props.search.length ? this.props.search : this.props.products
-
-    if (this.props.filteredProducts) {
-      productsToRender = this.props.filteredProducts
-    }
-
-    const products = productsToRender.filter(product => {
-      let state = this.state;
-      for (let key in state) {
-        if (state.filters === false) { return true; }
-        else if (state[key] === true) {
-          if (product.price > 70) return true
+    constructor() {
+            super();
+            this.state = {
+                    filters: false,
+                    cheap: false,
+                    inexpensive: false,
+                    midrange: false,
+                    expensive: false
+                }
+                // this.checkboxClicked = this.checkboxClicked.bind(this)
         }
-      } return false
-    })
+        //add componennt did unmount which restores all products on filtered prop
+    componentDidMount() {
+        this.props.fetchData();
+    }
 
-    return (
-      <div className="page">
+    // checkboxClicked(event) {
+    //   this.setState({
+    //     filters: true,
+    //     [event.target.value]: true
+    //   })
+    // }
 
-        <div className="container" style={{ flexDirection: 'row' }}>
-          <Filter />
+    render() {
+        let productsToRender = this.props.search.length ? this.props.search : this.props.products
 
-          <div className="itemsContainer">
+        if (this.props.filteredProducts) {
+            productsToRender = this.props.filteredProducts
+        }
 
-            <div className="allItemsContainer" >
-              {
-                !products.length
-                  ? <h4>There are no products matching your search criteria!</h4>
-                  : products.map(product => {
-                    return (
-                      <Card key={product.name} category="product" brand={product.brand} product={product} name={product.name} button="Add to cart" imageUrl={product.imageUrl} id={product.id} price={product.price} reviewsAvg={product.Reviews} reviewsQuantity={product.Reviews.length} addToCart={this.props.addToCart} />
+        const products = productsToRender.filter(product => {
+            let state = this.state;
+            for (let key in state) {
+                if (state.filters === false) { return true; } else if (state[key] === true) {
+                    if (product.price > 70) return true
+                }
+            }
+            return false
+        })
+
+        return ( <
+            div className = "page" >
+
+            <
+            div className = "container"
+            style = {
+                { flexDirection: 'row' } } >
+            <
+            Filter / >
+
+            <
+            div className = "itemsContainer" >
+
+            <
+            div className = "allItemsContainer" > {!products.length ?
+                < h4 > There are no products matching your search criteria! < /h4> :
+                    products.map(product => {
+                    return ( <
+                        Card key = { product.name }
+                        category = "product"
+                        brand = { product.brand }
+                        product = { product }
+                        name = { product.name }
+                        button = "Add to cart"
+                        imageUrl = { product.imageUrl }
+                        id = { product.id }
+                        price = { product.price }
+                        reviewsAvg = { product.Reviews }
+                        reviewsQuantity = { product.Reviews.length }
+                        addToCart = { this.props.addToCart }
+                        />
                     )
-                  })
-              }
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
+                })
+            } <
+            /div> <
+            /div> <
+            /div> <
+            /div>
+        )
+    }
 }
 
 /* -----------------    CONTAINER     ------------------ */
 
 const mapState = (state) => {
-  return { products: state.products.filteredOrSorted, search: state.search }
+    return { products: state.products.filteredOrSorted, search: state.search }
 }
 
 const mapDispatch = dispatch => ({
-  fetchData: () => dispatch(fetchProducts()),
-  addToCart: (product) => dispatch(addToCart(product))
+    fetchData: () => dispatch(fetchProducts()),
+    addToCart: (product) => dispatch(addToCart(product))
 });
 
 export default connect(mapState, mapDispatch)(AllProducts);

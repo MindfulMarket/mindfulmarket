@@ -8,6 +8,7 @@ import { me } from './store'
 // import { fetchAndSetCart } from './store/cart' //WHERE
 import { fetchProducts } from './store/products'
 import { fetchAllBrands } from './store/brands'
+import { fetchAllCategories } from './store/categories';
 
 import { fetchAllCauses } from './store/causes';
 import axios from 'axios' //wast throwing as error without import......WHY
@@ -38,7 +39,6 @@ class Routes extends Component {
         <Route path="/thankyou/:action" component={ThankYou} />
         <Route path="/profile" component={UserProfile} />
 
-       {/* <Route exact path="/" component={UserHome} />*/}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/about" component={About} />
@@ -53,7 +53,6 @@ class Routes extends Component {
         <Route path="/causes/:id" component={SingleCause} />
 
         <Route exact path="/categories" component={AllCategories} />
-        <Route path="/products" component={SingleProduct} />
         <Route path="/brands/:id" component={SingleBrand} />
         <Route path="/checkout" component={Checkout} />
 
@@ -85,6 +84,7 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchProducts())
       dispatch(fetchAllCauses())
       dispatch(fetchAllBrands())
+      dispatch(fetchAllCategories())
 
     }
   }

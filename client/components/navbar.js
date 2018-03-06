@@ -71,7 +71,7 @@ style={{
 
                 <li className="dropdown3 mainNavLink"><Link to="/categories" style={{ color: 'rgb(18, 108, 119)' }}>Categories</Link>
                   <ul
-className="features-menu2" style={{
+                    className="features-menu2" style={{
                     color: 'rgb(255 , 255, 255)'
                   }}>
                     {props.categories.map(category => (

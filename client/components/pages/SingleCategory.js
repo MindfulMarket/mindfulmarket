@@ -26,9 +26,8 @@ class SingleCategory extends Component {
     return (
       <div className="page">
         {
-          !singleCategoryView
-            ? <h1>hi</h1>
-            :
+          singleCategoryView
+            ?
             <div>
               <h2>{singleCategoryView.name}</h2>
               <img width="300px" height="auto" src={singleCategoryView.imageUrl} />
@@ -44,6 +43,8 @@ class SingleCategory extends Component {
                 </div>
 
             </div>
+            :
+            ''
         }
       </div>
     )

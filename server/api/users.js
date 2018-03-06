@@ -14,15 +14,16 @@ router.get('/', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-    if (req.params.id !== 'undefined') {
-        User.update(req.body, {
-                where: {
-                    id: req.params.id
-                }
-            })
-            .then((result) => res.json(result))
-            .catch(next)
-    } else {
-        res.sendStatus(230)
-    }
+    console.log('HIT', req.body)
+    User.update(req.body, {
+            where: {
+                id: req.body.id
+            },
+            returning: true
+        })
+        .then((user) => {
+            console.log('line 24', req.body)
+            return res.json(req.body)
+        })
+        .catch(next)
 })

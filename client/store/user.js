@@ -63,11 +63,6 @@ export const me = () => dispatch => {
             }
         })
         .catch(err => console.error(err))
-        .then(() => {
-            dispatch(getUser(res.data || defaultUser))
-            dispatch(fetchAndSetCart(res.data.shoppingCart || []))
-            dispatch(getOrders(res.data.id))
-        })
 }
 
 export const updateMe = (user) => dispatch => {

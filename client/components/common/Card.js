@@ -2,7 +2,6 @@ import React ,{Component}from 'react'
 import { connect } from 'react-redux'
 
 let counter = 0;
-const Card = (props) => {
 
 class Card extends Component {
   constructor(props){
@@ -12,20 +11,20 @@ class Card extends Component {
 
   starCalc(avgRating) {
     let starFrac = null;
-    if (typeof avgRating !== 'number' || avgRating.toString().length === 1) { //whole number
-      if (avgRating >= 0.7) starFrac = 'threeQuarters.png'
-      else if (avgRating >= 0.4) starFrac = 'halfStar.png'
-      else starFrac = 'quarterStar.png'
-    }
-    let stars = []
-    for (let k = 0; k < avgRating; k++) {
-      stars.push('/assets/fullStar.png')
-    }
-    if (starFrac !== null) {
-      stars.push(`/assets/${starFrac}`)
-    }
-    return stars
-  }
+        if (typeof avgRating !== 'number' || avgRating.toString().length === 1) { //whole number
+          if (avgRating >= 0.7) starFrac = 'threeQuarters.png'
+          else if (avgRating >= 0.4) starFrac = 'halfStar.png'
+          else starFrac = 'quarterStar.png'
+        }
+        let stars = []
+        for (let k = 0; k < avgRating; k++) {
+          stars.push('/assets/fullStar.png')
+        }
+        if (starFrac !== null) {
+          stars.push(`/assets/${starFrac}`)
+        }
+        return stars
+      }
 //the props.type class on div below allows custom style of cards for category/brand/product
   render () {
     return  (
@@ -51,8 +50,8 @@ class Card extends Component {
                   <div className = "starsDiv" align ="center">
                     <div className="starFlex">
                       {
-                        props.product.avgRating !== 'no reviews' ?
-                          starCalc(props.product.avgRating).map((star) => <img className="star" key={counter++} src={star} />)
+                        this.props.product.avgRating !== 'no reviews' ?
+                          this.starCalc(this.props.product.avgRating).map((star) => <img className="star" key={counter++} src={star} />)
                           :
                           <div style = {{fontSize: '10pt'}}>No reviews</div>
                       }
@@ -96,8 +95,8 @@ class Card extends Component {
   )
 
   }
-  }
 }
+
 const mapState = (state) => {
   return { products: state.products.filteredOrSorted, search: state.search, testCart: state.cart, userId: state.user.id}
 }

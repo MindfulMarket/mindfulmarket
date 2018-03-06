@@ -78,13 +78,8 @@ const Navbar = (props) => (
                 <li className="dropdown3 mainNavLink"><Link to="/categories" style={{ color: 'rgb(18, 108, 119)' }}>Categories</Link>
                   <ul
                     className="features-menu2" style={{
-<<<<<<< HEAD
-                    color: 'rgb(255 , 255, 255)'
-                  }}>
-=======
                       color: 'rgb(255 , 255, 255)'
                     }}>
->>>>>>> master
                     {props.categories.map(category => (
                       <li
                         style={{

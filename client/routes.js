@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { AdminBrands, SingleAdminBrand, SingleAdminCause, AdminCauses, AdminCategories, SingleAdminCategory, SingleAdminProduct, SingleAdminUser, AdminProducts, AdminOrders, AdminHome, AdminUsers, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile, SingleCategory, SingleAdminOrder } from './components'
-import {me, fetchProducts, fetchAllBrands, fetchAllCauses, fetchAllCategories, fetchAllOrders} from './store'
-import {me, fetchProducts, fetchAllBrands, fetchAllCauses, fetchAllCategories, getAllUsers} from './store'
+import {me, fetchProducts, fetchAllBrands, fetchAllCauses, fetchAllCategories, getAllUsers, fetchAllOrders} from './store'
 
 // import { fetchAndSetCart } from './store/cart' //WHERE
 

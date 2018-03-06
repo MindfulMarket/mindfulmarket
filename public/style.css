@@ -61,7 +61,7 @@ form div {
 }
 
 #cartImg {
-    width: 10vh;
+    width: 1vh;
     /* height: auto; */
 }
 
@@ -72,7 +72,10 @@ form div {
     flex-direction: row;
     margin-bottom: 10px;
 }
-
+#currentTotal{
+    font-size: 20pt;
+    margin-bottom:1vw;
+}
 #thanksContainer {
     margin-left: 2vw;
     color: rgb(213, 247, 208);
@@ -80,13 +83,24 @@ form div {
 
 .cartDetails {
     margin: 2vw 0 0 2vw;
+    width:40vw;
     display: flex;
     flex-direction: row;
 }
 
+#emptyCartMsg{
+    font-size: 18pt;
+    margin-bottom:2vw;
+}
 .cartThumbnail {
-    width: 18vh;
-    height: 18vh;
+    width: 12vh;
+    height:7vw;
+    /* height: auto; */
+    border-radius: .6vw;
+    /* height: 20vh; */
+    box-shadow: 0vw 0vw .8vw .00007vw rgba(32, 32, 32, 0.547);
+    margin-bottom: .4vw;
+    transition: all .15s
 }
 
 .container {
@@ -97,16 +111,37 @@ form div {
 }
 
 #searchIcon {
-    width: 1.3vw;
+    width: 1.6vw;
     height: auto;
 }
+/* #searchBtn{
+    height:3vh;
+padding-top:.2vh;
+padding-bottom: 1vh;
+padding-right: .3vh;
+padding-left: .2px;
+    width:2.5vw;
+    margin-top: .2vw;
+    border-radius: .0 .2vw .2vw 0vw;
 
+} */
+#clearSearchBtn{
+    width:7vw;
+    margin-left: 1vw;
+    margin-top:none;
+    margin-bottom: .5vh;
+}
 #searchInput {
-    width: 7.2vw;
-    height: 2.3vh;
-    border-radius: .5vw;
+    border:none;
+
+    box-shadow: none;
+    border-right: none;
+    width: 7.5vw;
+    height: 2.5vh;
+    border-radius: .3vw;
     margin-left: .5vw;
-    background-color: rgba(169, 255, 226, 0.8);
+    margin-right: .4vw;
+    background-color: rgba(146, 216, 216, 0.953);
 }
 
 #searchInput::placeholder {
@@ -114,7 +149,7 @@ form div {
 }
 
 .filterHeaderFlex {
-    width: 6vw;
+    width: 7vw;
     justify-content: space-between;
     margin: 1vw;
     display: flex;
@@ -127,7 +162,8 @@ form div {
     padding-left: .5vw;
     padding-right: .5vw;
     padding-bottom: .4vw;
-    margin-top: 1vh;
+    padding-top: .36vw;
+    margin-top: 1.3vh;
 }
 
 .fa {
@@ -146,25 +182,33 @@ form div {
     justify-content: space-around;
     display: flex;
     align-items: center;
-    margin-bottom: .5vw;
+    margin-bottom: .9vw;
 }
 
 .filterHeader {
-    margin-bottom: 1vw;
+    margin-bottom: 1.4vw;
+
     font-size: 12pt;
     padding: .1vw;
     width: 8vw;
 }
-
+#searchBarForm{
+    align-items: center;
+    display: flex;
+    width:5vw;
+    /* top-left | top-right | bottom-right | bottom-left */
+border-radius: 4px 0px 0px 4px;
+}
 .filterLabel {
     font-size: 10pt;
     margin: 0px;
 }
 
 #filterSearch {
+    width:8vw;
+    flex-direction: row;
     display: flex;
-    align-items: center;
-    margin-bottom: 2vh;
+    margin-bottom: .6vh;
 }
 
 #filterBar {
@@ -175,7 +219,7 @@ form div {
     flex-direction: column;
     background-color: rgba(62, 158, 248, 0.7);
     width: 10vw;
-    height: 47vh;
+    height: 60vh;
     transition: all .15s;
     box-shadow: 0vw 0vw 1vw .00005vw rgba(71, 69, 69, 0.726);
 }
@@ -208,7 +252,7 @@ form div {
     background-color: rgba(255, 255, 255, .5);
     box-shadow: 0vw 0vw .05vw .00005vw rgba(32, 32, 32, 0.547);
     border-radius: 1vh;
-    width: 4vw;
+    width: 5vw;
     padding: .2vw;
 }
 
@@ -221,6 +265,8 @@ form div {
     color: white;
     font-weight: 300;
     transition: all .1s;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
 }
 
 .cardBtn:hover {
@@ -243,6 +289,7 @@ form div {
 
 .cardPriceBtnDiv {
     display: flex;
+
     align-items: center;
     margin: .5vw;
 }
@@ -251,7 +298,7 @@ form div {
     display: flex;
     flex-direction: column;
     max-width: 16vw;
-    max-height: 37vh;
+    height:24vw;
     align-items: center;
     /*max-width: 200px;*/
     border-radius: 3px;
@@ -264,6 +311,46 @@ form div {
     border-radius: .6vw;
     box-shadow: 0vw 0vw .4vw .0001vw rgb(160, 158, 158);
 }
+.card.brand{
+    padding:3vw;
+    height:28vh;
+    width:15vw;
+}
+.card.frontPageCard{
+    padding:2vw;
+    height:17vw;
+    width:14vw;
+}
+.card.category{
+    padding:2vw;
+    height:17vw;
+    width:14vw;
+
+}
+.card.category a{
+   font-size:14pt;
+   font-weight: 300;
+}
+.card.frontPageCard a{
+   font-size: 1.3rem;
+   font-weight: 300;
+}
+.card.frontPageCard img{
+    width: 100%;
+    max-height: 20vh;
+    /* height: auto; */
+    border-radius: .6vw;
+    /* height: 20vh; */
+    box-shadow: 0vw 0vw .8vw .00007vw rgba(32, 32, 32, 0.547);
+    margin-bottom: .4vw;
+    transition: all .15s
+ }
+ .card.cause {
+    padding:2vw;
+    height:17vw;
+    width:14vw;
+ }
+
 
 .card:hover {
     background-color: rgba(255, 252, 239, 0.9);
@@ -340,6 +427,30 @@ form div {
     border-bottom: 1px solid rgb(140, 191, 132);
     height: 15px;
 }
+.topNavbar a{
+    transition:all .2s;
+    padding:1.2vh;
+}
+.topNavbar a:hover{
+background-color:rgba(130, 27, 233, 0.336)}
+#mainSearchForm{
+    margin-bottom: .8vw;
+}
+#mainSearchInput{
+    margin-right: .4vw;
+width: 14vw;
+height:2.5vh;
+border:none;
+background-color:rgba(0,0,0,0);
+border-bottom: 1px solid rgb(60, 58, 58);
+}
+#mainSearchInput:focus{
+   outline:0
+}
+#mainSearchIcon{
+    height:3vh;
+    margin-right:3vw;
+}
 
 #checkout-title {
     color: rgb(213, 247, 208);
@@ -365,7 +476,7 @@ form div {
 #snootyCaption {
     color: rgb(213, 247, 208);
     margin-top: 25px;
-    margin-right: auto;
+    margin-right: 3vw;
 }
 
 .titlebar {
@@ -402,6 +513,14 @@ form div {
     display: flex;
     flex-direction: row;
 }
+.dropdwnImg{
+    width:3vw;
+    height:auto;
+    border-radius: 1vh;
+    box-shadow: 0vw 0vw .8vw .003vw rgba(32, 32, 32, 0.547);
+    margin-right:1vw;
+
+}
 
 .menu {
     margin-top: -4px;
@@ -434,6 +553,7 @@ form div {
 nav a {
     display: inline-block;
     margin: .9em;
+
 }
 
 .features-menu,
@@ -452,11 +572,12 @@ nav a {
 .dropdown3:hover .features-menu2,
 .dropdown4:hover .features-menu3 {
     /* This used to be `.features-menu` */
+    width:14vw;
     display: inline;
     /* Leave everything else alone */
     flex-direction: column;
-    background-color: rgba(23, 134, 225, 0.671);
-    margin-top: 35px;
+    background-color: rgba(23, 134, 225, 0.871);
+    margin-top: 5.1vh;;
     color: black;
     /* padding-top: -20px; */
     /* ... */
@@ -469,20 +590,33 @@ nav a {
     display: flex;
     /* Leave everything else alone */
     flex-direction: column;
-    background-color: rgba(23, 134, 225, 0.671);
+    background-color: rgba(23, 134, 225, 0.871);
     /* margin-top: -100px; */
     /* padding-top: -100px; */
-    z-index: 2;
+    /* z-index: 2; */
     /* ... */
 }
 
+/* .navDropLabel {
+    font-size: 11pt;
+    transition: all 13s;
+    display: flex;
+    align-items: center;
+    height:8.5vh;
+
+} */
 .navDropLabel {
-    font-size: 10pt;
-    transition: all.13s;
+    font-size: 11pt;
+    transition: all .13s;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    height:7vh;
+
 }
 
 .navDropLabel:hover {
-    background-color: rgba(51, 141, 214, 0.971);
+    background-color: rgb(81, 47, 213);
 }
 
 ul {
@@ -513,8 +647,8 @@ li {
 .dropdown2>span,
 .dropdown3>span,
 .dropdown4>span {
-    z-index: 1;
     position: relative;
+    transition:all .5s;
     /* This is important! */
     /* cursor: pointer; */
 }
@@ -543,7 +677,9 @@ li {
     height: 45px;
     flex-direction: row;
 }
-
+#reccommendationHeader{
+    font-size: 14pt;
+}
 .footerLinks {
     flex: 1;
     flex-direction: row;
@@ -560,7 +696,18 @@ li {
         font-size: .5rem;
     }
 }
+@media (max-width:700px) {
 
+    .card{
+        width:100vw;
+    }
+}
+@media (max-width:1100px) {
+    body {
+        font-size: 1rem;
+    }
+
+}
 @media (min-width:1100px) {
     body {
         font-size: 1rem;

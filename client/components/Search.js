@@ -31,9 +31,9 @@ class Search extends Component {
 
    render() {
      return (
-          <form onSubmit={this.handleSubmit} >
-            <input onChange={this.handleChange} placeholder="Search" />
-            <button>Search </button>
+          <form id = 'mainSearchForm' onSubmit={this.handleSubmit} >
+            <input id= 'mainSearchInput' onChange={this.handleChange} placeholder="Search" />
+            <input type="image" name="submit" src="/assets/search.png" border="0" id = 'searchIcon' alt="Submit" />
           </form>
 
      )

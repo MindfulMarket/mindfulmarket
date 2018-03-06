@@ -47,7 +47,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     loadInitialData: () => {
-      dispatch(me())
+      // dispatch(me())
       dispatch(fetchProducts())
       dispatch(fetchAllCauses())
       dispatch(fetchAllCategories())

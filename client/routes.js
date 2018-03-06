@@ -7,8 +7,6 @@ import {me, fetchProducts, fetchAllBrands, fetchAllCauses, fetchAllCategories} f
 
 // import { fetchAndSetCart } from './store/cart' //WHERE
 
-
-
 import axios from 'axios' //wast throwing as error without import......WHY
 
 /**
@@ -63,7 +61,7 @@ class Routes extends Component {
         <Route path="/admin/causes/:id" component={SingleAdminCause} />
 
         <Route exact path="/admin/categories" component={AdminCategories} />
-        <Route path="/admin/category/:id" component={SingleAdminCategory} />
+        <Route path="/admin/categories/:id" component={SingleAdminCategory} />
 
         <Route exact path="/admin/brands" component={AdminBrands} />
         <Route path="/admin/brands/:id" component={SingleAdminBrand} />

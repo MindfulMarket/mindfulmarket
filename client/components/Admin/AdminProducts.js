@@ -21,7 +21,7 @@ export class AdminProducts extends Component {
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.props, 'props on admin Products page')
     let products = this.props.products.map(product => {
       return (
         <li key={product.id}><Link to={`/admin/products/${product.id}`}>{product.name}</Link></li>
@@ -29,33 +29,36 @@ export class AdminProducts extends Component {
     })
     let productsSelect = this.props.products.map(product => {
       return (
-        <option key={product.id} value={product.id}>{product.name}</option>
+        <div key={product.id}>
+          <option key={product.id} value={product.id}>{product.name}</option>
+        </div>
       )
     })
     products.sort()
     return (
-      <div>
-      <AdminNav />
+      <div className="page">
         {
-          this.props.user.isAdmin
-          ?
-          <div>
-            <h1>Products</h1>
-            <ul>
-              {
-                products
-              }
-            </ul>
-            <AdminAddProduct id={this.props.match.params.id} />
-            <hr />
-            <form onSubmit={this.deleteItem}>
-              <h1>Delete a product</h1>
-              <p>Products:</p>  <select name="product">{productsSelect}</select> <br /> <br />
-
-              <button type="submit" >Delete</button>
-            </form>
-          </div>
-          : <h1>Not Authorized</h1>
+          !this.props.user.isAdmin
+            ? <h1>Not Authorized</h1>
+            :
+            <div>
+              <AdminNav />
+              <h1>Products</h1>
+              <ul>
+                {
+                  products
+                }
+              </ul>
+              <AdminAddProduct id={this.props.match.params.id} />
+              <hr />
+              <form onSubmit={this.deleteItem}>
+                <h1>Delete a product</h1>
+                <p>Products:</p>  <select name="product">{productsSelect}</select>
+                <br />
+                <br />
+                <button type="submit" >Delete</button>
+              </form>
+            </div>
         }
 
 
@@ -66,8 +69,8 @@ export class AdminProducts extends Component {
   }
 }
 
-const mapState = ({ products }) => {
-  return { products: products.all }
+const mapState = ({ products, user }) => {
+  return { products: products.all, user }
 }
 export default connect(mapState)(AdminProducts)
 

@@ -6,24 +6,23 @@ import AdminNav from './AdminNav'
 /* -----------------    COMPONENT     ------------------ */
 
 export class AdminHome extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
   }
-  render() {
-    console.log(this.props)
 
+
+  render() {
     return (
-      <div>
-      <AdminNav  id = "AdminNav" />
+      <div className="page">
         {
           this.props.user.isAdmin
-          ?
-          <div>
-          </div>
-          :
-          'Not Authorized'
-
-
+            ?
+            <div>
+              <h1>Welcome All powerful {`${this.props.user.firstName}!`}</h1>
+              <AdminNav id="AdminNav" />
+            </div>
+            :
+            'Not Authorized'
         }
       </div>
     )

@@ -25,34 +25,36 @@ router.get('/:id/reviews', (req, res, next) => {
     .catch(next)
 })
 
-
 router.post('/', (req, res, next) => {
   Products.scope('populated').create(req.body)
     .then((product) => {
-      res.json(product)
+      res.status(201).json(product)
     })
     .catch(next)
 })
 
 router.put('/:id', (req, res, next) => {
-  console.log('hit')
-  Products.update(req.body, { 
-    where: { 
-      id: req.params.id 
+  console.log('hit, back end route')
+  Products.update(req.body, {
+    where: {
+      id: req.params.id
     },
     returning: true
   })
   .then((product) => {
-    res.json(product[0][1])   
+    res.status(201).json(product[1][0])
   })
   .catch(next)
   })
 
 router.delete('/:id', (req, res, next) => {
-  Products.destroy({ 
-    where: { 
-      id: req.params.id 
+  Products.destroy({
+    where: {
+      id: req.params.id
     },
+  })
+  .then(deleted => {
+    res.status(204).json(deleted)
   })
   .catch(next)
 })

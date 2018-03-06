@@ -53,8 +53,8 @@ const User = db.define('user', {
     shoppingCart: {
         type: Sequelize.ARRAY(Sequelize.JSON)
     },
-    isAdmin:{
-       type:Sequelize.BOOLEAN,
+    isAdmin: {
+       type: Sequelize.BOOLEAN,
        defaultValue: false
     }
 }, {
@@ -73,7 +73,6 @@ module.exports = User
 User.prototype.correctPassword = function(candidatePwd) {
     return User.encryptPassword(candidatePwd, this.salt()) === this.password()
 }
-
 
 
 /**
@@ -103,7 +102,6 @@ const setSaltAndPassword = user => {
 
 User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
-
 
 
 // {"{\"id\":2,\"producst\":[\" shirts\",\" pants\"]}","{\"id\":3,\"producst\":[\" shirts\",\" pants\"]}"}

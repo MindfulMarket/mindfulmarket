@@ -26,49 +26,35 @@ router.get('/:id/products', (req, res, next) => {
     .catch(next)
 })
 
-
 router.post('/', (req, res, next) => {
-  Categories.scope('populated').create(req.body.main)
+  Categories.create(req.body)
     .then((category) => {
-      let promises = []
-      if (req.body.product) promises.push(category.addProduct(req.body.product))
-      if (req.body.service) promises.push(category.addService(req.body.service))
-      if (req.body.brand) promises.push(category.addBrand(req.body.brand))
-      Promise.all(promises)
-      .then(_ => category.reload())
-      .then(reloadedcategory => {
-        res.json(reloadedcategory)
+        res.status(201).json(category)
       })
-    })
     .catch(next)
 })
 
 router.put('/:id', (req, res, next) => {
-  Categories.update(req.body.main, {
+  Categories.update(req.body, {
     where: {
       id: req.params.id
     },
     returning: true
   })
-.then((category) => {
-    let promises = []
-    if (req.body.product) promises.push(category[1][0].addProduct(req.body.product))
-    if (req.body.service) promises.push(category[1][0].addService(req.body.service))
-    if (req.body.brand) promises.push(category[1][0].addBrand(req.body.brand))
-    Promise.all(promises)
-      .then(_ => Categories.scope('populated').findById(req.params.id))
-      .then(reloadedCategory => {
-        res.json(reloadedCategory)
-      })
-  })
-  .catch(next)
-  })
+    .then(updatedCategory => {
+      res.status(201).json(updatedCategory[1][0])
+    })
+    .catch(next)
+})
 
 router.delete('/:id', (req, res, next) => {
   Categories.destroy({
     where: {
       id: req.params.id
     },
+  })
+  .then(deleted => {
+    res.status(204).json(deleted)
   })
   .catch(next)
 })

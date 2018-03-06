@@ -10,7 +10,7 @@ const AuthForm = (props) => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div className='page'>
+    <div className="page">
       <h2> Haven't joined the revolution yet? Now is the time to sign up</h2>
       <form onSubmit={handleSubmit} name={name}>
       <div>

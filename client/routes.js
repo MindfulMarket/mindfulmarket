@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Payment,AdminBrands,SingleAdminBrand, SingleAdminCause, AdminCauses, SingleAdminProduct, AdminProducts, AdminHome, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout,  About, UserProfile, SingleCategory } from './components'
-import {me, fetchProducts,fetchAllBrands, fetchAllCauses, fetchAllCategories} from './store'
+import { Payment, AdminBrands, SingleAdminBrand, SingleAdminCause, AdminCauses, AdminCategories, SingleAdminCategory, SingleAdminProduct, SingleAdminUser, AdminProducts, AdminOrders, AdminHome, AdminUsers, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile, SingleCategory } from './components'
+import {me, fetchProducts, fetchAllBrands, fetchAllCauses, fetchAllCategories, getAllUsers} from './store'
 
 // import { fetchAndSetCart } from './store/cart' //WHERE
-
-
 
 import axios from 'axios' //wast throwing as error without import......WHY
 
@@ -18,8 +16,6 @@ class Routes extends Component {
 
   componentDidMount() {
     this.props.loadInitialData()
-
-   //this.props.fetchCart(this.props.initialCart)
     window.addEventListener('beforeunload', () => {
     axios.put(`/api/users/${this.props.initial.id}`, {shoppingCart: this.props.cartContents})
   })
@@ -30,34 +26,58 @@ class Routes extends Component {
     return (
 
       <Switch>
-        {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={UserHome} />
+<<<<<<< HEAD
 ``        <Route path="/categories/:id" component={SingleCategory} />
         <Route path="/checkout" component={Checkout} />``
         <Route exact path="/cart" component={ShoppingCart} />
         <Route path="/payment/:action" component={Payment} />
         <Route path="/profile" component={UserProfile} />
        {/* <Route exact path="/" component={UserHome} />*/}
+=======
+
+        { /* AUTH / PROFILE ROUTES */ }
+>>>>>>> 93f627e8d43c7eaffb4aa560a746447f513df1b5
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/brands" component={AllBrands} />
-        <Route path="/brands/:id" component={SingleBrand} />
+        <Route path="/profile" component={UserProfile} />
+
+        { /* SHOPPING ROUTES */ }
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:id" component={SingleProduct} />
+
         <Route exact path="/causes" component={AllCauses} />
         <Route path="/causes/:id" component={SingleCause} />
-        <Route exact path="/categories" component={AllCategories} />
-        <Route path="/products" component={SingleProduct} />
+
+        <Route exact path="/brands" component={AllBrands} />
         <Route path="/brands/:id" component={SingleBrand} />
 
+<<<<<<< HEAD
         {/* Admin stuff */}
+=======
+        <Route exact path="/categories" component={AllCategories} />
+        <Route  path="/categories/:id" component={SingleCategory} />
+
+         { /* CART ROUTES */ }
+        <Route exact path="/cart" component={ShoppingCart} />
+        <Route path="/thankyou/:action" component={ThankYou} />
+        <Route path="/checkout" component={Checkout} />
+
+        { /* MISC ROUTES */ }
+        <Route exact path="/about" component={About} />
+
+        { /* ADMIN ROUTES */ }
+>>>>>>> 93f627e8d43c7eaffb4aa560a746447f513df1b5
         <Route exact path="/admin" component={AdminHome} />
+        <Route exact path="/admin/orders" component={AdminOrders} />
         <Route exact path="/admin/products" component={AdminProducts} />
-        <Route path="/admin/products/:id" component={SingleAdminProduct} /> 
+        <Route path="/admin/products/:id" component={SingleAdminProduct} />
         <Route exact path="/admin/causes" component={AdminCauses} />
-        <Route path="/admin/causes/:id" component={SingleAdminCause} /> 
+        <Route path="/admin/causes/:id" component={SingleAdminCause} />
+        <Route exact path="/admin/categories" component={AdminCategories} />
+        <Route path="/admin/categories/:id" component={SingleAdminCategory} />
         <Route exact path="/admin/brands" component={AdminBrands} />
+<<<<<<< HEAD
         <Route path="/admin/brands/:id" component={SingleAdminBrand} /> 
        
        
@@ -66,6 +86,11 @@ class Routes extends Component {
         <Route path="/checkout" component={Checkout} />
 
 
+=======
+        <Route path="/admin/brands/:id" component={SingleAdminBrand} />
+        <Route exact path="/admin/users" component={AdminUsers} />
+        <Route exact path="/admin/users/:id" component={SingleAdminUser} />
+>>>>>>> 93f627e8d43c7eaffb4aa560a746447f513df1b5
 
       </Switch>
     )
@@ -93,6 +118,8 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchAllBrands())
       dispatch(fetchAllCauses())
       dispatch(fetchAllCategories())
+      dispatch(getAllUsers())
+
     }
   }
     //fetchCart: (cart) => dispatch(fetchAndSetCart(cart))
@@ -109,4 +136,3 @@ Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
-

@@ -3,7 +3,7 @@ import Card from '../common/Card';
 import Filter from '../common/Filter'
 import { connect } from 'react-redux'
 import { fetchProducts } from '../../store/products'
-import { addToCart } from '../../store/cart'
+import { addToCart,loadAndUpdateLocalStorage, updateBackendCart } from '../../store/cart'
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -50,7 +50,7 @@ class AllProducts extends Component {
     })
 
     return (
-      <div className="page">
+      <div className="container page" style={{width: '100vw', marginTop: '3em', flexDirection: 'column' }}>
 
         <div className="container" style={{ flexDirection: 'row' }}>
           <Filter />
@@ -63,7 +63,7 @@ class AllProducts extends Component {
                   ? <h4>There are no products matching your search criteria!</h4>
                   : products.map(product => {
                     return (
-                      <Card key={product.name} category="product" brand={product.brand} product={product} name={product.name} button="Add to cart" imageUrl={product.imageUrl} id={product.id} price={product.price} reviewsAvg={product.Reviews} reviewsQuantity={product.Reviews.length} addToCart={this.props.addToCart} />
+                      <Card key={product.name} category="product" brand={product.brand} product={product} name={product.name} button="Add to cart" imageUrl={product.imageUrl} id={product.id} price={product.price} reviewsAvg={product.Reviews} reviewsQuantity={product.Reviews.length} currentCart = {this.props.cart} updateLocalCart = {this.props.updateLocalCartStorage} updateBackend = {this.props.updateBackend} addToCart={this.props.addToCart} userId={this.props.userId}/>
                     )
                   })
               }
@@ -78,12 +78,20 @@ class AllProducts extends Component {
 /* -----------------    CONTAINER     ------------------ */
 
 const mapState = (state) => {
-  return { products: state.products.filteredOrSorted, search: state.search }
+  return { products: state.products.filteredOrSorted, search: state.search, cart:state.cart, userId:state.user.id}
 }
 
 const mapDispatch = dispatch => ({
   fetchData: () => dispatch(fetchProducts()),
-  addToCart: (product) => dispatch(addToCart(product))
+  addToCart: (product) => {
+  dispatch(addToCart(product))
+  return Promise.resolve()
+  },
+  updateLocalCartStorage:(cart,userId)=>{
+    loadAndUpdateLocalStorage(cart)
+  },
+  updateBackend:(cart, userId)=>updateBackendCart(cart,userId)
+
 });
 
 export default connect(mapState, mapDispatch)(AllProducts);

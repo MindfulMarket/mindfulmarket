@@ -20,15 +20,16 @@ class SingleCategory extends Component {
     if (this.props.categories.length) {
       singleCategoryView = this.props.categories.find(category => category.id === Number(this.props.match.params.id))
 
-      categoryProducts = this.props.products.filter(product => product.categoryId === singleCategoryView.id)
+      if (singleCategoryView) {
+        categoryProducts = this.props.products.filter(product => product.categoryId === singleCategoryView.id)
+      }
     }
 
     return (
       <div className="page">
         {
-          !singleCategoryView
-            ? <h1>hi</h1>
-            :
+          singleCategoryView
+            ?
             <div>
               <h2>{singleCategoryView.name}</h2>
               <img width="300px" height="auto" src={singleCategoryView.imageUrl} />
@@ -44,6 +45,8 @@ class SingleCategory extends Component {
                 </div>
 
             </div>
+            :
+            ''
         }
       </div>
     )

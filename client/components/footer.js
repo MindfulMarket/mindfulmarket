@@ -13,7 +13,6 @@ const Footer = (props, {isLoggedIn, handleClick}) => (
       <div className="footerLinks">
         <nav >
              {<div style={{ display: 'flex', flexDirection: 'row', marginLeft: '20px'}}>
-                {/* Links for main page components for navigation, NOT for presentational use*/}
 
             <Link to="/causes" style={{color: 'black'}}>Causes</Link>
             <Link to="/categories" style={{color: 'black'}}>Categories</Link>

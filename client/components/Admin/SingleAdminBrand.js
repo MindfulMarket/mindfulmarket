@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import axios from 'axios'
-import { editCauseThunk, deleteCauseThunk } from '../../store';
+import { editBrandThunk, deleteBrandThunk } from '../../store';
+import { Link } from 'react-router-dom';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -15,85 +15,110 @@ class SingleAdminBrand extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const id = Number(this.props.match.params.id)
-    const causeEdited = {};
+    const brandEdited = {};
     for (let field of event.target) {
-      if (field.value) causeEdited[field.name] = field.value
+      if (field.value) brandEdited[field.name] = field.value
     }
-    this.props.editCategory(categoryEdited, id)
+    this.props.editBrand(brandEdited, id)
   }
 
   handleDelete(event) {
     event.preventDefault();
     this.props.deleteCategory(Number(this.props.match.params.id))
-    this.props.history.push('/admin/categories')
+    this.props.history.push('/admin/brands')
   }
 
-
-
-  editItem(e) {
-    e.preventDefault()
-    let body = {}
-    if (e.target.name.value !== '') body.name = e.target.name.value
-    if (e.target.addProduct.value !== '') body.addProduct = e.target.addProduct.value
-    if (e.target.removeProduct.value !== '') body.removeProduct = e.target.removeProduct.value
-    if (e.target.cause.value !== '') body.causeId = e.target.cause.value
-    if (e.target.description.value !== '') body.description = e.target.description.value
-
-    axios.put(`/api/brands/${this.props.match.params.id}`, body)
-      .then(data => console.log(data))
-  }
   render() {
+    let brand, cause, currentCause;
+    if (this.props.brand) {
+      brand = this.props.brand
 
-
-    let singleBrand = this.props.brands.filter(brand => brand.id === Number(this.props.match.params.id))[0]
-
-
-    let brandProducts = this.props.products
-      .filter(product => product.brandId === Number(this.props.match.params.id))
-      .map(product => {
-        return (<option key={product.id} value={product.id}>{product.name}</option>)
-      })
-    brandProducts.unshift(<option value=''>-</option>)
-
-
-    let allProducts = this.props.products.map(product => {
-      return (<option key={product.id} value={product.id}>{product.name}</option>)
-    })
-    allProducts.unshift(<option value=''>-</option>)
-
-    let causes = this.props.causes.map(cause => {
-      return (<option key={cause.id} value={cause.id}>{cause.name}</option>)
-    })
-    causes.unshift(<option value=''>-</option>)
-
+      if (this.props.causes) {
+        cause = this.props.causes;
+        currentCause = this.props.causes.find(singleCause => singleCause.id === brand.causeId)
+      }
+    }
 
     return (
       <div>
-        <h1>Single Brand</h1>
         {
-          (singleBrand === undefined)
-            ? <h1>hi</h1>
+          !brand
+            ? ''
             :
             <div>
-              <h2>{singleBrand.name}</h2>
-
-              <p>Description: {singleBrand.description}</p>
-              <p>Price: ${singleBrand.price}</p>
+              {
+                !this.props.user.isAdmin
+                  ? <h1>Not Authorized</h1>
+                  :
+                  <div>
+                    <div className="page">
+                      <Link to={'/admin/brands'}><h1>Return to Brands</h1></Link>
+                      <h1>Edit: {brand.name} Brand</h1>
+                      <ul>
+                        <li>Brand Name: {brand.name}</li>
+                        <li>Brand Description: {brand.description}</li>
+                        {
+                          !currentCause
+                          ? ''
+                          : <li>Brand Cause: {currentCause.name}</li>
+                        }
+                        <li>Brand ImageUrl: {brand.imageUrl}</li>
+                        <li>Image: <img src={brand.imageUrl} /></li>
+                      </ul>
+                    </div>
+                    <form className="page" onSubmit={this.handleSubmit}>
+                      <label>Name:</label>
+                      <input
+                        name="name"
+                        type="text"
+                        defaultValue={brand.name}
+                      />
+                      <br />
+                      <label>Description:</label>
+                      <textarea
+                        name="description"
+                        cols="35"
+                        rows="5"
+                        defaultValue={brand.description}
+                      />
+                      <br />
+                      <br />
+                      <label>Image Url:</label>
+                      <input
+                        name="imageUrl"
+                        type="text"
+                        defaultValue={brand.imageUrl}
+                      />
+                      <br />
+                      <label>Cause: </label>
+                      <select name="causeId" onChange={this.handleChange}>
+                      {!currentCause
+                        ? <option>Choose one</option>
+                        : <option value={currentCause.id}>{currentCause.name}</option>
+                      }
+                        {
+                          !cause
+                          ? ''
+                          : this.props.causes.map(oneCause => {
+                            return (
+                              <option key={oneCause.id} value={oneCause.id}>{oneCause.name}</option>
+                            )
+                          })
+                        }
+                      </select>
+                      <br />
+                      <button type="submit">Edit {brand.name}</button>
+                    </form>
+                    <div className="page">
+                      <h3>{`Need to delete the ${brand.name} brand`}</h3>
+                      <button
+                        onClick={this.handleDelete}
+                      >Delete {brand.name}</button>
+                    </div>
+                  </div>
+              }
             </div>
         }
-
-        <hr />
-        <form onSubmit={this.editItem}>
-          <p>Edit Name:</p> <input name="name" id="name" type="text" /> <br /> <br />
-          <p>Edit Cause:</p>  <select name="cause">{causes}</select> <br /> <br />
-          <p>Edit Description:</p> <textarea name="description" cols="35" rows="5" /> <br /> <br />
-          <p>Remove Product:</p>  <select name="removeProduct">{brandProducts}</select> <br /> <br />
-          <p>Add Product:</p>  <select name="addProduct">{allProducts}</select> <br /> <br />
-
-
-
-          <button type="submit" >Change</button>
-        </form>
       </div>
 
     )
@@ -104,12 +129,12 @@ class SingleAdminBrand extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    editCause: (changedCause, id) => dispatch(editCauseThunk(changedCategory, id)),
-    deleteCategory: (id) => dispatch(deleteCategoryThunk(id))
+    editBrand: (changedBrand, id) => dispatch(editBrandThunk(changedBrand, id)),
+    deleteBrand: (id) => dispatch(deleteBrandThunk(id))
   }
 };
-const mapState = ({ categories, user }, ownProps) => {
-  return { category: categories.find(category => category.id === Number(ownProps.match.params.id)), user }
+const mapState = ({ brands, causes, user }, ownProps) => {
+  return { brand: brands.find(brand => brand.id === Number(ownProps.match.params.id)), causes, user }
 }
 
 export default connect(mapState, mapDispatch)(SingleAdminBrand);

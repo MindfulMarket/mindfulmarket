@@ -41,7 +41,6 @@ export class AdminBrands extends Component {
   }
 
   render() {
-    console.log(this.state, 'current state')
     let brands;
 
     if (this.props.brands) {
@@ -73,9 +72,9 @@ export class AdminBrands extends Component {
               </ul>
               <div>
                 <hr />
-                <h1>Add Brands</h1>
+                <h1>Add Brand</h1>
                 <br />
-                <form onSubmit={this.handleSubmit}>
+                <form className="page" onSubmit={this.handleSubmit}>
                   <label>Name: </label>
                   <input
                     name="name"
@@ -106,6 +105,7 @@ export class AdminBrands extends Component {
                   <br />
                   <label>Cause: </label>
                   <select name="causeId" onChange={this.handleChange}>
+                  <option defaultValue="Choose one">Choose one</option>
                     {
                       !this.props.causes
                       ? ''

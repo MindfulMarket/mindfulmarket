@@ -71,7 +71,7 @@ export class AdminCauses extends Component {
                 <hr />
                 <h1>Add Cause</h1>
                 <br />
-                <form onSubmit={this.handleSubmit}>
+                <form className="page" onSubmit={this.handleSubmit}>
                   <label>Name: </label>
                   <input
                     name="name"

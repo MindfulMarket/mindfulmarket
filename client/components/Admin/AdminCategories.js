@@ -66,14 +66,16 @@ export class AdminCategories extends Component {
               <h1>Categories</h1>
               <ul style={{ fontSize: '22px', marginBottom: '10px' }}>
                 {
-                  categories
+                  !categories
+                  ? ''
+                  : categories
                 }
               </ul>
               <div>
                 <hr />
                 <h1>Add Category</h1>
                 <br />
-                <form onSubmit={this.handleSubmit}>
+                <form className="page" onSubmit={this.handleSubmit}>
                   <label>Name: </label>
                   <input
                     name="name"
@@ -101,6 +103,7 @@ export class AdminCategories extends Component {
                     onChange={this.handleChange}
                     required
                   />
+                  <br />
                   <br />
                   <button type="submit" >Add</button>
                 </form>

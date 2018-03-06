@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import AdminNav from './AdminNav'
 import { Link } from 'react-router-dom'
-import AdminAddProduct from './AdminAddProduct'
 import axios from 'axios'
 
 

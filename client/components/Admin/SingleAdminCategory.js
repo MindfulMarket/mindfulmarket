@@ -48,8 +48,8 @@ class SingleAdminCategory extends Component {
                       <ul>
                         <li>Category Name: {category.name}</li>
                         <li>Category Description: {category.description}</li>
-                        <li>Image: <img src={category.imageUrl} /></li>
                         <li>Category ImageUrl: {category.imageUrl}</li>
+                        <li>Image: <img src={category.imageUrl} /></li>
                       </ul>
                     </div>
                     <form className="page" onSubmit={this.handleSubmit}>

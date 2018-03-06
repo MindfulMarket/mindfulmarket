@@ -48,8 +48,8 @@ class SingleAdminCause extends Component {
                                             <ul>
                                                 <li>Cause Name: {cause.name}</li>
                                                 <li>Cause Description: {cause.description}</li>
-                                                <li>Image: <img src={cause.imageUrl} /></li>
                                                 <li>Cause ImageUrl: {cause.imageUrl}</li>
+                                                <li>Image: <img src={cause.imageUrl} /></li>
                                             </ul>
                                         </div>
                                         <form className="page" onSubmit={this.handleSubmit}>

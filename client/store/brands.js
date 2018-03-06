@@ -31,25 +31,24 @@ export const fetchAllBrands = () => dispatch => {
 }
 
 export const postBrand = newBrand => dispatch => {
-    axios.post('/api/brand', newBrand)
+    axios.post('/api/brands', newBrand)
         .then(res => {return res.data })
         .then(addedBrand => dispatch(postNewBrand(addedBrand)))
         .catch(err => console.error(err));
 }
 
 export const editBrandThunk = (editedBrand, id) => dispatch => {
-    axios.put(`/api/brand/${id}`, editedBrand)
+    axios.put(`/api/brands/${id}`, editedBrand)
         .then(res => {return res.data})
         .then(changedBrand => dispatch(editBrand(changedBrand)))
         .catch(err => console.error(err));
 }
 
 export const deleteBrandThunk = (id) => dispatch => {
-    axios.delete(`/api/brand/${id}`)
-        .then(res => {return res.data})
+    axios.delete(`/api/brands/${id}`)
+        .then(res => res.data)
         .then(deleted => dispatch(deleteBrand(id)))
         .catch(err => console.error(err));
-
 }
 
 export default function reducer(state = [], action) {

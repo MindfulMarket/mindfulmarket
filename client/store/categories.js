@@ -50,7 +50,6 @@ export const deleteCategoryThunk = (id) => dispatch => {
         .then(res => {return res.data})
         .then(deleted => dispatch(deleteCategory(id)))
         .catch(err => console.error(err));
-
 }
 
 export default function reducer(state = [], action) {

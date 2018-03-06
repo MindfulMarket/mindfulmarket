@@ -34,7 +34,6 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-  console.log('hit, back end route')
   Products.update(req.body, {
     where: {
       id: req.params.id

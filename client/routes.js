@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { AdminBrands, SingleAdminBrand, SingleAdminCause, AdminCauses, AdminCategories, SingleAdminCategory, SingleAdminProduct, SingleAdminUser, AdminProducts, AdminOrders, AdminHome, AdminUsers, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile, SingleCategory } from './components'
-import {me, fetchProducts, fetchAllBrands, fetchAllCauses, fetchAllCategories, getAllUsers} from './store'
+import { AdminBrands, SingleAdminBrand, SingleAdminCause, AdminCauses, AdminCategories, SingleAdminCategory, SingleAdminProduct, SingleAdminUser, AdminProducts, AdminOrders, AdminHome, AdminUsers, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile, SingleCategory, SingleAdminOrder } from './components'
+import {me, fetchProducts, fetchAllBrands, fetchAllCauses, fetchAllCategories, getAllUsers, fetchAllOrders} from './store'
 
 // import { fetchAndSetCart } from './store/cart' //WHERE
 
@@ -57,6 +57,8 @@ class Routes extends Component {
         { /* ADMIN ROUTES */ }
         <Route exact path="/admin" component={AdminHome} />
         <Route exact path="/admin/orders" component={AdminOrders} />
+        <Route exact path="/admin/orders/:id" component={SingleAdminOrder} />
+
         <Route exact path="/admin/products" component={AdminProducts} />
         <Route path="/admin/products/:id" component={SingleAdminProduct} />
         <Route exact path="/admin/causes" component={AdminCauses} />
@@ -94,6 +96,7 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchAllBrands())
       dispatch(fetchAllCauses())
       dispatch(fetchAllCategories())
+      dispatch(fetchAllOrders())
       dispatch(getAllUsers())
 
     }

@@ -165,7 +165,7 @@ export default function reducer(state = { all: [], filteredOrSorted: [] }, actio
             let mod = state.all.filter(product => product.id !== action.id)
             return { ...state, all: mod }
         case POST_NEW_PRODUCT:
-            return {all: [...state.all, action.product], filteredOrSorted: [...state.all, action.product]}
+            return { all: [...state.all, action.product], filteredOrSorted: [...state.all, action.product] }
         case UPDATE_PRODUCT:
             return {
                 ...state,

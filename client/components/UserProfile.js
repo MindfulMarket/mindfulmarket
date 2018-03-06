@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateMe, getOrders } from '../store/user'
+import { updateMe, getOrders, getUser } from '../store/user'
 /* -----------------    COMPONENT     ------------------ */
 let counter = 0;
 class UserProfile extends Component {
@@ -15,7 +15,7 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
-    this.props.getUser()
+    // this.props.getUser()
     // .then( ()=> this.props.getOrderHistory(this.props.user.id));
   }
 
@@ -31,15 +31,6 @@ class UserProfile extends Component {
       this.props.updateMe({id, firstName, lastName, email, password, shippingAddress})
       .then(() => this.props.history.push(`/profile`))
     }
-
-    // handleSubmit (evt) {
-    //   evt.preventDefault()
-    //   let firstName = evt.target.firstName.value || this.state.user.firstName;
-    //   let lastName = evt.target.lastName.value || this.state.user.lastName;
-    //   let email = evt.target.email.value || this.state.user.email;
-    //   let password = evt.target.password.value || this.state.user.password;
-    //   dispatch(updateMe(firstName, lastName, email, password))
-    // }
 
   render() {
     return (
@@ -92,7 +83,7 @@ class UserProfile extends Component {
                 { this.state.showOrderHistory &&
                 <div>
                   <h1> Order History </h1>
-                    { this.props.user.orders && this.props.user.orders.user.length && this.props.user.orders.user.map((order) => (
+                    { this.props.user.orders && this.props.user.orders.user.length ? this.props.user.orders.user.map((order) => (
                       <div key={order.id} className="orderCard">
 
                           <h2> Order #{order.id} Date: {order.createdAt.slice(5, 7) + '/' + order.createdAt.slice(8, 10) + '/' + order.createdAt.slice(0, 4)} </h2>
@@ -104,7 +95,8 @@ class UserProfile extends Component {
                         <h3> Total Price ${order.totalPrice} </h3>
 
                       </div>
-                  ))}
+                  ))
+                : " "}
                 </div>
                 }
               </div>
@@ -129,6 +121,7 @@ const mapDispatch = (dispatch) => {
   return {
     updateMe: (user) => dispatch(updateMe(user)),
     getOrderHistory: user => dispatch(getOrders(user)),
+    getUserInfo: user => dispatch(getUser(user)),
   }
 }
 

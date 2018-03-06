@@ -8,19 +8,28 @@ import { auth } from '../store'
  */
 const AuthForm = (props) => {
         const { name, displayName, handleSubmit, error } = props
+        console.log(displayName)
 
     return (
     <div className="page">
-      <h2> Haven't joined the revolution yet? Now is the time to sign up</h2>
-      <form onSubmit={handleSubmit} name={name}>
-      <div>
-        <label  style = {{ fontSize: '18px' }} htmlFor="firstName">First Name</label>
-        <input style = {{ width: '240', height: '20px' }} name="firstName" type="text" />
-      </div>
-      <div>
-        <label  style = {{ fontSize: '18px' }} htmlFor="lastName">Last Name</label>
-        <input style = {{ width: '240', height: '20px' }} name="lastName" type="text" />
-      </div>
+        { displayName === 'Sign Up' ?
+          <h2> Haven't joined the revolution yet? Now is the time to sign up</h2>
+          : ''
+        }
+          <form onSubmit={handleSubmit} name={name}>
+          { displayName === 'Sign Up' ?
+          <div>
+            <div>
+              <label  style = {{ fontSize: '18px' }} htmlFor="firstName">First Name</label>
+              <input style = {{ width: '240', height: '20px' }} name="firstName" type="text" />
+            </div>
+            <div>
+              <label  style = {{ fontSize: '18px' }} htmlFor="lastName">Last Name</label>
+              <input style = {{ width: '240', height: '20px' }} name="lastName" type="text" />
+            </div>
+          </div>
+          : ''
+          }
         <div>
           <label  style = {{ fontSize: '18px' }}htmlFor="email">Email</label>
           <input style = {{ width: '240', height: '20px' }} name="email"  type="text" />

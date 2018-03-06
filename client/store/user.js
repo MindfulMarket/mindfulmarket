@@ -83,11 +83,11 @@ export const logout = () =>
     .catch(err => console.error(err))
 
 
-    export const setAdmin = (user) => dispatch => {
-       if (user.isAdmin) user.adminMode = true
-       dispatch(setAdminMode(user))
-    }
-    
+export const setAdmin = (user) => dispatch => {
+    if (user.isAdmin) user.adminMode = true
+    dispatch(setAdminMode(user))
+}
+
 
 /**
  * REDUCER

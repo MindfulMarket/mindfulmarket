@@ -10,12 +10,11 @@ const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const SET_ADMIN = 'SET_ADMIN'
 const GET_ORDERS = 'GET_ORDERS'
-const UPDATE_USER = 'UPDATE_USER'
 
 /**
  * INITIAL STATE
  */
-const defaultUser = [{ orders: [] }]
+const defaultUser = { orders: [] }
 
 /**
  * ACTION CREATORS
@@ -23,40 +22,26 @@ const defaultUser = [{ orders: [] }]
 const getUser = user => ({ type: GET_USER, user })
 const setAdminMode = user => ({ type: SET_ADMIN, user })
 const removeUser = () => ({ type: REMOVE_USER })
-const updateUser = (user) => ({ type: UPDATE_USER, user })
 const setUserOrders = (orders) => ({ type: GET_ORDERS, orders })
-
-
-/**
- * THUNK CREATORS
- */
+    /**
+     * THUNK CREATORS
+     */
 export const getOrders = (userId) => dispatch => {
-    return axios.get(`/api/orders/${userId}`)
-        .then((res) => res.data)
-        .then(user => dispatch(setUserOrders({ user })))
-}
-
-export const me = () => dispatch => {
-    return axios.get('/auth/me')
-        .then(res => {
-
-            dispatch(getUser(res.data || defaultUser))
-            dispatch(fetchAndSetCart(res.data.shoppingCart || []))
-            dispatch(getOrders(res.data.id))
+    axios.get(`/api/orders/${userId}`)
+        .then((res) => {
+            dispatch(setUserOrders(res.data))
         })
-        .catch(err => console.error(err))
 }
 
-export const updateMe = (user) => dispatch => {
-    console.log(user)
-    return axios.put(`api/users/${user.id}`, user)
-        .then(user => {
-            dispatch(updateUser(user.data))
-            dispatch(fetchAndSetCart(user.data.shoppingCart || []))
-            dispatch(getOrders(user.data.id))
-        })
-        .catch(err => console.error(err))
-}
+export const me = () => dispatch =>
+    axios.get('/auth/me')
+    .then(res => {
+        dispatch(getUser(res.data || defaultUser))
+        dispatch(fetchAndSetCart(res.data.shoppingCart || []))
+        dispatch(getOrders(res.data.id))
+    })
+    .catch(err => console.error(err))
+
 
 export const auth = (firstName, lastName, email, password, method) =>
     dispatch =>
@@ -96,9 +81,6 @@ export default function(state = defaultUser, action) {
     switch (action.type) {
         case GET_USER:
             return action.user
-        case UPDATE_USER:
-            console.log(state, action)
-            return {...state, user: action.orders };
         case REMOVE_USER:
             return defaultUser
         case SET_ADMIN:

@@ -127,6 +127,7 @@ style={{
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
+    user: state.user,
     cart: state.cart || [],
     causes: state.causes || [],
     categories: state.categories || [],
@@ -140,7 +141,9 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
-
+    },
+    enterAdmin(user){
+      dispatch(setAdmin(user))
     }
   }
 }

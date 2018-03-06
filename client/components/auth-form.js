@@ -9,69 +9,35 @@ import { auth } from '../store'
 const AuthForm = (props) => {
         const { name, displayName, handleSubmit, error } = props
 
-        return ( <
-            div className = 'page' >
-            <
-            h2 > Haven 't joined the revolution yet? Now is the time to sign up</h2> <
-            form onSubmit = { handleSubmit }
-            name = { name } >
-            <
-            div >
-            <
-            label htmlFor = "firstName"
-            style = {
-                { fontSize: '18px' } } > First Name < /label> <
-            input name = "firstName"
-            type = "text"
-            style = {
-                { width: '3000', height: '30px' } }
-            /> <
-            /div> <
-            div >
-            <
-            label htmlFor = "lastName"
-            style = {
-                { fontSize: '18px' } } > Last Name < /label> <
-            input name = "lastName"
-            type = "text"
-            style = {
-                { width: '240', height: '20px' } }
-            /> <
-            /div> <
-            div >
-            <
-            label htmlFor = "email"
-            style = {
-                { fontSize: '18px' } } > Email < /label> <
-            input name = "email"
-            type = "text"
-            style = {
-                { width: '240', height: '20px' } }
-            /> <
-            /div> <
-            div >
-            <
-            label htmlFor = "password"
-            style = {
-                { fontSize: '18px' } } > Password < /label> <
-            input name = "password"
-            type = "password"
-            style = {
-                { width: '240', height: '20px' } }
-            /> <
-            /div> <
-            div >
-            <
-            button type = "submit" > { displayName } < /button> <
-            /div> {
-                error && error.response && < div > { error.response.data } < /div>} <
-                    /form> <
-                    a href = "/auth/google" > < img style = {
-                        { maxHeight: '250px', maxWidth: '250px' } }
-                src = "https://hhs.htps.us/UserFiles/Servers/Server_791028/Templates/login-google.png" / > < /a> <
-                    /div>
-            )
-        }
+    return (
+    <div className="page">
+      <h2> Haven't joined the revolution yet? Now is the time to sign up</h2>
+      <form onSubmit={handleSubmit} name={name}>
+      <div>
+        <label  style = {{ fontSize: '18px' }} htmlFor="firstName">First Name</label>
+        <input style = {{ width: '240', height: '20px' }} name="firstName" type="text" />
+      </div>
+      <div>
+        <label  style = {{ fontSize: '18px' }} htmlFor="lastName">Last Name</label>
+        <input style = {{ width: '240', height: '20px' }} name="lastName" type="text" />
+      </div>
+        <div>
+          <label  style = {{ fontSize: '18px' }}htmlFor="email">Email</label>
+          <input style = {{ width: '240', height: '20px' }} name="email"  type="text" />
+        </div>
+        <div>
+          <label  style = {{ fontSize: '18px' }} htmlFor="password">Password</label>
+          <input style = {{ width: '240', height: '20px' }}name="password" type="password" />
+        </div>
+        <div>
+          <button type="submit">{displayName}</button>
+        </div>
+        {error && error.response && <div> {error.response.data} </div>}
+      </form>
+      <a href="/auth/google"><img style={{maxHeight: '250px', maxWidth: '250px'}} src="https://hhs.htps.us/UserFiles/Servers/Server_791028/Templates/login-google.png" /></a>
+    </div>
+  )
+}
 
         /**
          * CONTAINER

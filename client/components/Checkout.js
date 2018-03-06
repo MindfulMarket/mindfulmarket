@@ -14,6 +14,7 @@ const Checkout = (props) => {
 
   return (
     <div className="page" id="checkout-container">
+    <h1>HELOOOOOOOOOOOO</h1>
     <div id="checkout-form">
       <h1 id="checkout-title">Checkout</h1>
       <form

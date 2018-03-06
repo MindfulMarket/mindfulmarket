@@ -28,7 +28,7 @@ router.get('/:id/products', (req, res, next) => {
 
 
 router.post('/', (req, res, next) => {
-  Brands.scope('populated').create(req.body.main)
+  Brands.scope('populated').create(req.body)
     .then((brand) => {
       let promises = []
       if (req.body.product) promises.push(brand.addProduct(req.body.product))
@@ -44,31 +44,33 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-  Brands.update(req.body.main, { 
-    where: { 
-      id: req.params.id 
+  Brands.update(req.body, {
+    where: {
+      id: req.params.id
     },
     returning: true
   })
 .then((brand) => {
     let promises = []
-    if (req.body.product) promises.push(brand[1][0].addProduct(req.body.product))
-    if (req.body.service) promises.push(brand[1][0].addService(req.body.service))
-    if (req.body.brand) promises.push(brand[1][0].addBrand(req.body.brand))
+    if (req.body.addProduct) promises.push(brand[1][0].addProduct(req.body.addProduct))
+    if (req.body.removeProduct) promises.push(brand[1][0].removeProduct(req.body.removeProduct))
     Promise.all(promises)
       .then(_ => Brands.scope('populated').findById(req.params.id))
       .then(reloadedBrand => {
         res.json(reloadedBrand)
-      })   
+      })
   })
   .catch(next)
   })
 
 router.delete('/:id', (req, res, next) => {
-  Brands.destroy({ 
-    where: { 
-      id: req.params.id 
+  Brands.destroy({
+    where: {
+      id: req.params.id
     },
+  })
+  .then(deleted => {
+    res.status(204).json(deleted)
   })
   .catch(next)
 })

@@ -20,7 +20,9 @@ class SingleCategory extends Component {
     if (this.props.categories.length) {
       singleCategoryView = this.props.categories.find(category => category.id === Number(this.props.match.params.id))
 
-      categoryProducts = this.props.products.filter(product => product.categoryId === singleCategoryView.id)
+      if (singleCategoryView) {
+        categoryProducts = this.props.products.filter(product => product.categoryId === singleCategoryView.id)
+      }
     }
 
     return (

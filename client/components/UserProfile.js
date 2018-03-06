@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateMe, getOrders, me } from '../store/user'
+import { updateMe, getOrders } from '../store/user'
 /* -----------------    COMPONENT     ------------------ */
 let counter = 0;
 class UserProfile extends Component {
@@ -49,35 +49,35 @@ class UserProfile extends Component {
         (<h1>You are not logged in!</h1>)
           :
         (
-          <div style={{textAlign:'center', display:'flex', flexDirection: 'column', justifyContent:'spaceBetween'}}>
+          <div style={{textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'spaceBetween'}}>
             <div ><h1 id = "userName">{this.props.user.firstName} {this.props.user.lastName}</h1></div>
-            <div className='profile'>
+            <div className="profile">
 
 
-              <div className="editProfile" >
+              <div className="editProfile">
               <button onClick={() => { this.setState({ showEdit: !this.state.showEdit }) }}>EditProfile</button>
               { this.state.showEdit &&
                 <div>
                   <h2> Edit Profile </h2>
-                  <form onSubmit={this.handleSubmit} style={{display:'flex', flexDirection:'column'}} name={name}>
+                  <form onSubmit={this.handleSubmit} style={{display: 'flex', flexDirection: 'column'}} name={name}>
                       <div>
-                        <label htmlFor="firstName" style={{fontSize:'18px'}}>First Name</label>
+                        <label htmlFor="firstName" style={{fontSize: '18px'}}>First Name</label>
                         <input name="firstName" placeholder={this.props.user.firstName} type="text" style={{width: '400px', height: '30px'}} />
                       </div>
                       <div>
-                        <label htmlFor="lastName" style={{fontSize:'18px'}}>Last Name</label>
+                        <label htmlFor="lastName" style={{fontSize: '18px'}}>Last Name</label>
                         <input name="lastName" placeholder={this.props.user.lastName} type="text" style={{width: '400px', height: '30px'}}  />
                       </div>
                         <div>
-                          <label htmlFor="email" style={{fontSize:'18px'}}>Email</label>
+                          <label htmlFor="email" style={{fontSize: '18px'}}>Email</label>
                           <input name="email" placeholder={this.props.user.email} type="text" style={{width: '400px', height: '30px'}} />
                         </div>
                         <div>
-                          <label htmlFor="password" style={{fontSize:'18px'}}>Password</label>
+                          <label htmlFor="password" style={{fontSize: '18px'}}>Password</label>
                           <input name="password" type="password" style={{width: '400px', height: '30px'}}  />
                         </div>
                         <div>
-                          <label htmlFor="shippingAddress" style={{fontSize:'18px'}}>Shipping Address</label>
+                          <label htmlFor="shippingAddress" style={{fontSize: '18px'}}>Shipping Address</label>
                           <input name="shippingAddress" type="text" style={{width: '400px', height: '30px'}}  />
                         </div>
                         <div>
@@ -95,10 +95,10 @@ class UserProfile extends Component {
                     { this.props.user.orders && this.props.user.orders.user.length && this.props.user.orders.user.map((order) => (
                       <div key={order.id} className="orderCard">
 
-                          <h2> Order #{order.id} Date: {order.createdAt.slice(5,7)+'/'+order.createdAt.slice(8,10)+'/'+order.createdAt.slice(0,4)} </h2>
+                          <h2> Order #{order.id} Date: {order.createdAt.slice(5, 7) + '/' + order.createdAt.slice(8, 10) + '/' + order.createdAt.slice(0, 4)} </h2>
                           {order.productsOrdered.map((orderDetail) => (
                           <div key={counter++}>
-                            <p style={{fontSize:'18px', marginRight:'10px'}}>Product:   {orderDetail.product.name} <br />Price:    {orderDetail.product.price}  <br/> Quantity:    {orderDetail.count}<br /> </p>
+                            <p style={{fontSize: '18px', marginRight: '10px'}}>Product:   {orderDetail.product.name} <br />Price:    {orderDetail.product.price}  <br /> Quantity:    {orderDetail.count}<br /> </p>
                           </div>
                         ))}
                         <h3> Total Price ${order.totalPrice} </h3>
@@ -119,7 +119,7 @@ class UserProfile extends Component {
 }
 
 
-const mapState = ({ products, product, brands, user}, ownProps) => {
+const mapState = ({ products, product, brands, user}) => {
   return { products, product, brands, user,
     isLoggedIn: !!user.id,
   }
@@ -128,7 +128,6 @@ const mapState = ({ products, product, brands, user}, ownProps) => {
 const mapDispatch = (dispatch) => {
   return {
     updateMe: (user) => dispatch(updateMe(user)),
-    getUser: user => dispatch(me()),
     getOrderHistory: user => dispatch(getOrders(user)),
   }
 }

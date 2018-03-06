@@ -55,7 +55,7 @@ class Filter extends Component {
         <div className="filterLabelDDFlex">
         <h4 className="filterLabel">sort</h4>
           <select className="filterBarSelectDropdown" onChange={(ev) => this.props.handleSort(ev.target.value)}>
-            <option selected="selected">none</option>
+            <option >none</option>
             <option value="lowHigh">low to high</option>
             <option value="highLow">high to low</option>
           </select>
@@ -63,8 +63,8 @@ class Filter extends Component {
 
         <div className="filterLabelDDFlex">
         <h4 className="filterLabel">filter</h4>
-          <select className="filterBarSelectDropdown" defaultValue="none" onChange={(ev) => this.props.handleFilter(ev.target.value)}>
-            <option selected="selected">none</option>
+          <select className="filterBarSelectDropdown" onChange={(ev) => this.props.handleFilter(ev.target.value)}>
+            <option>none</option>
             <option value="underTen">Under $10</option>
             <option value="underFifty">Under $50</option>
             <option value="underFifty">Under $50</option>
@@ -94,7 +94,7 @@ class Filter extends Component {
         <div className="filterLabelDDFlex">
           <h4 className="filterLabel">filter</h4>
           <select className="filterBarSelectDropdown" onChange={(ev) => this.props.handleFilter(ev.target.value)}>
-            <option selected="selected">none</option>
+            <option >none</option>
             <option value="one">0 - 1 Stars</option>
             <option value="two">1 - 2 Stars</option>
             <option value="three">2 - 3 Stars</option>

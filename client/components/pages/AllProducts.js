@@ -50,7 +50,7 @@ class AllProducts extends Component {
     })
 
     return (
-      <div className="page">
+      <div className="container page" style={{width: '100vw', marginTop: '3em', flexDirection: 'column' }}>
 
         <div className="container" style={{ flexDirection: 'row' }}>
           <Filter />
@@ -78,15 +78,9 @@ class AllProducts extends Component {
 /* -----------------    CONTAINER     ------------------ */
 
 const mapState = (state) => {
-  return { products: state.products.filteredOrSorted, search: state.search, cart:state.cart , userId:state.user.id}
+  return { products: state.products.filteredOrSorted, search: state.search, cart:state.cart, userId:state.user.id}
 }
-// export const updateState = (key, value)=> dispatch=>{
-//     dispatch({
-//           type:'UPDATE_STATE',
-//           key, value
-//         })
-//     return Promise.resolve()
-//     }
+
 const mapDispatch = dispatch => ({
   fetchData: () => dispatch(fetchProducts()),
   addToCart: (product) => {

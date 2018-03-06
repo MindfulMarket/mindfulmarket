@@ -7,9 +7,6 @@ import axios from 'axios'
 
 /* -----------------    COMPONENT     ------------------ */
 export class AdminOrders extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     console.log(this.props)

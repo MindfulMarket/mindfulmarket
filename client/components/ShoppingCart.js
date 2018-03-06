@@ -20,7 +20,7 @@ class ShoppingCart extends Component {
     return (
 
       <div className="page">
-        <h1>SHOPPING CART <i class="fas fa-shopping-cart"></i>
+        <h1>SHOPPING CART <i className="fas fa-shopping-cart"></i>
 
 
 

@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 
-const About = (props) => {
+const About = () => {
   return (
     <div className="page">
       <h1>Welcome to Mindful Market</h1>

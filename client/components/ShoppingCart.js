@@ -14,9 +14,13 @@ class ShoppingCart extends Component {
 
 
   render() {
-    let totalPrice = this.props.cartContents.reduce((total, productObj) => {
-      return total + (productObj.product.price * productObj.count)
-    }, 0)
+    if (this.props.cartContents) {
+      if (this.props.cartContents.length) {
+        let totalPrice = this.props.cartContents.reduce((total, productObj) => {
+          return total + (productObj.product.price * productObj.count)
+        }, 0)
+      }
+    }
     return (
 
       <div className="page">
@@ -47,10 +51,10 @@ class ShoppingCart extends Component {
                             evt.preventDefault()
                             this.props.updateQuant(product.product, parseInt(evt.target.howMany.value))
                             this.props.updateLocal(this.props.cartContents)
-                          
-                              this.props.updateBackendCart(this.props.cartContents, this.props.id)
-                            
-                         
+
+                            this.props.updateBackendCart(this.props.cartContents, this.props.id)
+
+
 
                           }} >
                             <input type='text' name='howMany' className='quantityInput' placeholder={product.count} />
@@ -69,11 +73,11 @@ class ShoppingCart extends Component {
                         </div>
                       </div>
                     ))
-                ) : <div id = 'emptyCartMsg' >Your shopping cart is empty</div>
+                ) : <div id='emptyCartMsg' >Your shopping cart is empty</div>
             }
           </ul>
         </div>
-        <div id='currentTotal'>${totalPrice.toFixed(2)|| ''}</div>
+        <div id='currentTotal'>${totalPrice.toFixed(2) || ''}</div>
         <button onClick={() => this.props.history.push('/checkout')}>Checkout</button>
       </div>
     )

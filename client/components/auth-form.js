@@ -16,7 +16,6 @@ const AuthForm = (props) => {
           : ''
         }
           <form onSubmit={handleSubmit} name={name}>
-
           <div>
             <div>
               <label  style = {{ fontSize: '18px' }} htmlFor="firstName">First Name</label>
@@ -27,7 +26,6 @@ const AuthForm = (props) => {
               <input style = {{ width: '240', height: '20px' }} name="lastName" type="text" />
             </div>
           </div>
-          : ''
 
         <div>
           <label  style = {{ fontSize: '18px' }}htmlFor="email">Email</label>

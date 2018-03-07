@@ -48,7 +48,6 @@ export const me = () => dispatch => {
                 if (localCart.length) {
                     let result = window.confirm("There is already a cart! Click 'OK' to merge or 'cancel' to continue without merging.")
                     if (result) {
-                        console.log('THE EXISTING CART = ', localCart)
                         localCart.forEach((productObj) => {
                             if (productObj.count > 1) {
                                 for (let k = 0; k < productObj.count; k++) {
@@ -69,7 +68,6 @@ export const me = () => dispatch => {
 }
 
 export const updateMe = (user) => dispatch => {
-    console.log(user)
     return axios.put(`api/users/${user.id}`, user)
         .then(user => {
             dispatch(updateUser(user.data))
@@ -126,7 +124,6 @@ export default function(state = defaultUser, action) {
         case GET_USER:
             return action.user
         case UPDATE_USER:
-            console.log(state, action)
             return {...state, user: action.orders };
         case REMOVE_USER:
             return defaultUser

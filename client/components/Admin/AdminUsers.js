@@ -51,7 +51,6 @@ export class AdminUsers extends Component {
 
   render() {
     let users;
-        console.log(this.state)
     if (this.props.allUsers.length) {
 
       users = this.props.allUsers.map(user => {

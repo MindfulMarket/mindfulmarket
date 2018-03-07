@@ -1,5 +1,6 @@
 import React ,{Component}from 'react'
 import { connect } from 'react-redux'
+import {Link} from 'react-router-dom'
 
 let counter = 0;
 
@@ -78,15 +79,17 @@ class Card extends Component {
         {
         this.props.button === 'Add to cart' ?
         <button className="cardBtn" onClick={() => {
-          //console.log(l)
           this.props.addToCart(this.props.product)
           .then(()=> this.props.updateLocalCart(this.props.testCart))
-
-          this.props.updateBackend(this.props.testCart, this.props.userId)
+          if(this.props.userId){
+            this.props.updateBackend(this.props.testCart, this.props.userId)
+          }
+          
         }}>{this.props.button}</button>
         :
-        <a href={`/${this.props.category}s/${this.props.id}`}>
-        <button className="cardBtn">{this.props.button}</button></a>
+        <Link to={`/${this.props.category}s/${this.props.id}`}>
+        <button className="cardBtn">{this.props.button}</button>
+        </Link>
 
         }
       </div>

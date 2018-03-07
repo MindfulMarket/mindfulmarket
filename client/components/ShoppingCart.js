@@ -47,7 +47,10 @@ class ShoppingCart extends Component {
                             evt.preventDefault()
                             this.props.updateQuant(product.product, parseInt(evt.target.howMany.value))
                             this.props.updateLocal(this.props.cartContents)
-                            this.props.updateBackendCart(this.props.cartContents, this.props.id)
+                          
+                              this.props.updateBackendCart(this.props.cartContents, this.props.id)
+                            
+                         
 
                           }} >
                             <input type='text' name='howMany' className='quantityInput' placeholder={product.count} />

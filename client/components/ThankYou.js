@@ -1,38 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
-
 import { fetchAllCauses } from '../store/causes'
-import AddPayment from './AddPayment'
 
 /* -----------------    COMPONENT     ------------------ */
-class Payment extends Component {
+class ThankYou extends Component {
 
   render() {
-  
-
     return (
       <div id = "thanksContainer">
-        <AddPayment history={this.props.history}orderTotalPrice ={this.props.totalOrderPrice} user={this.props.userName} />
+      <h1>Thank you for {this.props.match.params.action === 'ordered' ? 'your order' : 'signing up'} {this.props.userName}!</h1>
       </div>
     )
   }
 }
 
-const mapState = ({ user,order}) => {
-  return {
-     userName: user.firstName ,
-     order,
-     totalOrderPrice: user.orderPriceTotal
-     
-    }
+const mapState = ({ user}) => {
+  return { userName: user.firstName }
 }
 
 const mapDispatch = dispatch => ({
   fetchCauseData: () => dispatch(fetchAllCauses())
 });
 
-export default withRouter(connect(mapState, mapDispatch)(Payment));
+export default connect(mapState, mapDispatch)(ThankYou);
 
   /* -----------------    CONTAINER     ------------------ */
 

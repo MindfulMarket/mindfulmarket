@@ -13,7 +13,7 @@ export {default as About} from './pages/About'
 
 export {default as UserProfile} from './UserProfile'
 export {default as AllBrands} from './pages/AllBrands'
-
+export {default as ThankYou} from './ThankYou'
 export {default as AllCauses} from './pages/AllCauses'
 export {default as AllProducts} from './pages/AllProducts'
 export {default as AllCategories} from './pages/AllCategories'

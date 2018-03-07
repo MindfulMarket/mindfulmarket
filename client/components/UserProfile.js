@@ -29,7 +29,6 @@ class UserProfile extends Component {
       let email = evt.target.email.value || this.props.user.email;
       let password = evt.target.password.value || this.props.user.password;
       let shippingAddress = evt.target.shippingAddress.value || this.props.user.shippingAddress;
-      // console.log({id, firstName, lastName, email, password})
       this.props.updateMe({id, firstName, lastName, email, password, shippingAddress})
       .then(() => this.props.history.push(`/profile`))
     }

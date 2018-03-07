@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import {getOrders} from '../store/user'
- import { fetchAndSetCart} from '../store/cart'
+ import { fetchAndSetCart,loadAndUpdateLocalStorage,updateBackendCart} from '../store/cart'
  import { sendPrice} from '../store/user'
 
  import { Link } from 'react-router-dom'

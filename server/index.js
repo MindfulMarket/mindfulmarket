@@ -15,6 +15,9 @@ const nodemailer = require('nodemailer');
 const stripe = require('stripe')(process.env.STRIPE_KEY)
 module.exports = app
 
+
+
+
 /**
  * In your development environment, you can keep all of your
  * app's secret API keys in a file called `secrets.js`, in your project
@@ -71,50 +74,50 @@ const createApp = () => {
             next()
         }
     })
-    app.post('/payment', (req,res) =>{
+    app.post('/payment', (req, res) => {
         let token = req.body.token
-       
+
         stripe.charges.create({
-        amount: parseInt(req.body.amount + "00"),
-        currency: "usd",
-        description: "Example charge",
-        statement_descriptor: "Custom descriptor",
-        source: token,
-      }, function(err, charge) {
-        if (err) console.log('error',err)
-      });
+            amount: parseInt(req.body.amount + "00"),
+            currency: "usd",
+            description: "Example charge",
+            statement_descriptor: "Custom descriptor",
+            source: token,
+        }, function(err, charge) {
+            if (err) console.log('error', err)
+        });
     })
 
-app.post('/confirmation', (req, res) => {
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'mindfullmarket6@gmail.com',
-            pass: process.env.EMAIL_PASSWARD
-        }
-    });
+    app.post('/confirmation', (req, res) => {
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'mindfullmarket6@gmail.com',
+                pass: process.env.EMAIL_PASSWARD
+            }
+        });
 
-    let mailOptions = {
-        from: '"mindfullmarket@gmail.com', // sender address
-        to: req.user.email, // list of receivers
-        subject: 'Hello ✔', // Subject line
-        text: 'Hello world?', // plain text body
-        html: '<b>Hello world?</b>' // html body
-    };
+        let mailOptions = {
+            from: '"mindfullmarket@gmail.com', // sender address
+            to: req.user.email, // list of receivers
+            subject: 'Hello ✔', // Subject line
+            text: 'Hello world?', // plain text body
+            html: '<b>Hello world?</b>' // html body
+        };
 
-    
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return console.log(error);
-        }
-       // Preview only available when sending through an Ethereal account
 
-        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-    });
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            // Preview only available when sending through an Ethereal account
 
-  })
+            // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+            // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+        });
+
+    })
 
 
     // sends index.html

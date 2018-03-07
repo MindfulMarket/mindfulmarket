@@ -4,8 +4,8 @@ import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { SingleAdminUser,SingleAdminOrder,AdminUsers,Payment ,AdminBrands, SingleAdminBrand, SingleAdminCause, AdminCauses, AdminCategories, SingleAdminCategory, SingleAdminProduct, AdminProducts, AdminOrders, AdminHome, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile, SingleCategory } from './components'
-import {me,getAllUsers,fetchAllOrders, fetchProducts, fetchAllBrands, fetchAllCauses, fetchAllCategories} from './store'
- 
+import {me,getAllUsers,fetchAllOrders, fetchProducts, fetchAllBrands, fetchAllCauses, fetchAllCategories, fetchAndSetCart} from './store'
+
 import axios from 'axios' //wast throwing as error without import......WHY
 
 /**
@@ -71,7 +71,7 @@ class Routes extends Component {
         <Route path="/admin/brands/:id" component={SingleAdminBrand} />
         <Route exact path="/admin/users" component={AdminUsers} />
         <Route exact path="/admin/users/:id" component={SingleAdminUser} />
-        
+
 
       </Switch>
     )
@@ -101,6 +101,7 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchAllCategories())
       dispatch(fetchAllOrders())
       dispatch(getAllUsers())
+      dispatch(fetchAndSetCart())
 
     }
   }

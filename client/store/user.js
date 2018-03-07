@@ -10,6 +10,7 @@ const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const SET_ADMIN = 'SET_ADMIN'
 const GET_ORDERS = 'GET_ORDERS'
+const SAVE_TOTAL = 'SAVE_TOTAL'
 const UPDATE_USER = 'UPDATE_USER'
 
 /**
@@ -20,6 +21,8 @@ const defaultUser = [{ orders: [] }]
 /**
  * ACTION CREATORS
  */
+export const sendPrice=(price)=>({type:SAVE_TOTAL,price})
+
 const getUser = user => ({ type: GET_USER, user })
 const setAdminMode = user => ({ type: SET_ADMIN, user })
 const removeUser = () => ({ type: REMOVE_USER })
@@ -45,7 +48,6 @@ export const me = () => dispatch => {
                 if (localCart.length) {
                     let result = window.confirm("There is already a cart! Click 'OK' to merge or 'cancel' to continue without merging.")
                     if (result) {
-                        console.log('THE EXISTING CART = ', localCart)
                         localCart.forEach((productObj) => {
                             if (productObj.count > 1) {
                                 for (let k = 0; k < productObj.count; k++) {
@@ -66,7 +68,6 @@ export const me = () => dispatch => {
 }
 
 export const updateMe = (user) => dispatch => {
-    console.log(user)
     return axios.put(`api/users/${user.id}`, user)
         .then(user => {
             dispatch(updateUser(user.data))
@@ -118,10 +119,11 @@ export const setAdmin = (user) => dispatch => {
  */
 export default function(state = defaultUser, action) {
     switch (action.type) {
+        case SAVE_TOTAL:
+            return {...state, orderPriceTotal:action.price}
         case GET_USER:
             return action.user
         case UPDATE_USER:
-            console.log(state, action)
             return {...state, user: action.orders };
         case REMOVE_USER:
             return defaultUser

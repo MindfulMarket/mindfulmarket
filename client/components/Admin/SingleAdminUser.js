@@ -19,7 +19,6 @@ class SingleAdminUser extends Component {
     for (let field of event.target) {
       if (field.value) productEdited[field.name] = field.value
     }
-    console.log(productEdited, 'product', id, 'id')
     this.props.editProduct(productEdited, id)
   }
 

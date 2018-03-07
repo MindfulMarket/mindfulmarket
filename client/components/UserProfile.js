@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+import { fetchAllBrands } from '../store/brands'
+import AddPayment from './AddPayment'
 import { updateMe, getOrders, getUser } from '../store/user'
 /* -----------------    COMPONENT     ------------------ */
 let counter = 0;
 class UserProfile extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -27,10 +29,10 @@ class UserProfile extends Component {
       let email = evt.target.email.value || this.props.user.email;
       let password = evt.target.password.value || this.props.user.password;
       let shippingAddress = evt.target.shippingAddress.value || this.props.user.shippingAddress;
-      // console.log({id, firstName, lastName, email, password})
       this.props.updateMe({id, firstName, lastName, email, password, shippingAddress})
       .then(() => this.props.history.push(`/profile`))
     }
+
 
   render() {
     return (

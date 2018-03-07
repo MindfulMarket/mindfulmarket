@@ -63,10 +63,9 @@ class SingleProduct extends Component {
               <p>Description: {singleProduct.description}</p>
               <p>Price: ${singleProduct.price}</p>
               <button type="button" className="cardBtn" onClick={() => this.props.addToCart(singleProduct)}>Add to cart</button>
-              <button name="bruce\s button for testing" onClick={() => window.localStorage.setItem('myOrder', JSON.stringify({quantity: 5, type: 'shirt', price: 100 }))}>TEST for Local Storage
-              </button>
-              <button name="bruce\s button for testing" onClick={() => window.localStorage.removeItem('myOrder')}>removing local storage
-              </button>
+            
+             
+    
               <div>
                 <div>
                   <h1>Submit your review</h1>

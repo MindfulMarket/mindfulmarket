@@ -30,6 +30,7 @@
         "express-session": "^1.15.1",
         "history": "^4.6.3",
         "morgan": "^1.8.1",
+        "nodemailer": "^4.6.0",
         "passport": "^0.3.2",
         "passport-google-oauth": "^1.0.0",
         "pg": "^6.1.2",
@@ -40,11 +41,13 @@
         "react-redux": "^5.0.2",
         "react-responsive-sidebar": "^0.1.16",
         "react-router-dom": "^4.1.1",
+        "react-stripe-elements": "^1.6.0",
         "redux": "^3.6.0",
         "redux-logger": "^2.8.1",
         "redux-thunk": "^2.2.0",
         "sequelize": "^4.3.1",
-        "socket.io": "^2.0.3"
+        "socket.io": "^2.0.3",
+        "stripe": "^5.5.0"
     },
     "devDependencies": {
         "@babel/core": "^7.0.0-beta.40",

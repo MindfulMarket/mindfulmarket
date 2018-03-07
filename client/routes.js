@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { AdminBrands, SingleAdminBrand, SingleAdminCause, AdminCauses, AdminCategories, SingleAdminCategory, SingleAdminProduct, SingleAdminUser, AdminProducts, AdminOrders, AdminHome, AdminUsers, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile, SingleCategory, SingleAdminOrder } from './components'
-import {me, fetchProducts, fetchAllBrands, fetchAllCauses, fetchAllCategories, getAllUsers, fetchAllOrders} from './store'
 
-// import { fetchAndSetCart } from './store/cart' //WHERE
-
+import { SingleAdminUser,SingleAdminOrder,AdminUsers,Payment ,AdminBrands, SingleAdminBrand, SingleAdminCause, AdminCauses, AdminCategories, SingleAdminCategory, SingleAdminProduct, AdminProducts, AdminOrders, AdminHome, Login, Signup, UserHome, AllBrands, AllProducts, ShoppingCart, SingleProduct, AllCauses, AllCategories, SingleBrand, SingleCause, Checkout, ThankYou, About, UserProfile, SingleCategory } from './components'
+import {me,getAllUsers,fetchAllOrders, fetchProducts, fetchAllBrands, fetchAllCauses, fetchAllCategories} from './store'
+ 
 import axios from 'axios' //wast throwing as error without import......WHY
 
 /**
@@ -27,22 +26,25 @@ class Routes extends Component {
 
       <Switch>
         <Route exact path="/" component={UserHome} />
+``      <Route path="/categories/:id" component={SingleCategory} />
+        <Route path="/checkout" component={Checkout} />``
+        <Route exact path="/cart" component={ShoppingCart} />
+        <Route path="/payment/:action" component={Payment} />
+        <Route path="/profile" component={UserProfile} />
+       {/* <Route exact path="/" component={UserHome} />*/}
 
         { /* AUTH / PROFILE ROUTES */ }
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/profile" component={UserProfile} />
-
         { /* SHOPPING ROUTES */ }
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:id" component={SingleProduct} />
-
         <Route exact path="/causes" component={AllCauses} />
         <Route path="/causes/:id" component={SingleCause} />
-
         <Route exact path="/brands" component={AllBrands} />
         <Route path="/brands/:id" component={SingleBrand} />
-
+        {/* Admin stuff */}
         <Route exact path="/categories" component={AllCategories} />
         <Route  path="/categories/:id" component={SingleCategory} />
 
@@ -58,7 +60,7 @@ class Routes extends Component {
         <Route exact path="/admin" component={AdminHome} />
         <Route exact path="/admin/orders" component={AdminOrders} />
         <Route exact path="/admin/orders/:id" component={SingleAdminOrder} />
-
+        <Route exact path="/thankyou/:action" component={AdminProducts} />
         <Route exact path="/admin/products" component={AdminProducts} />
         <Route path="/admin/products/:id" component={SingleAdminProduct} />
         <Route exact path="/admin/causes" component={AdminCauses} />
@@ -69,6 +71,7 @@ class Routes extends Component {
         <Route path="/admin/brands/:id" component={SingleAdminBrand} />
         <Route exact path="/admin/users" component={AdminUsers} />
         <Route exact path="/admin/users/:id" component={SingleAdminUser} />
+        
 
       </Switch>
     )

@@ -39,7 +39,6 @@ const addUser = product => ({
 // }
 
 export const getAllUsers = (users) => dispatch => {
-    console.log('getting users')
     return axios.get(`/api/users`, users)
         .then(allUsers => {
             dispatch(getUsers(allUsers.data))
@@ -53,7 +52,6 @@ export const addNewUser = user => dispatch => {
     axios.post('/api/users', user)
         .then(res => res.data)
         .then(addedUser => {
-            console.log(addedUser)
             dispatch(addUser(addedUser))
         })
         .then(() => dispatch(getUsers))
@@ -70,7 +68,6 @@ export default function(state = defaultUser, action) {
         case GET_USERS:
             return action.users
         case ADD_NEW_USER:
-            console.log(state, action)
             return [...state, action.product]
         case REMOVE_USER:
             return defaultUser

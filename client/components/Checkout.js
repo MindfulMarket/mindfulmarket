@@ -1,9 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { getOrders } from '../store/user'
-import { fetchAndSetCart, loadAndUpdateLocalStorage, updateBackendCart } from '../store/cart'
-import { Link } from 'react-router-dom'
+import {getOrders} from '../store/user'
+ import { fetchAndSetCart,loadAndUpdateLocalStorage,updateBackendCart} from '../store/cart'
+ import { sendPrice} from '../store/user'
+
+ import { Link } from 'react-router-dom'
+
+ import AddPayment from './AddPayment'
+
 
 
 /**
@@ -24,45 +29,51 @@ const Checkout = (props) => {
         <form
           onSubmit={(evt) => {
             evt.preventDefault()
-            axios.put(`/api/users/${props.userId}`, { shoppingCart: [] })
-            props.emptyCart(props.userId)
+
             let totalPrice = props.order.reduce((total, productObj) => {
               return total + (productObj.product.price * productObj.count)
-            }, 0)
-            const order = { productsOrdered: props.order, totalPrice, userId: props.userId } //this should be a thunk
-            axios.post('/api/orders', order)
+              }, 0).toFixed(2)
+              
+            props.sendPrice(totalPrice)
+            axios.put(`/api/users/${props.userId}`, {shoppingCart: []})
+            props.emptyCart()
+            const order = { productsOrdered: props.order, totalPrice, userId: props.userId }
+
+              axios.post('/api/orders', order)
               .then(() => props.getOrders(props.userId))
             //clear the frontend cart on logout
 
-            props.history.push('/thankyou/ordered')
+            props.history.push('/payment/ordered')
 
-          }} name={name}>
-          <div>
-            <label htmlFor="firstName"><small>First Name</small></label>
-            <input name="firstName" type="text" />
-          </div>
-          <br />
-          <div>
-            <label htmlFor="lastName"><small>Last Name</small></label>
-            <input name="lastName" type="text" />
-          </div>
-          <br />
-          <div>
-            <label htmlFor="billingAddress"><small>Billing address</small></label>
-            <input name="email" type="text" />
-          </div>
-          <br />
-          <div>
-            <button type="submit">SUBMIT ORDER</button>
-          </div>
-        </form>
-      </div>
+        }} name={name}>
+        <div>
+          <label htmlFor="firstName"><small>First Name</small></label>
+          <input name="firstName" type="text" />
+        </div>
+        <br />
+        <div>
+          <label htmlFor="lastName"><small>Last Name</small></label>
+          <input name="lastName" type="text" />
+        </div>
+        <br />
+        <div>
+          <label htmlFor="billingAddress"><small>Billing address</small></label>
+          <input name="email" type="text" />
+        </div>
+        <br />
+        <div>
+      
+          
+             <button type="submit">SUBMIT ORDER</button>
+          
+        </div>
+      </form>
+     </div>
       <div>
-        <div className="cartContainer">
-          {
-
-            props.cartContents.map(
-              product => (
+      <div className="cartContainer">
+            {
+              props.cartContents.map(
+                product => (
                 <div className="cartItem" key={product.product.id}>
                   <div >
                     <Link className="cartItem" to={`/products/${product.product.id}`} >
@@ -90,7 +101,8 @@ const mapState = (state) => {
     lastName: state.user.lastName,
     order: state.cart,
     userId: state.user.id,
-    cartContents: state.cart
+    cartContents: state.cart,
+    user: state.user
 
   }
 }
@@ -109,6 +121,7 @@ const mapDispatch = (dispatch) => {
       // dispatch(checkout(paymentInfo))
     },
     getOrders: (id) => dispatch(getOrders(id)),
+    sendPrice:(priceTotal) => dispatch(sendPrice(priceTotal)),
     emptyCart: (id) => {
       dispatch(fetchAndSetCart([]))
       loadAndUpdateLocalStorage([])

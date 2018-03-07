@@ -14,9 +14,10 @@ class ShoppingCart extends Component {
 
 
   render() {
+    let totalPrice
     if (this.props.cartContents) {
       if (this.props.cartContents.length) {
-        let totalPrice = this.props.cartContents.reduce((total, productObj) => {
+         totalPrice = this.props.cartContents.reduce((total, productObj) => {
           return total + (productObj.product.price * productObj.count)
         }, 0)
       }
@@ -77,7 +78,7 @@ class ShoppingCart extends Component {
             }
           </ul>
         </div>
-        <div id='currentTotal'>${totalPrice.toFixed(2) || ''}</div>
+        <div id='currentTotal'>${totalPrice || ''}</div>
         <button onClick={() => this.props.history.push('/checkout')}>Checkout</button>
       </div>
     )

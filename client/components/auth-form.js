@@ -16,7 +16,7 @@ const AuthForm = (props) => {
           : ''
         }
           <form onSubmit={handleSubmit} name={name}>
-          { displayName === 'Sign Up' ?
+
           <div>
             <div>
               <label  style = {{ fontSize: '18px' }} htmlFor="firstName">First Name</label>
@@ -28,7 +28,7 @@ const AuthForm = (props) => {
             </div>
           </div>
           : ''
-          }
+
         <div>
           <label  style = {{ fontSize: '18px' }}htmlFor="email">Email</label>
           <input style = {{ width: '240', height: '20px' }} name="email"  type="text" />
@@ -40,7 +40,7 @@ const AuthForm = (props) => {
         <div>
           <button type="submit">{displayName}</button>
         </div>
-        
+
         {error && error.response && <div> {error.response.data} </div>}
       </form>
       <a href="/auth/google"><img style={{maxHeight: '250px', maxWidth: '250px'}} src="https://hhs.htps.us/UserFiles/Servers/Server_791028/Templates/login-google.png" /></a>

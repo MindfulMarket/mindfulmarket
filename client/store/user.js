@@ -42,7 +42,7 @@ export const me = () => dispatch => {
         .then(res => {
             let localCart = loadAndUpdateLocalStorage()
             dispatch(getUser(res.data || defaultUser))
-            dispatch(fetchAndSetCart(res.data.shoppingCart || localCart || []))
+           dispatch(fetchAndSetCart(res.data.shoppingCart || localCart || []))
             if (res.data.id !== undefined) {
                 dispatch(getOrders(res.data.id))
                 if (localCart.length) {

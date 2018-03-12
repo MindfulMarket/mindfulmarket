@@ -4,7 +4,12 @@ Mindful market is an ecommerce platform for ther sale of eco-conscious, sustaina
 
 - React-redux, HTML and CSS on the front end
 - Express, sequelize and postgreSQL on the backend
+- Oauth for authentication with Google
 
 We also used a variety of other tools such as github for version control and collaboration, travis for continuous integration, heroku for deployment, chai/mocha for testing and others (take a look at the package.json to see the modules we found useful)
 
 see the live app at https://mindfulmarket.herokuapp.com/
+
+
+
+![an image of the products page](https://raw.githubusercontent.com/reese-long/mindfulMarket/demoPhoto.png)

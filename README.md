@@ -12,4 +12,4 @@ see the live app at https://mindfulmarket.herokuapp.com/
 
 
 
-![an image of the products page](https://raw.githubusercontent.com/reese-long/mindfulMarket/demoPhoto.png)
+![an image of the products page](https://raw.githubusercontent.com/reese-long/mindfulMarket/master/demoPhoto.png)

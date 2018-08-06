@@ -11,5 +11,4 @@ We also used a variety of other tools such as github for version control and col
 see the live app at https://mindfulmarket.herokuapp.com/
 
 
-
-![an image of the products page](https://raw.githubusercontent.com/reese-long/mindfulMarket/master/demoPhoto.png)
+<p align="center"><img src='/demoPhoto.png'></img></p>
